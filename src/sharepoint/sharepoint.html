@@ -1,0 +1,57 @@
+<div data-ovh-alert="{{alerts.dashboard}}"></div>
+
+<div data-ng-if="SharepointCtrl.loaders.init">
+    <div class="clearfix"></div>
+    <div class="loader mt-5 text-center"></div>
+</div>
+
+<div data-ng-if="!SharepointCtrl.loaders.init">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-9">
+                <small>
+                    <span data-i18n-static="sharepoint_dashboard_offer_type"></span>
+                    <span data-i18n-static="sharepoint_dashboard_offer_type_standalone" data-ng-if="SharepointCtrl.isStandAlone"></span>
+                </small>
+                <h1 class="wordbreak" data-ng-bind="SharepointCtrl.sharepointDomain"></h1>
+            </div>
+            <div class="col-sm-3 d-flex">
+                <div class="btn-group ml-auto mt-4">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span data-i18n-static="common_actions"></span>
+                        <span class="caret ml-2" aria-hidden="true"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
+                        <li>
+                            <i class="oui-icon oui-icon-gear_line" aria-hidden="true"></i>
+                            <button class="btn btn-link" type="button"
+                                    data-i18n-static="exchange_update_billing_button_title"
+                                    data-ng-click="setAction('renew/update/sharepoint-renew-update', SharepointCtrl.sharepointDomain)">
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-controller="SharepointTabsCtrl" data-ng-if="!SharepointCtrl.sharepoint.isExpired">
+        <ovh-tabs tabs="tabs"
+                  selected-tab="selectedTab"
+                  change-tab="setSelectedTab"
+                  product="sharepoint"
+                  tr="tr"></ovh-tabs>
+        <div class="tab-content">
+            <div class="tab-pane active platform"
+                 data-ng-include="selectedTab && 'sharepoint/' + toKebabCase(selectedTab) + '/' + selectedTab + '.html'">
+            </div>
+        </div>
+    </div>
+
+    <div id="currentAction" class="modal fade currentAction" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div id="modal-container" class="modal-content" data-ng-include="SharepointCtrl.stepPath"></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
+    </div>
+</div>

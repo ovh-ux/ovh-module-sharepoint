@@ -1,0 +1,48 @@
+<div data-ng-controller="SharepointAddAccountCtrl as addAccountCtrl">
+    <div data-wizard
+         data-wizard-title="i18n.sharepoint_accounts_action_sharepoint_add_title"
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="submit">
+
+        <div data-wizard-step
+             data-wizard-step-valid="addAccountCtrl.addAccountForm.$valid">
+
+            <p data-ng-bind-html="tr('sharepoint_accounts_action_sharepoint_add_intro')"></p>
+
+            <div class="loader text-center" data-ng-if="addAccountCtrl.loading"></div>
+
+            <form class="form-horizontal" name="addAccountCtrl.addAccountForm" novalidate
+                  data-ng-show="!addAccountCtrl.loading">
+                <div class="form-group"
+                     data-ng-repeat="option in addAccountCtrl.optionsList track by $index"
+                     data-ng-class="{'has-error': addAccountCtrl.addAccountForm.$invalid && addAccountCtrl.addAccountForm.$dirty, 'has-success': addAccountCtrl.addAccountForm.$valid && addAccountCtrl.addAccountForm.$dirty}">
+                    <div class="clearfix">
+                        <label class="control-label col-md-4" for="optionPricesQuantity-{{$index}}"
+                               data-ng-bind="option.productName"></label>
+                        <div class="col-md-3">
+                            <div data-increment-number
+                                 data-ng-model="option.prices[0].quantity"
+                                 data-ng-required="true"
+                                 data-increment-number-id="optionPricesQuantity-{{$index}}"
+                                 data-increment-number-init="option.prices[0].minimumQuantity"
+                                 data-increment-number-min="option.prices[0].minimumQuantity"
+                                 data-increment-number-max="option.prices[0].maximumQuantity"
+                                 data-increment-number-name="optionPricesQuantity[{{$index}}]"
+                                 data-increment-number-size="2">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1 mt-2">
+                            <strong class="text-danger"
+                                    data-ng-bind-html="addAccountCtrl.getPrice(option) | currency : addAccountCtrl.getCurrency(option)"></strong>
+                            <span data-ng-bind-html="tr('sharepoint_accounts_action_sharepoint_add_monthly')"></span>
+                        </div>
+                    </div>
+                    <small class="col-md-offset-4 pl-4 help-block"
+                           data-ng-bind="tr('sharepoint_accounts_action_sharepoint_add_error_outofbounds', [option.prices[0].minimumQuantity, option.prices[0].maximumQuantity])"
+                           data-ng-if="addAccountCtrl.addAccountForm.$invalid && addAccountCtrl.addAccountForm.$dirty"></small>
+                </div>
+                <p data-ng-bind-html="tr('sharepoint_accounts_action_sharepoint_add_extra_intro')"></p>
+            </form>
+        </div>
+    </div>
+</div>

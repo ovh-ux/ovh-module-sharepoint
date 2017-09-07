@@ -1,0 +1,178 @@
+<div data-ng-controller="SharepointUpdateRenewCtrl as updateRenewCtrl">
+    <div data-wizard
+         data-wizard-bread-crumb
+         data-wizard-on-cancel="reset"
+         data-wizard-on-finish="submit"
+         data-wizard-title="i18n.exchange_update_billing_action_title">
+
+        <div data-wizard-step
+             data-wizard-step-valid="updateRenewCtrl.buffer.hasChanged">
+
+            <p data-ng-bind-html="tr('exchange_update_billing_periode_intro')"></p>
+
+            <form class="mt-5">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="{{i18n.exchange_tab_ACCOUNTS_table_email}}"
+                           data-ng-change="updateRenewCtrl.goSearch()"
+                           data-ng-disabled="updateRenewCtrl.loaders.init"
+                           data-ng-model="updateRenewCtrl.search.value"
+                           data-ng-model-options="{ debounce: 800 }">
+                    <div class="input-group-btn"
+                         data-ng-if="updateRenewCtrl.search.value">
+                        <button type="button" class="btn btn-default" title="{{i18n.sharepoint_action_reset_search}}"
+                                data-ng-click="updateRenewCtrl.emptySearch()">
+                            <span class="fa fa-times" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <span class="input-group-addon"
+                          data-ng-if="!updateRenewCtrl.search.value">
+                        <span class="fa fa-search disabled" aria-hidden="true"></span>
+                    </span>
+                </div>
+            </form>
+
+            <table class="table table-hover mt-3">
+                <thead>
+                    <tr>
+                        <th scope="col" data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                        <th class="text-center" scope="col" data-i18n-static="exchange_update_billing_header_1M"></th>
+                        <th class="text-center" scope="col">
+                            <span data-i18n-static="exchange_update_billing_header_terminate"></span>&nbsp;<span class="text-danger">*</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody data-ng-if="updateRenewCtrl.loaders.init">
+                    <tr>
+                        <td colspan="3" class="loader text-center"></td>
+                    </tr>
+                </tbody>
+
+                <tbody data-ng-if="!updateRenewCtrl.loaders.init && !updateRenewCtrl.accountIds.length">
+                    <tr>
+                        <td class="text-center" colspan="3" data-i18n-static="sharepoint_accounts_empty"></td>
+                    </tr>
+                </tbody>
+
+                <tbody data-ng-if="!updateRenewCtrl.loaders.init && updateRenewCtrl.accountIds.length > 0">
+                    <tr data-ng-repeat="account in updateRenewCtrl.accounts track by $index">
+                        <th scope="row">
+                            <span data-ng-bind="account.userPrincipalName"></span>
+                            <span class="fa fa-hourglass-half ml-2" aria-hidden="true" data-ng-if="account.taskPendingId"></span>
+                        </th>
+                        <td class="text-center">
+                            <input type="radio" name="{{$index}}" data-ng-value="false"
+                                   data-ng-change="updateRenewCtrl.changeRenew(account, false)"
+                                   data-ng-checked="!account.deleteAtExpiration"
+                                   data-ng-disabled="!account.activated"
+                                   data-ng-model="account.deleteAtExpiration">
+                        </td>
+                        <td class="text-center">
+                            <input type="radio" name="{{$index}}" data-ng-value="true"
+                                   data-ng-change="updateRenewCtrl.changeRenew(account, true)"
+                                   data-ng-checked="account.deleteAtExpiration"
+                                   data-ng-disabled="!account.activated"
+                                   data-ng-model="account.deleteAtExpiration">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="clearfix"
+                 data-ng-if="updateRenewCtrl.accountIds">
+                <div data-pagination-front
+                     data-items="updateRenewCtrl.accountIds"
+                     data-paginated-items="updateRenewCtrl.accounts"
+                     data-current-page="currentPage"
+                     data-items-per-page="itemsPerPage"
+                     data-nb-pages="nbPages"
+                     data-transform-item="updateRenewCtrl.onTranformItem(item)"
+                     data-on-transform-item-done="updateRenewCtrl.onTranformItemDone()"
+                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
+                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
+                     data-on-page-change="updateRenewCtrl.loaders.init = true"
+                     data-ng-show="!updateRenewCtrl.loaders.init && updateRenewCtrl.accounts.length > 0">
+                </div>
+            </div>
+
+            <div class="alert alert-warning mt-5" role="alert">
+                <div>
+                    <span class="text-danger">* </span>
+                    <small data-i18n-static="exchange_update_billing_periode_delete_warning"></small>
+                </div>
+            </div>
+        </div>
+
+        <div data-wizard-step
+             data-wizard-step-on-load="checkBuffer">
+
+            <p class="mt-5" data-i18n-static="exchange_update_billing_periode_resume"></p>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col" data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                        <th scope="col" data-i18n-static="exchange_update_billing_header_1M" class="text-center"></th>
+                        <th class="text-center" scope="col">
+                            <span data-i18n-static="exchange_update_billing_header_terminate"></span>&nbsp;<span class="text-danger">*</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody data-ng-if="updateRenewCtrl.loaders.init">
+                    <tr>
+                        <td class="loader text-center" colspan="3"></td>
+                    </tr>
+                </tbody>
+
+                <tbody data-ng-if="!updateRenewCtrl.loaders.init && !updateRenewCtrl.accountIds.length">
+                    <tr>
+                        <td class="text-center" colspan="3" data-i18n-static="sharepoint_accounts_empty"></td>
+                    </tr>
+                </tbody>
+
+                <tbody data-ng-if="!updateRenewCtrl.loaders.init && updateRenewCtrl.accountIds.length > 0">
+                    <tr data-ng-repeat="account in updateRenewCtrl.accounts track by $index">
+                        <td>
+                            <span data-ng-bind="account.userPrincipalName"></span>
+                            <span data-ng-bind="updateRenewCtrl.buffer.changes.length"></span>
+                            <span class="fa fa-hourglass-half ml-2" aria-hidden="true" data-ng-if="account.taskPendingId"></span>
+                        </td>
+                        <td class="text-center">
+                            <span class="fa fa-check fa-lg text-success" aria-hidden="true"
+                                  data-ng-if="!account.deleteAtExpiration"></span>
+                            <span data-ng-if="account.deleteAtExpiration"> - </span>
+                        </td>
+                        <td class="text-center">
+                            <span class="fa fa-check fa-lg text-success" aria-hidden="true"
+                                  data-ng-if="account.deleteAtExpiration"></span>
+                            <span data-ng-if="!account.deleteAtExpiration"> - </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="clearfix">
+                <div data-pagination-front
+                     data-items="updateRenewCtrl.accountIdsResume"
+                     data-paginated-items="updateRenewCtrl.accounts"
+                     data-current-page="currentPage"
+                     data-items-per-page="itemsPerPage"
+                     data-nb-pages="nbPages"
+                     data-transform-item="updateRenewCtrl.onTranformItemResume(item)"
+                     data-on-transform-item-done="updateRenewCtrl.onTranformItemDone()"
+                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
+                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
+                     data-ng-show="!updateRenewCtrl.loaders.init && updateRenewCtrl.accounts.length > 0">
+                </div>
+            </div>
+
+            <div class="alert alert-warning mt-5" role="alert">
+                <div>
+                    <span class="text-danger">* </span>
+                    <small data-i18n-static="exchange_update_billing_periode_delete_warning"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

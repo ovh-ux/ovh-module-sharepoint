@@ -1,0 +1,145 @@
+<div class="container-fluid px-0" data-ng-controller="SharepointAccountsCtrl as accountsCtrl">
+    <div class="row">
+        <div class="col-md-9">
+
+            <div class="loader text-center" data-ng-if="accountsCtrl.loaders.init"></div>
+
+            <div class="alert alert-info" role="alert"
+                 data-i18n-static="sharepoint_accounts_empty"
+                 data-ng-if="!accountsCtrl.loaders.init && !accountsCtrl.hasResult">
+            </div>
+
+            <div data-ng-if="!accountsCtrl.loaders.init && accountsCtrl.hasResult">
+                <div class="mb-3">
+                    <form class="form-inline d-md-flex justify-content-md-end" name="searchSharePointAccountForm">
+                        <div class="form-group">
+                            <label class="sr-only" for="sharePointAccountSearch"
+                                   data-ng-bind="::i18n.common_search"></label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="sharePointAccountSearch" name="sharePointAccountSearch" placeholder="{{::i18n.exchange_tab_ACCOUNTS_table_email}}"
+                                       data-ng-change="accountsCtrl.updateSearch()"
+                                       data-ng-disabled="accountsCtrl.loaders.search"
+                                       data-ng-model="accountsCtrl.search.value"
+                                       data-ng-model-options='{ debounce: 800 }'>
+
+                                <div class="input-group-btn" data-ng-if="accountsCtrl.search.value">
+                                    <button class="btn btn-default" type="button" aria-label="{{i18n.common_cancel}}"
+                                            data-ng-click="accountsCtrl.emptySearch()"
+                                            data-ng-disabled="accountsCtrl.loaders.search">
+                                        <span class="fa fa-times" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <span class="input-group-addon"
+                                      data-ng-if="!accountsCtrl.search.value">
+                                <span class="fa fa-search" aria-hidden="true"></span>
+                            </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                                <th scope="col" data-i18n-static="sharepoint_accounts_one_drive_space"></th>
+                                <th class="text-center" scope="col" data-i18n-static="sharepoint_accounts_administrator"></th>
+                                <th class="text-center" scope="col" data-i18n-static="sharepoint_accounts_user"></th>
+                                <th class="text-center" scope="col" data-i18n-static="sharepoint_accounts_license_office"></th>
+                                <th class="min-width" scope="col"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody data-ng-if="accountsCtrl.loaders.search">
+                            <tr>
+                                <td class="loader text-center" colspan="6"></td>
+                            </tr>
+                        </tbody>
+
+                        <tbody data-ng-if="!accountsCtrl.loaders.search && !accountsCtrl.accountIds.length">
+                            <tr>
+                                <td class="text-center" colspan="6" data-i18n-static="sharepoint_accounts_empty"></td>
+                            </tr>
+                        </tbody>
+
+                        <tbody data-ng-if="!accountsCtrl.loaders.search && accountsCtrl.accountIds.length > 0">
+                            <tr data-ng-repeat="account in accountsCtrl.accounts track by $index">
+                                <th class="word-break" scope="row">
+                                    <span class="mr-2" data-ng-bind="account.userPrincipalName"></span>
+                                    <span class="fa fa-hourglass-half" aria-hidden="true"
+                                          data-ng-if="account.taskPendingId"></span>
+                                </th>
+                                <td>
+                                    <div class="text-center" data-ng-if="!account.activated"> - </div>
+                                    <div class="progress m-0" style="min-width:140px" data-ng-if="account.activated">
+                                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{email.percentUse}}"
+                                             data-ng-class="{'progress-bar-success' : account.percentUse < 51, 'progress-bar-warning' : account.percentUse > 50 && account.percentUse < 81, 'progress-bar-danger' : account.percentUse > 80 }"
+                                             data-ng-style="{'width': account.percentUse + '%'}">
+                                        </div>
+                                        <span class="progress-bar-label"
+                                              data-ng-bind="::account.usedQuota.value + ' ' + tr('unit_size_' + account.usedQuota.symbol) + ' / ' + account.totalQuota.value + ' ' + tr('unit_size_' + account.totalQuota.symbol)"></span>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span class="fa fa-check fa-lg text-success" aria-hidden="true" aria-label="{{i18n.common_yes}}"
+                                          data-ng-if="account.accessRights === 'administrator'" ></span>
+                                    <span data-ng-if="account.accessRights !== 'administrator'"> - </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="fa fa-check fa-lg text-success" aria-hidden="true" aria-label="{{i18n.common_yes}}"
+                                          data-ng-if="account.accessRights"></span>
+                                    <span data-ng-if="!account.accessRights"> - </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="fa fa-check fa-lg text-success" aria-hidden="true" aria-label="{{i18n.common_yes}}"
+                                          data-ng-if="account.officeLicense"></span>
+                                    <span data-ng-if="!account.officeLicense"> - </span>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-icon" type="button" title="{{i18n.sharepoint_accounts_action_change_configuration}}"
+                                            data-linkedpopover="sharepoint/account/popover/user.html"
+                                            data-linkedpopover-placement="left"
+                                            data-linkedpopover-remote="true"
+                                            data-linkedpopover-single="true"
+                                            data-linkedpopover-title="{{i18n.common_actions}}">
+                                        <span class="oui-icon oui-icon-gear_line _line oui-icon_small" aria-hidden="true"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="clearfix"
+                 data-ng-if="accountsCtrl.accountIds">
+                <div data-pagination-front
+                     data-items="accountsCtrl.accountIds"
+                     data-paginated-items="accountsCtrl.accounts"
+                     data-current-page="currentPage"
+                     data-items-per-page="itemsPerPage"
+                     data-nb-pages="nbPages"
+                     data-transform-item="accountsCtrl.onTranformItem(item)"
+                     data-on-transform-item-done="accountsCtrl.onTranformItemDone(items)"
+                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
+                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
+                     data-on-page-change="accountsCtrl.loaders.search = true"
+                     data-ng-show="!accountsCtrl.loaders.init && accountsCtrl.accounts.length > 0">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-5 mt-lg-0">
+            <button class="btn btn-block btn-default text-wrap" title="{{i18n.sharepoint_accounts_action_reset_admin_tooltip}}"
+                    data-i18n-static="sharepoint_accounts_action_reset_admin"
+                    data-ng-click="accountsCtrl.resetAdminRights()">
+            </button>
+            <button class="btn btn-block btn-default text-wrap" title="{{i18n.exchange_ACTION_order_accounts_button}}"
+                    data-i18n-static="exchange_ACTION_order_accounts_button"
+                    data-ng-click="setAction('account/add/sharepoint-account-add', {})"
+                    data-ng-if="accountsCtrl.isStandAlone">
+            </button>
+        </div>
+    </div>
+</div>

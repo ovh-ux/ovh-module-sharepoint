@@ -1,0 +1,93 @@
+<div class="container-fluid px-0" data-ng-controller="SharepointDomainsCtrl as domainsCtrl">
+    <div class="row">
+        <div class="col-md-9">
+
+            <div class="loader text-center" data-ng-if="domainsCtrl.loading"></div>
+
+            <div class="alert alert-info" role="alert"
+                 data-i18n-static="sharepoint_domains_empty_list"
+                 data-ng-if="!domainsCtrl.loading && !domainsCtrl.upnSuffixesIds.length">
+            </div>
+
+            <div class="table-responsive">
+                <table class="table" data-ng-if="!domainsCtrl.loading && domainsCtrl.upnSuffixesIds.length > 0">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-i18n-static="exchange_tab_domain_domain"></th>
+                            <th scope="col" data-i18n-static="exchange_tab_domain_diagnostic"></th>
+                            <th class="text-center" scope="col" data-i18n-static="exchange_tab_domain_status"></th>
+                            <th class="min-width" scope="col"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr data-ng-repeat="account in domainsCtrl.upnSuffixes">
+                            <th class="word-break" scope="row">
+                                <span data-ng-bind="account.displayName || account.suffix"></span>
+                                <span class="fa fa-hourglass-half" aria-hidden="true"
+                                      data-ng-if="account.taskPendingId"></span>
+                            </th>
+
+                            <td>
+                                <span data-ng-if="!account.ownershipValidated">
+                                    <span class="d-block" data-i18n-static="sharepoint_domains_cname_check_info1"></span>
+                                    <span data-i18n-static="sharepoint_domains_cname_check_info2"></span>
+                                    <span class="label label-danger"
+                                          data-i18n-static="sharepoint_domains_cname_check_label">
+                                    </span>
+                                    (<span data-ng-bind="account.cnameTooltip" title="{{i18n.sharepoint_domains_cname_check_title}}"></span>)
+                                </span>
+                            </td>
+
+                            <td class="text-center">
+                                <span class="fa fa-check fa-lg text-success" aria-label="ok" aria-hidden="true"
+                                      data-ng-if="account.state === 'ok'"></span>
+                                <span class="label label-success"
+                                      data-i18n-static="sharepoint_domains_state_creating"
+                                      data-ng-if="account.state === 'creating' && account.ownershipValidated"></span>
+                                <span class="label label-info"
+                                      data-i18n-static="sharepoint_domains_state_validation"
+                                      data-ng-if="!account.ownershipValidated"></span>
+                                <span class="label label-danger"
+                                      data-i18n-static="sharepoint_domains_state_deleting"
+                                      data-ng-if="account.state === 'deleting'"></span>
+                            </td>
+
+                            <td class="text-center">
+                                <button class="btn btn-icon" type="button" title="{{i18n.sharepoint_domains_delete_tooltips}} {{account.displayName || account.suffix}}"
+                                        data-ng-click="setAction('domain/delete/sharepoint-domain-delete', account)"
+                                        data-ng-disabled="account.taskPendingId">
+                                    <span class="oui-icon oui-icon-trash_line oui-icon_small" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="clearfix"
+                 data-ng-if="domainsCtrl.upnSuffixesIds">
+                <div data-pagination-front
+                     data-items="domainsCtrl.upnSuffixesIds"
+                     data-paginated-items="domainsCtrl.upnSuffixes"
+                     data-current-page="currentPage"
+                     data-items-per-page="itemsPerPage"
+                     data-nb-pages="nbPages"
+                     data-transform-item="domainsCtrl.onTranformItem(item)"
+                     data-on-transform-item-done="domainsCtrl.onTranformItemDone()"
+                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
+                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
+                     data-on-page-change="domainsCtrl.loading = true"
+                     data-ng-show="!domainsCtrl.loading && domainsCtrl.upnSuffixes.length > 0">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mt-5 mt-lg-0">
+            <button class="btn btn-block btn-default" type="button"
+                    data-i18n-static="exchange_tab_domain_add_domain"
+                    data-ng-click="setAction('domain/add/sharepoint-domain-add', {})">
+            </button>
+        </div>
+    </div>
+</div>

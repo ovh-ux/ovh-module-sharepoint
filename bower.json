@@ -1,0 +1,25 @@
+{
+  "name": "ovh-module-sharepoint",
+  "version": "2.0.1",
+  "description": "Sharepoint module.",
+  "license": "BSD-3-Clause",
+  "authors": [
+    "OVH SAS"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ovh-ux/ovh-module-sharepoint.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "tasks",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "jquery.ui": "~1.11.2"
+  }
+}

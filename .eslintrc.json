@@ -1,0 +1,12 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es6-browser.js",
+    "rules": {
+        "no-magic-numbers": "off"
+    },
+    "globals": {
+        "module": true,
+        "require": true,
+        "JSURL": true,
+        "filesize": true
+    }
+}
