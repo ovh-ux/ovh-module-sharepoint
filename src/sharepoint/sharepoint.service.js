@@ -34,7 +34,7 @@ angular
          * @param  {string} assignToProperty
          */
         assignGuideUrl (assignToObject, assignToProperty) {
-            let defaultSubsidiary = "GB";
+            const defaultSubsidiary = "GB";
             return this.userService.getUser()
                 .then((user) => {
                     assignToObject[assignToProperty] = this.SHAREPOINT_GUIDE_URLS[user.ovhSubsidiary] || this.SHAREPOINT_GUIDE_URLS[defaultSubsidiary];
@@ -86,14 +86,14 @@ angular
             if (_.isEmpty(this.orderBaseUrl)) {
                 return undefined;
             }
-            let configuration = emails.map((email) => ({
+            const configuration = emails.map((email) => ({
                 planCode: "sharepoint_account",
                 configuration: [{
                     label: "EXCHANGE_ACCOUNT_ID",
                     values: [email]
                 }]
             }));
-            let products = [{
+            const products = [{
                 planCode: "sharepoint_platform",
                 configuration: [{
                     label: "EXCHANGE_SERVICE_NAME",
@@ -115,8 +115,8 @@ angular
             if (_.isEmpty(this.orderBaseUrl)) {
                 return undefined;
             }
-            let productId = "sharepoint";
-            let products = [{
+            const productId = "sharepoint";
+            const products = [{
                 planCode: "sharepoint_account",
                 configuration: [{
                     label: "EXCHANGE_ACCOUNT_ID",
@@ -137,7 +137,7 @@ angular
             if (_.isEmpty(this.orderBaseUrl)) {
                 return undefined;
             }
-            let products = [{
+            const products = [{
                 planCode: "sharepoint_account",
                 quantity: number || 1,
                 productId: "sharepoint",
@@ -154,8 +154,8 @@ angular
             if (_.isEmpty(this.orderBaseUrl)) {
                 return undefined;
             }
-            let productId = "sharepoint";
-            let products = [{
+            const productId = "sharepoint";
+            const products = [{
                 planCode: "sharepoint_platform",
                 configuration: [],
                 option: [{
@@ -171,11 +171,12 @@ angular
          * Get sharepoint options
          * @param  {string} serviceName
          */
-        getSherpointServiceOptions (serviceName) {
-            return this.ovhHttp.get(`/order/cartServiceOption/sharepoint/${serviceName}`, {
-                rootPath: "apiv6",
-                cache: this.cache.sharepoints
-            });
+        retrievingSharepointServiceOptions (serviceName) {
+            return this.ovhHttp
+                .get(`/order/cartServiceOption/sharepoint/${serviceName}`, {
+                    rootPath: "apiv6",
+                    cache: this.cache.sharepoints
+                });
         }
 
         /**
@@ -183,7 +184,7 @@ angular
          * @param  {Object} opts
          */
         getAccounts (opts) {
-            let queryParam = {};
+            const queryParam = {};
             if (opts.userPrincipalName) {
                 queryParam.userPrincipalName = `%${opts.userPrincipalName}%`;
             }
@@ -231,7 +232,7 @@ angular
          * @param  {Object} opts
          */
         updateSharepointAccount (opts) {
-            let queryParam = {};
+            const queryParam = {};
             if (opts.accessRights) {
                 queryParam.accessRights = opts.accessRights;
             }
@@ -308,7 +309,7 @@ angular
         retrievingExchangeOrganization (exchangeId) {
             return this.productsService.getProductsByType()
                 .then((productsByType) => {
-                    let exchange = _.find(productsByType.exchanges, { name: exchangeId });
+                    const exchange = _.find(productsByType.exchanges, { name: exchangeId });
 
                     // If Sharepoint standalone, no exchange service attached to it.
                     return exchange ? exchange.organization : null;
@@ -320,24 +321,20 @@ angular
          * For now, an exchange with hostname "ex.mail.ovh.net" should have the suffix ".sp.ovh.net"
          * An exchange with hostname "ex2.mail.ovh.net" will have the suffix ".sp2.ovh.net"
          */
-        getSharepointSuffix (exchangeId) {
-            return this.retrievingExchangeOrganization(exchangeId)
-                .then((organization) => {
-
-                    // Case of Sharepoint standalone, no exchange service attached to it.
-                    if (!organization) {
-                        return this.sharepointSecondUrlSuffix;
+        retrievingSharepointSuffix (serviceName) {
+            return this.ovhHttp
+                .get("/msServices/{serviceName}/sharepoint", {
+                    rootPath: "apiv6",
+                    urlParams: {
+                        serviceName
                     }
-
-                    return this.ovhHttp.get(`/email/exchange/${organization}/service/${exchangeId}`, {
-                        rootPath: "apiv6",
-                        cache: this.cache.sharepoints
-                    })
-                        .then((exchange) => exchange.hostname === "ex.mail.ovh.net" ? this.sharepointUrlSuffix : this.sharepointSecondUrlSuffix);
                 })
-                .catch(() =>
-                    this.sharepointUrlSuffix // let's return this as default value
-                );
+                .then((sharepoint) => {
+                    const separator = _.startsWith(sharepoint.farmUrl, ".") ? "" : ".";
+
+                    return `${separator}${sharepoint.farmUrl}`;
+                })
+                .catch(() => ".sp.ovh.net");
         }
 
         /**
@@ -350,7 +347,7 @@ angular
             })
                 .then((msServices) => {
 
-                    let queue = msServices.map((serviceId) => this.ovhHttp.get(`/msServices/${serviceId}/upnSuffix`, {
+                    const queue = msServices.map((serviceId) => this.ovhHttp.get(`/msServices/${serviceId}/upnSuffix`, {
                         rootPath: "apiv6",
                         cache: this.cache.sharepoints
                     })
