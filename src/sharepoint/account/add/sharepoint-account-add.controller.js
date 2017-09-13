@@ -13,7 +13,7 @@ angular
             this.loading = false;
             this.sharepointDomain = this.$stateParams.productId;
 
-            this.getSherpointServiceOptions();
+            this.retrievingSharepointServiceOptions();
 
             this.$scope.submit = () => {
                 this.alerter.success(this.$scope.tr("sharepoint_account_action_sharepoint_add_success_message"), this.$scope.alerts.dashboard);
@@ -26,16 +26,21 @@ angular
             };
         }
 
-        getSherpointServiceOptions () {
+        retrievingSharepointServiceOptions () {
             this.loading = true;
 
-            return this.sharepointService.getSherpointServiceOptions(this.sharepointDomain)
-                .then((options) => { this.optionsList = options; })
+            return this.sharepointService
+                .retrievingSharepointServiceOptions(this.sharepointDomain)
+                .then((options) => {
+                    this.optionsList = options;
+                })
                 .catch((err) => {
                     this.$scope.resetAction();
                     this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_sharepoint_add_error_message"), err, this.$scope.alerts.dashboard);
                 })
-                .finally(() => { this.loading = false; });
+                .finally(() => {
+                    this.loading = false;
+                });
         }
 
         /* eslint-disable class-methods-use-this */
