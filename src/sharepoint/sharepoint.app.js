@@ -9,12 +9,12 @@ angular.module("Module.sharepoint", [
     "$stateProvider", function ($stateProvider) {
         "use strict";
 
-        $stateProvider.state("app.microsoft.sharepoint", {
+        $stateProvider.state("web.microsoft.sharepoint", {
             "abstract": true,
             template: "<div ui-view></div>"
         });
 
-        $stateProvider.state("app.microsoft.sharepoint.order", {
+        $stateProvider.state("web.microsoft.sharepoint.order", {
             url: "/configuration/microsoft/sharepoint/order",
             templateUrl: "sharepoint/order/sharepoint-order.html",
             reloadOnSearch: false,
@@ -33,7 +33,7 @@ angular.module("Module.sharepoint", [
             }
         });
 
-        $stateProvider.state("app.microsoft.sharepoint.config", {
+        $stateProvider.state("web.microsoft.sharepoint.config", {
             url: "/configuration/sharepoint/activate/:organizationId/:exchangeId",
             templateUrl: "sharepoint/order/sharepoint-order.html",
             controller: "SharepointOrderCtrl",
@@ -54,7 +54,7 @@ angular.module("Module.sharepoint", [
             }
         });
 
-        $stateProvider.state("app.microsoft.sharepoint.product", {
+        $stateProvider.state("web.microsoft.sharepoint.product", {
             url: "/configuration/sharepoint/:exchangeId/:productId?tab",
             templateUrl: "sharepoint/sharepoint.html",
             controller: "SharepointCtrl",
@@ -78,7 +78,7 @@ angular.module("Module.sharepoint", [
             }
         });
 
-        $stateProvider.state("app.microsoft.sharepoint.setUrl", {
+        $stateProvider.state("web.microsoft.sharepoint.setUrl", {
             url: "/configuration/sharepoint/:exchangeId/:productId/setUrl",
             templateUrl: "sharepoint/url/sharepoint-url.html",
             controller: "SharepointUrlCtrl",
