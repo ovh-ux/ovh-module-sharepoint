@@ -18,7 +18,6 @@ angular.module("Module.sharepoint", [
             url: "/configuration/microsoft/sharepoint/order",
             templateUrl: "sharepoint/order/sharepoint-order.html",
             reloadOnSearch: false,
-            piwikActionName: "Sharepoint order",
             resolve: {
                 navigationInformations: ["Navigator", "$rootScope", function (Navigator, $rootScope) {
                     $rootScope.currentSectionInformation = "sharepoint";
@@ -39,7 +38,6 @@ angular.module("Module.sharepoint", [
             controller: "SharepointOrderCtrl",
             controllerAs: "SharepointOrderCtrl",
             reloadOnSearch: false,
-            piwikActionName: "Sharepoint order",
             resolve: {
                 navigationInformations: ["Navigator", "$rootScope", function (Navigator, $rootScope) {
                     $rootScope.currentSectionInformation = "sharepoint";
@@ -60,7 +58,6 @@ angular.module("Module.sharepoint", [
             controller: "SharepointCtrl",
             controllerAs: "SharepointCtrl",
             reloadOnSearch: false,
-            piwikActionName: "Sharepoint configuration",
             params: {
                 tab: null
             },
@@ -84,7 +81,6 @@ angular.module("Module.sharepoint", [
             controller: "SharepointUrlCtrl",
             controllerAs: "SharepointUrlCtrl",
             reloadOnSearch: false,
-            piwikActionName: "Sharepoint configuration",
             resolve: {
                 navigationInformations: ["Navigator", "$rootScope", function (Navigator, $rootScope) {
                     $rootScope.currentSectionInformation = "sharepoint";
