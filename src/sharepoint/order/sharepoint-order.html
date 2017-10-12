@@ -4,52 +4,62 @@
     </div>
 
     <div class="container-fluid px-5">
-        <div data-ovh-alert="{{orderCtrl.alerts.dashboard}}"></div>
+        <div data-ovh-alert="{{orderCtrl.alerts.main}}"></div>
 
-        <p class="my-4" data-i18n-static="sharepoint_activate_intro_text"></p>
+        <div class="text-center" data-ng-if="orderCtrl.loaders.init">
+            <oui-loader size="l" inline="true"></oui-loader>
+        </div>
 
-        <div class="loader text-center" data-ng-if="orderCtrl.loaders.init"></div>
+        <div class="row" data-ng-show="!orderCtrl.loaders.init">
+            <div class="col-md-9 col-lg-6">
+                <p data-i18n-static="sharepoint_activate_intro_text"></p>
 
-        <div class="mt-5" data-ng-show="!orderCtrl.loaders.init">
-            <div class="ml-3">
-                <div class="checkbox" data-ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'">
-                    <label>
-                        <input type="checkbox" name="standAlone"
-                               data-ng-model="orderCtrl.associateExchange">
-                        <span data-i18n-static="sharepoint_activate_intro_warning_associated_label"></span>
+                <div class="oui-checkbox my-5" data-ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'">
+                    <input type="checkbox" class="oui-checkbox__input" id="standAlone" name="standAlone"
+                           data-ng-model="orderCtrl.associateExchange">
+                    <label class="oui-checkbox__label-container" for="standAlone">
+                        <span class="oui-checkbox__label"
+                              data-i18n-static="sharepoint_activate_intro_warning_associated_label"></span>
+                        <span class="oui-checkbox__icon">
+                            <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
+                            <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
+                            <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
+                        </span>
                     </label>
                 </div>
-            </div>
 
-            <form class="mt-5" name="orderCtrl.activateSharepointForm">
-                <div data-ng-show="!orderCtrl.associateExchange">
-                    <div class="alert alert-info mb-4" role="alert"
-                         data-i18n-static="sharepoint_activate_intro_warning_associated">
+                <form name="orderCtrl.activateSharepointForm">
+                    <div data-ng-show="!orderCtrl.associateExchange">
+                        <div class="alert alert-info" role="alert"
+                             data-i18n-static="sharepoint_activate_intro_warning_associated">
+                        </div>
+
+                        <div class="form-group"
+                             data-ng-class="{'has-error': orderCtrl.activateSharepointForm.standAloneNumber.$dirty && orderCtrl.activateSharepointForm.standAloneNumber.$invalid}">
+                            <label class="control-label required" for="standAloneNumber"
+                                   data-i18n-static="sharepoint_activate_standalone_accounts_number"></label>
+                            <input type="number" class="form-control w-25" name="standAloneNumber" id="standAloneNumber"
+                                   data-ng-change="orderCtrl.changeStandAloneQuantity()"
+                                   data-ng-min="1" min="1"
+                                   data-ng-max="30" max="30"
+                                   data-ng-model="orderCtrl.standAloneQuantity"
+                                   data-ng-required="!orderCtrl.associateExchange">
+                        </div>
                     </div>
 
-                    <div class="form-group" data-ng-class="{'has-error': orderCtrl.activateSharepointForm.standAloneNumber.$dirty && orderCtrl.activateSharepointForm.standAloneNumber.$invalid}">
-                        <label class="control-label required" for="standAloneNumber"
-                               data-i18n-static="sharepoint_activate_standalone_accounts_number"></label>
-                        <input type="number" class="form-control w-25" name="standAloneNumber" id="standAloneNumber"
-                               data-ng-change="orderCtrl.changeStandAloneQuantity()"
-                               data-ng-min="1" min="1"
-                               data-ng-max="30" max="30"
-                               data-ng-model="orderCtrl.standAloneQuantity"
-                               data-ng-required="!orderCtrl.associateExchange">
-                    </div>
-                </div>
-
-                <div class="row" data-ng-if="!!orderCtrl.associateExchange">
-                    <div class="col-md-6">
+                    <div data-ng-if="!!orderCtrl.associateExchange">
                         <div class="form-group">
                             <label class="control-label required" for="sharepointAssociatedExchange"
                                    data-i18n-static="sharepoint_activate_which_service_label"></label>
-                            <select class="form-control" id="sharepointAssociatedExchange" name="sharepointAssociatedExchange" required
-                                    data-ng-change="orderCtrl.getAccounts()"
-                                    data-ng-disabled="orderCtrl.isCommingFromAssociatedExchange"
-                                    data-ng-model="orderCtrl.associatedExchange"
-                                    data-ng-options="exchange.displayName for exchange in orderCtrl.exchanges | orderBy:'displayName' track by exchange.organization + exchange.name">
-                            </select>
+                            <div class="oui-select">
+                                <select class="oui-select__input" id="sharepointAssociatedExchange" name="sharepointAssociatedExchange" required
+                                        data-ng-change="orderCtrl.getAccounts()"
+                                        data-ng-disabled="orderCtrl.isCommingFromAssociatedExchange"
+                                        data-ng-model="orderCtrl.associatedExchange"
+                                        data-ng-options="exchange.displayName for exchange in orderCtrl.exchanges | orderBy:'displayName' track by exchange.organization + exchange.name">
+                                </select>
+                                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                            </div>
                         </div>
 
                         <table class="table table-hover">
@@ -68,7 +78,8 @@
 
                             <tbody data-ng-if="!orderCtrl.loaders.accounts && !orderCtrl.accountsList.length">
                                 <tr>
-                                    <td class="text-center" colspan="2" data-i18n-static="sharepoint_accounts_empty"></td>
+                                    <td class="text-center" colspan="2"
+                                        data-i18n-static="sharepoint_accounts_empty"></td>
                                 </tr>
                             </tbody>
 
@@ -103,21 +114,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="my-5">
-                    <a data-ng-href="{{orderCtrl.getSharepointOrderUrl()}}" class="btn btn-primary" target="_blank" title="{{i18n.sharepoint_order_button_label}} ({{i18n.core_new_window}})"
-                       data-i18n-static="sharepoint_order_button_label"
-                       data-ng-if="!orderCtrl.associateExchange"
-                       data-ng-show="orderCtrl.activateSharepointForm.$valid && orderCtrl.standAloneQuantity">
-                    </a>
-                    <a data-ng-href="{{orderCtrl.getSharepointOrderUrl()}}" class="btn btn-primary" target="_blank" title="{{i18n.sharepoint_order_button_label}} ({{i18n.core_new_window}})"
-                       data-i18n-static="sharepoint_order_button_label"
-                       data-ng-if="orderCtrl.associateExchange"
-                       data-ng-show="orderCtrl.accountsToActivate.length > 0">
-                    </a>
-                </div>
-            </form>
+                    <div class="my-5">
+                        <a class="oui-button oui-button_primary oui-button_large-height" target="_blank" title="{{i18n.sharepoint_order_button_label}} ({{i18n.core_new_window}})"
+                           data-i18n-static="sharepoint_order_button_label"
+                           data-ng-href="{{orderCtrl.getSharepointOrderUrl()}}"
+                           data-ng-if="!orderCtrl.associateExchange"
+                           data-ng-show="orderCtrl.activateSharepointForm.$valid && orderCtrl.standAloneQuantity">
+                        </a>
+                        <a class="oui-button oui-button_primary oui-button_large-height" target="_blank" title="{{i18n.sharepoint_order_button_label}} ({{i18n.core_new_window}})"
+                           data-i18n-static="sharepoint_order_button_label"
+                           data-ng-href="{{orderCtrl.getSharepointOrderUrl()}}"
+                           data-ng-if="orderCtrl.associateExchange"
+                           data-ng-show="orderCtrl.accountsToActivate.length > 0">
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

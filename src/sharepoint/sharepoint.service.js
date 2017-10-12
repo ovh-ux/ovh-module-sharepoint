@@ -14,9 +14,7 @@
                 this.SHAREPOINT_GUIDE_URLS = SHAREPOINT_GUIDE_URLS;
                 this.translator = translator;
                 this.User = User;
-            }
 
-            $onInit () {
                 this.cache = {
                     models: "UNIVERS_MODULE_SHAREPOINT_MODELS",
                     sharepoints: "UNIVERS_MODULE_SHAREPOINT_SHAREPOINTS",
@@ -38,8 +36,8 @@
 
             /**
              * Set guide
-             * @param  {string} assignToObject
-             * @param  {string} assignToProperty
+             * @param {string} assignToObject
+             * @param {string} assignToProperty
              */
             assignGuideUrl (assignToObject, assignToProperty) {
                 return this.User
@@ -51,11 +49,11 @@
 
             /**
              * Get serviceName infos
-             * @param  {string} exchangeId
+             * @param {string} serviceName
              */
-            retrievingMSService (exchangeId) {
+            retrievingMSService (serviceName) {
                 return this.OvhHttp
-                    .get(`/msServices/${exchangeId}`, {
+                    .get(`/msServices/${serviceName}`, {
                         rootPath: "apiv6",
                         cache: this.cache.sharepoints
                     });
@@ -63,11 +61,11 @@
 
             /**
              * Get sharepoint infos
-             * @param  {string} exchangeId
+             * @param {string} serviceName
              */
-            getSharepoint (exchangeId) {
+            getSharepoint (serviceName) {
                 return this.OvhHttp
-                    .get(`/msServices/${exchangeId}/sharepoint`, {
+                    .get(`/msServices/${serviceName}/sharepoint`, {
                         rootPath: "apiv6",
                         cache: this.cache.sharepoints
                     });
@@ -75,12 +73,12 @@
 
             /**
              * Update sharepoint
-             * @param {string} exchangeId
+             * @param {string} serviceName
              * @param {string} url
              */
-            setSharepointUrl (exchangeId, url) {
+            setSharepointUrl (serviceName, url) {
                 return this.OvhHttp
-                    .put(`/msServices/${exchangeId}/sharepoint`, {
+                    .put(`/msServices/${serviceName}/sharepoint`, {
                         rootPath: "apiv6",
                         data: {
                             url
@@ -90,8 +88,8 @@
             }
 
             /**
-             * @param  {string} exchangeName
-             * @param  {string[]]} emails
+             * @param {string} exchangeName
+             * @param {array} emails
              */
             getSharepointOrderUrl (exchangeName, emails) {
                 if (_.isEmpty(this.orderBaseUrl)) {
@@ -122,8 +120,8 @@
 
             /**
              *
-             * @param  {string} serviceName
-             * @param  {string} primaryEmailAddress
+             * @param {string} serviceName
+             * @param {string} primaryEmailAddress
              */
             getSharepointAccountOrderUrl (serviceName, primaryEmailAddress) {
                 if (_.isEmpty(this.orderBaseUrl)) {
@@ -146,8 +144,8 @@
 
             /**
              *
-             * @param  {string} serviceName
-             * @param  {number} number
+             * @param {string} serviceName
+             * @param {number} number
              */
             getSharepointStandaloneNewAccountOrderUrl (serviceName, number) {
                 if (_.isEmpty(this.orderBaseUrl)) {
@@ -166,7 +164,7 @@
 
             /**
              *
-             * @param  {number} quantity
+             * @param {number} quantity
              */
             getSharepointStandaloneOrderUrl (quantity) {
                 if (_.isEmpty(this.orderBaseUrl)) {
@@ -189,7 +187,7 @@
 
             /**
              * Get sharepoint options
-             * @param  {string} serviceName
+             * @param {string} serviceName
              */
             retrievingSharepointServiceOptions (serviceName) {
                 return this.OvhHttp
@@ -200,17 +198,18 @@
             }
 
             /**
-             *
-             * @param  {Object} opts
+             * Get SharePoint accounts
+             * @param serviceName
+             * @param userPrincipalName
              */
-            getAccounts (opts) {
+            getAccounts (serviceName, userPrincipalName) {
                 const queryParam = {};
 
-                if (_.isEmpty(opts.userPrincipalName)) {
-                    queryParam.userPrincipalName = `%${opts.userPrincipalName}%`;
+                if (!_.isEmpty(userPrincipalName)) {
+                    queryParam.userPrincipalName = `%${userPrincipalName}%`;
                 }
 
-                return this.OvhHttp.get(`/msServices/${opts.serviceName}/account`, {
+                return this.OvhHttp.get(`/msServices/${serviceName}/account`, {
                     rootPath: "apiv6",
                     params: queryParam,
                     cache: this.cache.sharepoints
@@ -219,22 +218,36 @@
 
             /**
              *
-             * @param  {Object} opts
+             * @param {string} serviceName
              */
-            restoreAdminRights (opts) {
+            restoreAdminRights (serviceName) {
                 return this.OvhHttp
-                    .post(`/msServices/${opts.serviceName}/sharepoint/restoreAdminRights`, {
+                    .post(`/msServices/${serviceName}/sharepoint/restoreAdminRights`, {
                         rootPath: "apiv6"
                     });
             }
 
             /**
-             *
-             * @param  {Object} opts
+             * Get account details
+             * @param {string} serviceName
+             * @param {string} account
              */
-            getAccountDetails (opts) {
+            getAccountDetails (serviceName, account) {
                 return this.OvhHttp
-                    .get(`/msServices/${opts.serviceName}/account/${opts.userPrincipalName}`, {
+                    .get(`/msServices/${serviceName}/account/${account}`, {
+                        rootPath: "apiv6",
+                        cache: this.cache.sharepoints
+                    });
+            }
+
+            /**
+             * Get SharePoint account
+             * @param {string} serviceName
+             * @param {string} account
+             */
+            getAccountSharepoint (serviceName, account) {
+                return this.OvhHttp
+                    .get(`/msServices/${serviceName}/account/${account}/sharepoint`, {
                         rootPath: "apiv6",
                         cache: this.cache.sharepoints
                     });
@@ -242,23 +255,27 @@
 
             /**
              *
-             * @param  {Object} opts
+             * @param {string} serviceName
+             * @param {string} account
+             * @param {object} data
              */
-            getAccountSharepoint (opts) {
-                return this.OvhHttp
-                    .get(`/msServices/${opts.serviceName}/account/${opts.userPrincipalName}/sharepoint`, {
-                        rootPath: "apiv6",
-                        cache: this.cache.sharepoints
-                    });
+            updateSharepointAccount (serviceName, account, data) {
+                return this.OvhHttp.put(`/msServices/${serviceName}/account/${account}/sharepoint`, {
+                    rootPath: "apiv6",
+                    data,
+                    clearAllCache: this.cache.sharepoints
+                });
             }
 
             /**
              *
-             * @param  {Object} data
+             * @param {string} serviceName
+             * @param {string} account
+             * @param {Object} data
              */
-            updateSharepointAccount (data) {
+            updateSharepoint (serviceName, account, data) {
                 return this.OvhHttp
-                    .put(`/msServices/${data.serviceName}/account/${data.userPrincipalName}/sharepoint`, {
+                    .put(`/msServices/${serviceName}/account/${account}`, {
                         rootPath: "apiv6",
                         data,
                         clearAllCache: this.cache.sharepoints
@@ -267,26 +284,13 @@
 
             /**
              *
-             * @param  {string} exchangeId
-             * @param  {string} userPrincipalName
-             * @param  {Object} data
+             * @param {string} serviceName
+             * @param {string} account
+             * @param {Object} opts
              */
-            updateSharepoint (exchangeId, userPrincipalName, data) {
+            updatingSharepointPasswordAccount (serviceName, account, opts) {
                 return this.OvhHttp
-                    .put(`/msServices/${exchangeId}/account/${userPrincipalName}`, {
-                        rootPath: "apiv6",
-                        data,
-                        clearAllCache: this.cache.sharepoints
-                    });
-            }
-
-            /**
-             *
-             * @param  {Object} opts
-             */
-            updatingSharepointPasswordAccount (opts) {
-                return this.OvhHttp
-                    .post(`/msServices/${opts.serviceName}/account/${opts.userPrincipalName}/changePassword`, {
+                    .post(`/msServices/${serviceName}/account/${account}/changePassword`, {
                         rootPath: "apiv6",
                         data: {
                             password: opts.password
@@ -296,12 +300,12 @@
 
             /**
              *
-             * @param  {string} exchangeId
-             * @param  {string} account
+             * @param {string} serviceName
+             * @param {string} account
              */
-            deleteSharepointAccount (exchangeId, account) {
+            deleteSharepointAccount (serviceName, account) {
                 return this.OvhHttp
-                    .put(`/msServices/${exchangeId}/account/${account}/sharepoint`, {
+                    .put(`/msServices/${serviceName}/account/${account}/sharepoint`, {
                         rootPath: "apiv6",
                         data: {
                             deleteAtExpiration: true
@@ -311,25 +315,34 @@
             }
 
             /**
-             * @param  {Object} opts
+             * Get account
+             * @param {string} organizationName
+             * @param {string} sharepointService
+             * @param {string} userPrincipalName
              */
-            getAccount (opts) {
+            getAccount (organizationName, sharepointService, userPrincipalName) {
                 return this.OvhHttp
-                    .get(`/sharepoint/${opts.organizationName}/service/${opts.sharepointService}/account/${opts.userPrincipalName}`, {
+                    .get(`/sharepoint/${organizationName}/service/${sharepointService}/account/${userPrincipalName}`, {
                         rootPath: "apiv6",
                         cache: this.cache.accounts
                     });
             }
 
-            getAccountTasks (opts) {
+            /**
+             * Get account tasks
+             * @param {string} organizationName
+             * @param {string} sharepointService
+             * @param {string} userPrincipalName
+             */
+            getAccountTasks (organizationName, sharepointService, userPrincipalName) {
                 return this.OvhHttp
-                    .get(`/sharepoint/${opts.organizationName}/service/${opts.sharepointService}/account/${opts.userPrincipalName}/tasks`, {
+                    .get(`/sharepoint/${organizationName}/service/${sharepointService}/account/${userPrincipalName}/tasks`, {
                         rootPath: "apiv6"
                     });
             }
 
             /**
-             * @param  {string} exchangeId
+             * @param {string} exchangeId
              */
             retrievingExchangeOrganization (exchangeId) {
                 return this.Products
@@ -349,7 +362,7 @@
              */
             retrievingSharepointSuffix (serviceName) {
                 return this.OvhHttp
-                    .get("/msServices/{serviceName}/sharepoint", {
+                    .get(`/msServices/${serviceName}/sharepoint`, {
                         rootPath: "apiv6",
                         urlParams: {
                             serviceName
@@ -389,9 +402,9 @@
             /**
              * Get upn suffixes, that is the domains allowed for account's configuration
              */
-            getSharepointUpnSuffixes (exchangeId) {
+            getSharepointUpnSuffixes (serviceName) {
                 return this.OvhHttp
-                    .get(`/msServices/${exchangeId}/upnSuffix`, {
+                    .get(`/msServices/${serviceName}/upnSuffix`, {
                         rootPath: "apiv6",
                         cache: this.cache.sharepoints
                     });
@@ -400,9 +413,9 @@
             /**
              * Add an upn suffix
              */
-            addSharepointUpnSuffixe (exchangeId, suffix) {
+            addSharepointUpnSuffixe (serviceName, suffix) {
                 return this.OvhHttp
-                    .post(`/msServices/${exchangeId}/upnSuffix`, {
+                    .post(`/msServices/${serviceName}/upnSuffix`, {
                         rootPath: "apiv6",
                         data: {
                             suffix
@@ -414,9 +427,9 @@
             /**
              * Delete an upn suffix
              */
-            deleteSharepointUpnSuffix (exchangeId, suffix) {
+            deleteSharepointUpnSuffix (serviceName, suffix) {
                 return this.OvhHttp
-                    .delete(`/msServices/${exchangeId}/upnSuffix/${suffix}`, {
+                    .delete(`/msServices/${serviceName}/upnSuffix/${suffix}`, {
                         rootPath: "apiv6",
                         clearAllCache: this.cache.sharepoints
                     });
@@ -425,9 +438,9 @@
             /**
              * Get upn suffix details
              */
-            getSharepointUpnSuffixeDetails (exchangeId, suffix) {
+            getSharepointUpnSuffixeDetails (serviceName, suffix) {
                 return this.OvhHttp
-                    .get(`/msServices/${exchangeId}/upnSuffix/${suffix}`, {
+                    .get(`/msServices/${serviceName}/upnSuffix/${suffix}`, {
                         rootPath: "apiv6",
                         cache: this.cache.sharepoints
                     });

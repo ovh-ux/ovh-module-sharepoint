@@ -1,12 +1,12 @@
 angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointUpdatePasswordCtrl", class SharepointUpdatePasswordCtrl {
-        constructor (Alerter, ExchangePassword, MicrosoftSharepointLicenseService, $stateParams, $scope) {
-            this.alerter = Alerter;
-            this.exchangePassword = ExchangePassword;
-            this.microsoftSharepointLicense = MicrosoftSharepointLicenseService;
-            this.$stateParams = $stateParams;
+        constructor ($scope, $stateParams, Alerter, ExchangePassword, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
+            this.$stateParams = $stateParams;
+            this.Alerter = Alerter;
+            this.ExchangePassword = ExchangePassword;
+            this.MicrosoftSharepointLicense = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -21,19 +21,12 @@ angular
         }
 
         updatingSharepointPassword () {
-            const model = {
-                serviceName: this.exchangeId,
-                userPrincipalName: this.account.userPrincipalName,
-                password: this.account.password
-            };
-
-            return this.microsoftSharepointLicense
-                .updatingSharepointPasswordAccount(model)
+            return this.MicrosoftSharepointLicense.updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, { password: this.account.password })
                 .then(() => {
-                    this.alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.dashboard);
+                    this.Alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
                 })
                 .catch((err) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_ACTION_update_password_error_message_text"), err, this.$scope.alerts.dashboard);
+                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_ACTION_update_password_error_message_text"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.$scope.resetAction();
@@ -41,7 +34,7 @@ angular
         }
 
         retrievingMSService () {
-            return this.microsoftSharepointLicense
+            return this.MicrosoftSharepointLicense
                 .retrievingMSService(this.exchangeId)
                 .then((exchange) => {
                     this.exchange = exchange;
@@ -55,7 +48,7 @@ angular
         }
 
         retrievingExchangeOrganization () {
-            return this.microsoftSharepointLicense
+            return this.MicrosoftSharepointLicense
                 .retrievingExchangeOrganization(this.exchangeId)
                 .then((organization) => {
                     this.hasAssociatedExchange = !_.isEmpty(organization);
@@ -76,15 +69,15 @@ angular
             }
 
             if (selectedAccount.password.length > 0) {
-                this.simplePasswordFlag = !this.exchangePassword.passwordSimpleCheck(selectedAccount.password, true, this.exchange.minPasswordLength);
+                this.simplePasswordFlag = !this.ExchangePassword.passwordSimpleCheck(selectedAccount.password, true, this.exchange.minPasswordLength);
 
                 // see the password complexity requirements of Windows Server (like Exchange)
                 // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
                 if (this.exchange.complexityEnabled) {
-                    this.simplePasswordFlag = this.simplePasswordFlag || !this.exchangePassword.passwordComplexityCheck(selectedAccount.password);
+                    this.simplePasswordFlag = this.simplePasswordFlag || !this.ExchangePassword.passwordComplexityCheck(selectedAccount.password);
 
                     if (selectedAccount.displayName) {
-                        this.containsNameFlag = this.exchangePassword.passwordContainsName(
+                        this.containsNameFlag = this.ExchangePassword.passwordContainsName(
                             selectedAccount.password,
                             selectedAccount.displayName
                         );

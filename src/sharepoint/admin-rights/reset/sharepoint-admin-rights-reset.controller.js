@@ -2,26 +2,31 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointResetAdminRightsCtrl", class SharepointResetAdminRightsCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope) {
-            this.alerter = Alerter;
-            this.sharepointService = MicrosoftSharepointLicenseService;
-            this.$stateParams = $stateParams;
+        constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
+            this.$stateParams = $stateParams;
+            this.Alerter = Alerter;
+            this.SharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
             this.sharepointDomain = this.$stateParams.productId;
             this.exchangeId = this.$stateParams.exchangeId;
 
-            this.$scope.submit = () => {
-                this.$scope.resetAction();
+            this.$scope.submit = () => this.submit();
+        }
 
-                return this.sharepointService.restoreAdminRights({
-                    serviceName: this.exchangeId
+        submit () {
+            this.$scope.resetAction();
+            return this.SharepointService.restoreAdminRights(this.exchangeId)
+                .then(() => {
+                    this.Alerter.success(this.$scope.tr("sharepoint_accounts_action_reset_admin_success"), this.$scope.alerts.main);
                 })
-                    .then(() => this.alerter.success(this.$scope.tr("sharepoint_accounts_action_reset_admin_success"), this.$scope.alerts.dashboard))
-                    .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_reset_admin_error"), err, this.$scope.alerts.dashboard))
-                    .finally(() => this.$scope.resetAction());
-            };
+                .catch((err) => {
+                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_reset_admin_error"), err, this.$scope.alerts.main);
+                })
+                .finally(() => {
+                    this.$scope.resetAction();
+                });
         }
     });

@@ -2,31 +2,29 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointDeleteAccountCtrl", class SharepointDeleteAccountCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope) {
-            this.alerter = Alerter;
-            this.sharepointService = MicrosoftSharepointLicenseService;
-            this.$stateParams = $stateParams;
+        constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
+            this.$stateParams = $stateParams;
+            this.Alerter = Alerter;
+            this.SharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
             this.account = this.$scope.currentActionData;
+            this.$scope.submit = () => this.submit();
+        }
 
-            this.$scope.submit = () => {
-                this.$scope.resetAction();
-                this.sharepointService.deleteSharepointAccount(this.$stateParams.exchangeId, this.account.userPrincipalName)
-                    .then(() => {
-                        this.alerter.success(
-                            this.$scope.tr("sharepoint_account_action_sharepoint_remove_success_message", this.account.userPrincipalName),
-                            this.$scope.alerts.dashboard
-                        );
-                    })
-                    .catch((err) => {
-                        this.alerter.alertFromSWS(
-                            this.$scope.tr("sharepoint_account_action_sharepoint_remove_error_message"), err, this.$scope.alerts.dashboard
-                        );
-                    })
-                    .finally(() => this.$scope.resetAction());
-            };
+        submit () {
+            this.$scope.resetAction();
+            return this.SharepointService.deleteSharepointAccount(this.$stateParams.exchangeId, this.account.userPrincipalName)
+                .then(() => {
+                    this.Alerter.success(this.$scope.tr("sharepoint_account_action_sharepoint_remove_success_message", this.account.userPrincipalName), this.$scope.alerts.main);
+                })
+                .catch((err) => {
+                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_account_action_sharepoint_remove_error_message"), err, this.$scope.alerts.main);
+                })
+                .finally(() => {
+                    this.$scope.resetAction();
+                });
         }
     });

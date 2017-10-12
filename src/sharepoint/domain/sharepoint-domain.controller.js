@@ -2,11 +2,11 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointDomainsCtrl", class SharepointDomainsCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope) {
+        constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+            this.$scope = $scope;
+            this.$stateParams = $stateParams;
             this.alerter = Alerter;
             this.sharepointService = MicrosoftSharepointLicenseService;
-            this.$stateParams = $stateParams;
-            this.$scope = $scope;
         }
 
         $onInit () {
@@ -21,8 +21,12 @@ angular
             this.upnSuffixesIds = null;
 
             return this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
-                .then((upnSuffixesIds) => { this.upnSuffixesIds = upnSuffixesIds; })
-                .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.dashboard))
+                .then((upnSuffixesIds) => {
+                    this.upnSuffixesIds = upnSuffixesIds;
+                })
+                .catch((err) => {
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
+                })
                 .finally(() => {
                     if (_.isEmpty(this.upnSuffixesIds)) {
                         this.loading = false;

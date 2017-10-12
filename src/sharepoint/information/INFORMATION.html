@@ -1,49 +1,57 @@
 <div class="container-fluid px-0" data-ng-controller="SharepointInformationsCtrl as informationsCtrl">
 
-    <div class="loader text-center" data-ng-if="SharepointCtrl.loaders.init"></div>
+    <div class="text-center" data-ng-if="informationsCtrl.loaders.init">
+        <oui-loader size="l" inline="true"></oui-loader>
+    </div>
 
-    <div class="row" data-ng-if="!SharepointCtrl.loaders.init">
+    <div class="row" data-ng-show="!informationsCtrl.loaders.init">
         <div class="col-md-9">
+            <div data-ovh-alert="{{alerts.main}}"></div>
+
             <div class="row d-md-flex">
                 <div class="col-sm-6">
-                    <div class="oui-tile h-100">
-                        <h3 class="oui-header__title" data-i18n-static="sharepoint_dashboard_access"></h3>
-                        <dl>
-                            <dt data-i18n-static="sharepoint_dashboard_url_label"></dt>
-                            <dd class="mb-2">
-                                <a data-ng-href="https://{{SharepointCtrl.sharepoint.url}}" target="_blank"
-                                   data-ng-if="SharepointCtrl.sharepoint.state !== 'creating'">
-                                    <span data-ng-bind="'https://' + SharepointCtrl.sharepoint.url"></span>
-                                    <span class="fa fa-external-link" aria-hidden="true"></span>
-                                </a>
-                                <span data-i18n-static="sharepoint_dashboard_creating_url_label"
-                                      data-ng-show="SharepointCtrl.sharepoint.state === 'creating'"></span>
-                            </dd>
-
-                            <dt data-i18n-static="sharepoint_dashboard_linked_exchange_label"
-                                data-ng-if="informationsCtrl.associatedExchange"></dt>
-                            <dd class="mb-2"
-                                data-ng-bind="SharepointCtrl.exchangeId"
-                                data-ng-if="informationsCtrl.associatedExchange && !informationsCtrl.associatedExchangeLink"></dd>
-                            <dd class="mb-2"
-                                data-ng-if="informationsCtrl.associatedExchangeLink">
-                                <a data-ng-href="{{informationsCtrl.associatedExchangeLink}}"
-                                   data-ng-bind="SharepointCtrl.exchangeId"
-                                   data-ng-click="informationsCtrl.setExchange()">
-                                </a>
-                            </dd>
-                        </dl>
+                    <div class="oui-tile mb-5 h-100">
+                        <h3 class="oui-tile__title" data-i18n-static="sharepoint_dashboard_access"></h3>
+                        <div class="oui-tile__body">
+                            <ul class="list-unstyled">
+                                <li class="oui-tile__item">
+                                    <div class="oui-tile__definition">
+                                        <strong class="d-block" data-i18n-static="sharepoint_dashboard_url_label"></strong>
+                                        <a data-ng-href="https://{{informationsCtrl.sharepoint.url}}" target="_blank"
+                                           data-ng-if="informationsCtrl.sharepoint.state !== 'creating'">
+                                            <span data-ng-bind="'https://' + informationsCtrl.sharepoint.url"></span>
+                                            <span class="fa fa-external-link" aria-hidden="true"></span>
+                                        </a>
+                                        <span data-i18n-static="sharepoint_dashboard_creating_url_label"
+                                              data-ng-show="informationsCtrl.sharepoint.state === 'creating'"></span>
+                                    </div>
+                                </li>
+                                <li class="oui-tile__item"
+                                    data-ng-if="informationsCtrl.associatedExchange">
+                                    <div class="oui-tile__definition">
+                                        <strong class="d-block" data-i18n-static="sharepoint_dashboard_linked_exchange_label"></strong>
+                                        <span data-ng-bind="SharepointCtrl.exchangeId"
+                                              data-ng-if="!informationsCtrl.associatedExchangeLink"></span>
+                                        <a data-ng-href="{{informationsCtrl.associatedExchangeLink}}"
+                                           data-ng-bind="SharepointCtrl.exchangeId"
+                                           data-ng-click="informationsCtrl.setExchange()"
+                                           data-ng-if="informationsCtrl.associatedExchangeLink">
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
-                    <div class="oui-tile h-100">
-                        <h3 class="oui-header__title" data-i18n-static="sharepoint_dashboard_quota"></h3>
-                        <div class="row">
+                    <div class="oui-tile mb-5 h-100">
+                        <h3 class="oui-tile__title" data-i18n-static="sharepoint_dashboard_quota"></h3>
+                        <div class="oui-tile__body">
                             <div class="col-md-6">
                                 <div id="diskUsed"
                                      data-gauge-chart
-                                     data-chartdata="SharepointCtrl.sharepoint.currentUsage/1024/1024/1024"
+                                     data-chartdata="informationsCtrl.sharepoint.currentUsage/1024/1024/1024"
                                      data-disk-unit="tr('sharepoint_dashboard_unit_size_giga')"
                                      data-chart-min="0"
                                      data-chart-max="1024"
@@ -59,16 +67,16 @@
                             <div class="col-md-6">
                                 <dl>
                                     <dt data-i18n-static="sharepoint_dashboard_quota_total_label"></dt>
-                                    <dd class="mb-2"
-                                        data-ng-bind="SharepointCtrl.sharepoint.quota | humanReadableSize"></dd>
+                                    <dd class="mb-3"
+                                        data-ng-bind="informationsCtrl.sharepoint.quota | humanReadableSize"></dd>
 
                                     <dt data-i18n-static="sharepoint_dashboard_quota_used_label"></dt>
-                                    <dd class="mb-2"
-                                        data-ng-bind="SharepointCtrl.sharepoint.currentUsage | humanReadableSize"></dd>
+                                    <dd class="mb-3"
+                                        data-ng-bind="informationsCtrl.sharepoint.currentUsage | humanReadableSize"></dd>
 
                                     <dt data-i18n-static="sharepoint_dashboard_quota_free_label"></dt>
-                                    <dd class="mb-2"
-                                        data-ng-bind="SharepointCtrl.sharepoint.quota - SharepointCtrl.sharepoint.currentUsage | humanReadableSize"></dd>
+                                    <dd class="mb-3"
+                                        data-ng-bind="informationsCtrl.sharepoint.quota - informationsCtrl.sharepoint.currentUsage | humanReadableSize"></dd>
                                 </dl>
                             </div>
                         </div>
@@ -76,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mt-5 mt-lg-0">
+        <div class="col-md-3 mt-md-5 mt-lg-0">
             <p>
                 <span class="fa fa-life-ring mr-2" aria-hidden="true"></span>
                 <span data-i18n-static="sharepoint_dashboard_guides_help_label"></span><br>

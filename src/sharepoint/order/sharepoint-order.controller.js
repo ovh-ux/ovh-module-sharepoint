@@ -3,14 +3,14 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointOrderCtrl", class SharepointOrderCtrl {
 
-        constructor (constants, Exchange, MicrosoftSharepointLicenseService, Products, $q, $scope, $stateParams, User) {
+        constructor ($scope, $q, $stateParams, constants, Exchange, MicrosoftSharepointLicenseService, Products, User) {
+            this.$scope = $scope;
+            this.$q = $q;
+            this.$stateParams = $stateParams;
             this.constants = constants;
             this.exchangeService = Exchange;
             this.sharepointService = MicrosoftSharepointLicenseService;
             this.productsService = Products;
-            this.$q = $q;
-            this.$scope = $scope;
-            this.$stateParams = $stateParams;
             this.userService = User;
         }
 
@@ -19,7 +19,7 @@ angular
             this.exchangeId = this.$stateParams.exchangeId;
 
             this.alerts = {
-                dashboard: "sharepointDashboardAlert"
+                main: "sharepoint.alerts.main"
             };
 
             this.associatedExchange = null;
@@ -71,13 +71,13 @@ angular
 
         filterSupportedExchanges (exchanges) {
             return _(exchanges)
-                .filter((exchange) => this.isSupportedExchangeType(exchange))
+                .filter((exchange) => this.constructor.isSupportedExchangeType(exchange))
                 .filter((exchange) => this.isSupportedExchangeAdditionalCondition(exchange))
                 .thru((exchanges) => this.filterExchangesThatAlreadyHaveSharepoint(exchanges))
                 .value();
         }
 
-        isSupportedExchangeType (exchange) {
+        static isSupportedExchangeType (exchange) {
             return exchange.type === "EXCHANGE_HOSTED";
         }
 

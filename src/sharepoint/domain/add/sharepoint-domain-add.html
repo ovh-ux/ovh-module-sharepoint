@@ -5,22 +5,25 @@
          data-wizard-title="i18n.exchange_tab_domain_add_domain">
 
         <div data-wizard-step
-             data-wizard-step-on-load="loadDomainData"
              data-wizard-step-valid="addDomainCtrl.model.name && addDomainCtrl.domainValid">
 
             <p data-i18n-static="sharepoint_add_domains_intro_label"
                data-ng-if="addDomainCtrl.availableDomainsBuffer && addDomainCtrl.availableDomainsBuffer.length > 0"></p>
 
-            <div class="loader text-center" data-ng-if="addDomainCtrl.loading"></div>
+            <div class="text-center" data-ng-if="addDomainCtrl.loading">
+                <oui-loader inline="true"></oui-loader>
+            </div>
 
-            <form class="mt-3" name="addDomainCtrl.addDomainForm" data-ng-show="!addDomainCtrl.loading">
+            <form name="addDomainCtrl.addDomainForm"
+                  data-ng-show="!addDomainCtrl.loading">
                 <div data-ng-if="addDomainCtrl.availableDomainsBuffer && addDomainCtrl.availableDomainsBuffer.length > 0">
-                    <div class="ml-3 mb-4 radio">
-                        <label>
-                            <input type="radio" name="addOption" value="ovhDomain"
-                                   data-ng-change="addDomainCtrl.resetName()"
-                                   data-ng-model="addDomainCtrl.domainType">
-                            <span data-i18n-static="exchange_tab_domain_add_step1_select_domain_option"></span>
+                    <div class="oui-radio mb-4">
+                        <input type="radio" class="oui-radio__input" id="addOption-ovhDomain" name="addOption" value="ovhDomain"
+                               data-ng-change="addDomainCtrl.resetName()"
+                               data-ng-model="addDomainCtrl.domainType">
+                        <label class="oui-radio__label-container" for="addOption-ovhDomain">
+                            <span class="oui-radio__label"
+                                  data-i18n-static="exchange_tab_domain_add_step1_select_domain_option"></span>
                         </label>
                         <div class="row mt-4" data-ng-if="addDomainCtrl.domainType === 'ovhDomain'">
                             <div class="col-md-8 col-md-offset-2">
@@ -37,7 +40,7 @@
                                     </div>
                                     <span class="input-group-addon"
                                           data-ng-if="!addDomainCtrl.search.value">
-                                        <span class="fa fa-search disabled" aria-hidden="true"></span>
+                                        <span class="fa fa-search" aria-hidden="true"></span>
                                     </span>
                                 </div>
 
@@ -45,11 +48,12 @@
                                    data-i18n-static="exchange_tab_domain_add_step1_domain_none"
                                    data-ng-if="addDomainCtrl.availableDomains.length === 0 && addDomainCtrl.search.value"></p>
 
-                                <select class="mt-3 w-100" size="8"
+                                <select class="mt-3 w-100" size="6"
                                         data-ng-change="addDomainCtrl.changeName()"
                                         data-ng-if="addDomainCtrl.availableDomains.length > 0"
                                         data-ng-model="addDomainCtrl.model.displayName">
-                                    <option value="" data-ng-show="false"></option>
+                                    <option value="" disabled
+                                            data-ng-show="false"></option>
                                     <option data-ng-repeat="domain in addDomainCtrl.availableDomains | orderBy:'formattedName' track by $index"
                                             data-ng-bind="domain.displayName"
                                             data-ng-value="domain.displayName"></option>
@@ -58,17 +62,20 @@
                         </div>
                     </div>
 
-                    <div class="ml-3 radio" data-ng-class="{'has-error': addDomainCtrl.addDomainForm.manualDisplayName.$dirty && !addDomainCtrl.domainValid}">
-                        <label>
-                            <input type="radio" name="addDomainCtrl.addOption" value="nonOvhDomain"
-                                   data-ng-change="addDomainCtrl.resetName()"
-                                   data-ng-model="addDomainCtrl.domainType">
-                            <span data-i18n-static="exchange_tab_domain_add_step1_user_owned_option"></span>
+                    <div class="oui-radio"
+                         data-ng-class="{'oui-radio_error': addDomainCtrl.addDomainForm.manualDisplayName.$dirty && !addDomainCtrl.domainValid}">
+                        <input type="radio" class="oui-radio__input" id="addOption-nonOvhDomain" name="addDomainCtrl.addOption" value="nonOvhDomain"
+                               data-ng-change="addDomainCtrl.resetName()"
+                               data-ng-model="addDomainCtrl.domainType">
+                        <label class="oui-radio__label-container" for="addOption-nonOvhDomain">
+                            <span class="oui-radio__label"
+                                  data-i18n-static="exchange_tab_domain_add_step1_user_owned_option"></span>
                         </label>
                         <div class="mt-4"
                              data-ng-if="addDomainCtrl.domainType === 'nonOvhDomain'">
-                            <input type="text" class="form-control" name="manualDisplayName" placeholder="{{i18n.exchange_tab_domain_domain}}"
+                            <input type="text" class="oui-input" name="manualDisplayName" placeholder="{{i18n.exchange_tab_domain_domain}}"
                                    data-ng-change="addDomainCtrl.changeName()"
+                                   data-ng-class="{'oui-input_error': addDomainCtrl.addDomainForm.manualDisplayName.$dirty && !addDomainCtrl.domainValid}"
                                    data-ng-model="addDomainCtrl.model.displayName">
                         </div>
                     </div>
@@ -76,9 +83,9 @@
 
                 <div class="form-group"
                      data-ng-if="!addDomainCtrl.availableDomainsBuffer || addDomainCtrl.availableDomainsBuffer.length === 0">
-                    <label class="control-label" for="domainDisplayName"
+                    <label class="oui-label" for="domainDisplayName"
                            data-i18n-static="exchange_tab_domain_add_step1_user_owned_option"></label>
-                    <input type="text" class="form-control" id="domainDisplayName" placeholder="{{i18n.exchange_tab_domain_domain}}"
+                    <input type="text" class="oui-input" id="domainDisplayName" placeholder="{{i18n.exchange_tab_domain_domain}}"
                            data-ng-change="addDomainCtrl.changeName()"
                            data-ng-model="addDomainCtrl.model.displayName">
                 </div>

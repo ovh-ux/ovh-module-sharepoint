@@ -2,17 +2,16 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointInformationsCtrl", class SharepointInformationsCtrl {
 
-        constructor (Alerter, $location, MicrosoftSharepointLicenseService, Products, $stateParams, $scope) {
-            this.alerter = Alerter;
-            this.$location = $location;
-            this.sharepointService = MicrosoftSharepointLicenseService;
-            this.productsService = Products;
-            this.$stateParams = $stateParams;
+        constructor ($scope, $location, $stateParams, Alerter, MicrosoftSharepointLicenseService, Products) {
             this.$scope = $scope;
+            this.$location = $location;
+            this.$stateParams = $stateParams;
+            this.Alerter = Alerter;
+            this.SharepointService = MicrosoftSharepointLicenseService;
+            this.ProductsService = Products;
         }
 
         $onInit () {
-            this.accountIds = [];
             this.loaders = {
                 init: false
             };
@@ -23,18 +22,18 @@ angular
         }
 
         getProductsByType () {
-            return this.productsService.getProductsByType()
+            return this.ProductsService.getProductsByType()
                 .then((products) => {
                     this.associatedExchange = _.find(products.exchanges, { name: this.$stateParams.exchangeId });
                     if (this.associatedExchange) {
-                        this.associatedExchangeLink = ["#/configuration", this.associatedExchange.type.toLowerCase(),
-                            this.associatedExchange.organization, this.associatedExchange.name].join("/");
+                        this.associatedExchangeLink = `#/configuration/${this.associatedExchange.type.toLowerCase()}/${this.associatedExchange.organization}/${this.associatedExchange.name}`;
                     }
                 });
         }
 
         getSharepoint () {
-            return this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
+            this.loaders.init = true;
+            return this.SharepointService.getSharepoint(this.$stateParams.exchangeId)
                 .then((sharepoint) => {
                     this.sharepoint = sharepoint;
                     if (!this.sharepoint.url) {
@@ -44,7 +43,8 @@ angular
                     }
                 })
                 .catch((err) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err);
+                    _.set(err, "type", err.type || "ERROR");
+                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.loaders.init = false;
@@ -52,7 +52,7 @@ angular
         }
 
         getExchangeOrganization () {
-            return this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
+            return this.SharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
                 .then((organization) => {
                     this.hideAssociatedExchange = !organization;
                 });
@@ -65,31 +65,7 @@ angular
             this.sharepoint = sharepoint;
         }
 
-        onTranformItem (userPrincipalName) {
-            this.loaders.init = true;
-            return this.sharepointService.getAccount({
-                organizationName: this.$stateParams.organization,
-                sharepointService: this.$stateParams.productId,
-                userPrincipalName
-            })
-                .then((account) => {
-                    this.sharepointService.getAccountTasks({
-                        organizationName: this.$stateParams.organization,
-                        sharepointService: this.$stateParams.productId,
-                        userPrincipalName
-                    })
-                        .then((tasks) => {
-                            account.tasksCount = tasks.length;
-                            return account;
-                        });
-                });
-        }
-
-        onTranformItemDone () {
-            this.loaders.init = false;
-        }
-
         setExchange () {
-            this.productsService.setSelectedProduct(this.associatedExchange);
+            this.ProductsService.setSelectedProduct(this.associatedExchange);
         }
     });

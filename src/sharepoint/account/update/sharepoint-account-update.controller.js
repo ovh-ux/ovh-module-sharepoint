@@ -2,12 +2,12 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointUpdateAccountCtrl", class SharepointUpdateAccountCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $q, $stateParams, $scope) {
-            this.alerter = Alerter;
-            this.sharepointService = MicrosoftSharepointLicenseService;
+        constructor ($scope, $q, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+            this.$scope = $scope;
             this.$q = $q;
             this.$stateParams = $stateParams;
-            this.$scope = $scope;
+            this.Alerter = Alerter;
+            this.SharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -22,43 +22,47 @@ angular
             this.availableDomains = [];
             this.availableDomains.push(this.account.domain);
 
+            this.$scope.updateMsAccount = () => this.updateMsAccount();
+
             this.getMsService();
             this.getAccountDetails();
             this.getSharepointUpnSuffixes();
-
-            this.$scope.updateMsAccount = () => {
-                this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
-
-                this.sharepointService.updateSharepoint(this.exchangeId,
-                                                        this.originalValue.userPrincipalName,
-                                                        _.pick(this.account, ["userPrincipalName", "firstName", "lastName", "initials", "displayName"])
-                )
-                    .then(() => this.alerter.success(this.$scope.tr("sharepoint_account_update_configuration_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.dashboard))
-                    .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_account_update_configuration_error_message_text"), err, this.$scope.alerts.dashboard))
-                    .finally(() => this.$scope.resetAction());
-            };
         }
 
         getMsService () {
-            this.sharepointService.retrievingMSService(this.exchangeId)
+            this.SharepointService.retrievingMSService(this.exchangeId)
                 .then((exchange) => { this.$scope.exchange = exchange; });
         }
 
         getAccountDetails () {
-            this.sharepointService.getAccountDetails({ serviceName: this.exchangeId, userPrincipalName: this.account.userPrincipalName })
+            this.SharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
                 .then((accountDetails) => _.assign(this.account, accountDetails));
         }
 
         getSharepointUpnSuffixes () {
-            this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
+            this.SharepointService.getSharepointUpnSuffixes(this.exchangeId)
                 .then((upnSuffixes) =>
 
                     // check and filter the domains if they are not validated
                     this.$q.all(
-                        _.filter(upnSuffixes, (suffix) => this.sharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
+                        _.filter(upnSuffixes, (suffix) => this.SharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
                             .then((suffixDetails) => suffixDetails.ownershipValidated))
                     )
                 )
                 .then((availableDomains) => { this.availableDomains = _.union([this.account.domain], availableDomains); });
+        }
+
+        updateMsAccount () {
+            this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
+            return this.SharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, _.pick(this.account, ["userPrincipalName", "firstName", "lastName", "initials", "displayName"]))
+                .then(() => {
+                    this.Alerter.success(this.$scope.tr("sharepoint_account_update_configuration_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
+                })
+                .catch((err) => {
+                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_account_update_configuration_error_message_text"), err, this.$scope.alerts.main);
+                })
+                .finally(() => {
+                    this.$scope.resetAction();
+                });
         }
     });
