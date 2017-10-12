@@ -5,7 +5,6 @@
     angular
         .module("Module.sharepoint.services")
         .service("MicrosoftSharepointLicenseService", class MicrosoftSharepointLicenseService {
-
             constructor (Alerter, OvhHttp, Products, $q, SHAREPOINT_GUIDE_URLS, translator, User) {
                 this.Alerter = Alerter;
                 this.OvhHttp = OvhHttp;
@@ -14,9 +13,7 @@
                 this.SHAREPOINT_GUIDE_URLS = SHAREPOINT_GUIDE_URLS;
                 this.translator = translator;
                 this.User = User;
-            }
 
-            $onInit () {
                 this.cache = {
                     models: "UNIVERS_MODULE_SHAREPOINT_MODELS",
                     sharepoints: "UNIVERS_MODULE_SHAREPOINT_SHAREPOINTS",
