@@ -6,9 +6,9 @@ angular
             this.$scope = $scope;
             this.$location = $location;
             this.$stateParams = $stateParams;
-            this.Alerter = Alerter;
-            this.SharepointService = MicrosoftSharepointLicenseService;
-            this.ProductsService = Products;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
+            this.productsService = Products;
         }
 
         $onInit () {
@@ -22,7 +22,7 @@ angular
         }
 
         getProductsByType () {
-            return this.ProductsService.getProductsByType()
+            return this.productsService.getProductsByType()
                 .then((products) => {
                     this.associatedExchange = _.find(products.exchanges, { name: this.$stateParams.exchangeId });
                     if (this.associatedExchange) {
@@ -33,7 +33,7 @@ angular
 
         getSharepoint () {
             this.loaders.init = true;
-            return this.SharepointService.getSharepoint(this.$stateParams.exchangeId)
+            return this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
                 .then((sharepoint) => {
                     this.sharepoint = sharepoint;
                     if (!this.sharepoint.url) {
@@ -44,7 +44,7 @@ angular
                 })
                 .catch((err) => {
                     _.set(err, "type", err.type || "ERROR");
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.loaders.init = false;
@@ -52,7 +52,7 @@ angular
         }
 
         getExchangeOrganization () {
-            return this.SharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
+            return this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
                 .then((organization) => {
                     this.hideAssociatedExchange = !organization;
                 });
@@ -66,6 +66,6 @@ angular
         }
 
         setExchange () {
-            this.ProductsService.setSelectedProduct(this.associatedExchange);
+            this.productsService.setSelectedProduct(this.associatedExchange);
         }
     });

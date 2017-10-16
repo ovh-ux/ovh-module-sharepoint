@@ -7,9 +7,9 @@ angular
             this.$location = $location;
             this.$stateParams = $stateParams;
             this.$timeout = $timeout;
-            this.Alerter = Alerter;
-            this.SharepointService = MicrosoftSharepointLicenseService;
-            this.PollerService = Poller;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
+            this.pollerService = Poller;
         }
 
         $onInit () {
@@ -29,7 +29,7 @@ angular
             this.getAccountIds();
 
             this.$scope.$on("$destroy", () => {
-                this.PollerService.kill({
+                this.pollerService.kill({
                     namespace: "sharepoint.accounts.poll"
                 });
             });
@@ -45,7 +45,7 @@ angular
         }
 
         getSharepoint () {
-            this.SharepointService.getSharepoint(this.$stateParams.exchangeId)
+            this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
                 .then((sharepoint) => {
                     this.sharepoint = sharepoint;
                     if (_.isNull(this.sharepoint.url)) {
@@ -54,19 +54,19 @@ angular
                 })
                 .catch((err) => {
                     _.set(err, "type", err.type || "ERROR");
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
                 });
         }
 
         getExchangeOrganization () {
-            this.SharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
+            this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
                 .then((organization) => {
                     this.isStandAlone = _.isNull(organization);
                 });
         }
 
         updateSharepoint (account, type, officeLicense) {
-            return this.SharepointService.updateSharepointAccount(this.exchangeId, account.userPrincipalName, {
+            return this.sharepointService.updateSharepointAccount(this.exchangeId, account.userPrincipalName, {
                 accessRights: type,
                 officeLicense
             }).then(() => {
@@ -77,7 +77,7 @@ angular
         }
 
         startPoller (userPrincipalName) {
-            this.PollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/`, null, {
+            this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/`, null, {
                 interval: 15000,
                 successRule: { state: (account) => account.taskPendingId === 0 },
                 namespace: "sharepoint.accounts.poll"
@@ -89,7 +89,7 @@ angular
                     this.accounts[index] = account;
                 }
             }).catch(() => {
-                this.PollerService.kill({
+                this.pollerService.kill({
                     namespace: "sharepoint.accounts.poll"
                 });
             });
@@ -113,7 +113,7 @@ angular
 
         activateSharepoint (account) {
             if (!account.taskPendingId) {
-                window.open(this.SharepointService.getSharepointAccountOrderUrl(this.$stateParams.productId, account.userPrincipalName), "_blank");
+                window.open(this.sharepointService.getSharepointAccountOrderUrl(this.$stateParams.productId, account.userPrincipalName), "_blank");
             }
         }
 
@@ -157,12 +157,12 @@ angular
             this.loaders.search = true;
             this.accountIds = null;
 
-            return this.SharepointService.getAccounts(this.exchangeId, this.search.value)
+            return this.sharepointService.getAccounts(this.exchangeId, this.search.value)
                 .then((accountIds) => {
                     this.accountIds = accountIds;
                 }).catch((err) => {
                     _.set(err, "type", err.type || "ERROR");
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
                 }).finally(() => {
                     if (_.isEmpty(this.accountIds)) {
                         this.loaders.search = false;
@@ -178,7 +178,7 @@ angular
         }
 
         onTranformItem (userPrincipalName) {
-            return this.SharepointService.getAccountSharepoint(this.exchangeId, userPrincipalName)
+            return this.sharepointService.getAccountSharepoint(this.exchangeId, userPrincipalName)
                 .then((sharepoint) => {
                     sharepoint.userPrincipalName = userPrincipalName;
                     sharepoint.activated = true;

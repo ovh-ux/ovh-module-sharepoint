@@ -5,8 +5,8 @@ angular
         constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
             this.$stateParams = $stateParams;
-            this.Alerter = Alerter;
-            this.SharepointService = MicrosoftSharepointLicenseService;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -15,14 +15,14 @@ angular
         }
 
         deleteDomain () {
-            return this.SharepointService.deleteSharepointUpnSuffix(this.$stateParams.exchangeId, this.domain.suffix)
+            return this.sharepointService.deleteSharepointUpnSuffix(this.$stateParams.exchangeId, this.domain.suffix)
                 .then(() => {
-                    this.Alerter.success(this.$scope.tr("sharepoint_delete_domain_confirm_message_text", [this.domain.suffix]), this.$scope.alerts.main);
+                    this.alerter.success(this.$scope.tr("sharepoint_delete_domain_confirm_message_text", [this.domain.suffix]), this.$scope.alerts.main);
 
                     // TODO refresh domain's table
                 })
                 .catch((err) => {
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_delete_domain_error_message_text"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_delete_domain_error_message_text"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.$scope.resetAction();

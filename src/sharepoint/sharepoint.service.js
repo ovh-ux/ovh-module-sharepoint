@@ -7,7 +7,7 @@
         .service("MicrosoftSharepointLicenseService", class MicrosoftSharepointLicenseService {
 
             constructor (Alerter, OvhHttp, Products, $q, SHAREPOINT_GUIDE_URLS, translator, User) {
-                this.Alerter = Alerter;
+                this.alerter = Alerter;
                 this.OvhHttp = OvhHttp;
                 this.Products = Products;
                 this.$q = $q;
@@ -30,7 +30,7 @@
                         this.orderBaseUrl = orderBaseUrl;
                     })
                     .catch((error) => {
-                        this.Alerter.alertFromSWS(this.translator.tr("sharepoint_dashboard_error"), error);
+                        this.alerter.alertFromSWS(this.translator.tr("sharepoint_dashboard_error"), error);
                     });
             }
 

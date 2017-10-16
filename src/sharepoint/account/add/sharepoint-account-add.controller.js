@@ -5,8 +5,8 @@ angular
         constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
             this.$stateParams = $stateParams;
-            this.Alerter = Alerter;
-            this.SharepointService = MicrosoftSharepointLicenseService;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -18,13 +18,13 @@ angular
 
         retrievingSharepointServiceOptions () {
             this.loading = true;
-            return this.SharepointService.retrievingSharepointServiceOptions(this.$stateParams.productId)
+            return this.sharepointService.retrievingSharepointServiceOptions(this.$stateParams.productId)
                 .then((options) => {
                     this.optionsList = options;
                 })
                 .catch((err) => {
                     this.$scope.resetAction();
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_sharepoint_add_error_message"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_sharepoint_add_error_message"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.loading = false;
@@ -42,8 +42,8 @@ angular
         /* eslint-enable class-methods-use-this */
 
         submit () {
-            this.Alerter.success(this.$scope.tr("sharepoint_account_action_sharepoint_add_success_message"), this.$scope.alerts.main);
+            this.alerter.success(this.$scope.tr("sharepoint_account_action_sharepoint_add_success_message"), this.$scope.alerts.main);
             this.$scope.resetAction();
-            window.open(this.SharepointService.getSharepointStandaloneNewAccountOrderUrl(this.$stateParams.productId, this.optionsList[0].prices[0].quantity));
+            window.open(this.sharepointService.getSharepointStandaloneNewAccountOrderUrl(this.$stateParams.productId, this.optionsList[0].prices[0].quantity));
         }
     });

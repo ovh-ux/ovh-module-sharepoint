@@ -6,8 +6,8 @@ angular
             this.$scope = $scope;
             this.$q = $q;
             this.$stateParams = $stateParams;
-            this.Alerter = Alerter;
-            this.SharepointService = MicrosoftSharepointLicenseService;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -30,22 +30,22 @@ angular
         }
 
         getMsService () {
-            this.SharepointService.retrievingMSService(this.exchangeId)
+            this.sharepointService.retrievingMSService(this.exchangeId)
                 .then((exchange) => { this.$scope.exchange = exchange; });
         }
 
         getAccountDetails () {
-            this.SharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
+            this.sharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
                 .then((accountDetails) => _.assign(this.account, accountDetails));
         }
 
         getSharepointUpnSuffixes () {
-            this.SharepointService.getSharepointUpnSuffixes(this.exchangeId)
+            this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
                 .then((upnSuffixes) =>
 
                     // check and filter the domains if they are not validated
                     this.$q.all(
-                        _.filter(upnSuffixes, (suffix) => this.SharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
+                        _.filter(upnSuffixes, (suffix) => this.sharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
                             .then((suffixDetails) => suffixDetails.ownershipValidated))
                     )
                 )
@@ -54,12 +54,12 @@ angular
 
         updateMsAccount () {
             this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
-            return this.SharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, _.pick(this.account, ["userPrincipalName", "firstName", "lastName", "initials", "displayName"]))
+            return this.sharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, _.pick(this.account, ["userPrincipalName", "firstName", "lastName", "initials", "displayName"]))
                 .then(() => {
-                    this.Alerter.success(this.$scope.tr("sharepoint_account_update_configuration_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
+                    this.alerter.success(this.$scope.tr("sharepoint_account_update_configuration_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
                 })
                 .catch((err) => {
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_account_update_configuration_error_message_text"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_account_update_configuration_error_message_text"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.$scope.resetAction();

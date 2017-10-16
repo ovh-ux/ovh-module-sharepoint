@@ -4,7 +4,7 @@ angular
         constructor ($scope, $stateParams, Alerter, ExchangePassword, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
             this.$stateParams = $stateParams;
-            this.Alerter = Alerter;
+            this.alerter = Alerter;
             this.ExchangePassword = ExchangePassword;
             this.MicrosoftSharepointLicense = MicrosoftSharepointLicenseService;
         }
@@ -23,10 +23,10 @@ angular
         updatingSharepointPassword () {
             return this.MicrosoftSharepointLicense.updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, { password: this.account.password })
                 .then(() => {
-                    this.Alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
+                    this.alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
                 })
                 .catch((err) => {
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_ACTION_update_password_error_message_text"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_ACTION_update_password_error_message_text"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.$scope.resetAction();

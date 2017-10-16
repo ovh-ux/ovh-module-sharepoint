@@ -5,8 +5,8 @@ angular
         constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
             this.$stateParams = $stateParams;
-            this.Alerter = Alerter;
-            this.SharepointService = MicrosoftSharepointLicenseService;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -18,12 +18,12 @@ angular
 
         submit () {
             this.$scope.resetAction();
-            return this.SharepointService.restoreAdminRights(this.exchangeId)
+            return this.sharepointService.restoreAdminRights(this.exchangeId)
                 .then(() => {
-                    this.Alerter.success(this.$scope.tr("sharepoint_accounts_action_reset_admin_success"), this.$scope.alerts.main);
+                    this.alerter.success(this.$scope.tr("sharepoint_accounts_action_reset_admin_success"), this.$scope.alerts.main);
                 })
                 .catch((err) => {
-                    this.Alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_reset_admin_error"), err, this.$scope.alerts.main);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_reset_admin_error"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.$scope.resetAction();
