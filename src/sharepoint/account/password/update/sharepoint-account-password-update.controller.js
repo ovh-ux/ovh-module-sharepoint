@@ -5,8 +5,8 @@ angular
             this.$scope = $scope;
             this.$stateParams = $stateParams;
             this.alerter = Alerter;
-            this.ExchangePassword = ExchangePassword;
-            this.MicrosoftSharepointLicense = MicrosoftSharepointLicenseService;
+            this.exchangePassword = ExchangePassword;
+            this.microsoftSharepointLicense = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -21,7 +21,7 @@ angular
         }
 
         updatingSharepointPassword () {
-            return this.MicrosoftSharepointLicense.updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, { password: this.account.password })
+            return this.microsoftSharepointLicense.updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, { password: this.account.password })
                 .then(() => {
                     this.alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
                 })
@@ -34,7 +34,7 @@ angular
         }
 
         retrievingMSService () {
-            return this.MicrosoftSharepointLicense
+            return this.microsoftSharepointLicense
                 .retrievingMSService(this.exchangeId)
                 .then((exchange) => {
                     this.exchange = exchange;
@@ -48,7 +48,7 @@ angular
         }
 
         retrievingExchangeOrganization () {
-            return this.MicrosoftSharepointLicense
+            return this.microsoftSharepointLicense
                 .retrievingExchangeOrganization(this.exchangeId)
                 .then((organization) => {
                     this.hasAssociatedExchange = !_.isEmpty(organization);
@@ -69,15 +69,15 @@ angular
             }
 
             if (selectedAccount.password.length > 0) {
-                this.simplePasswordFlag = !this.ExchangePassword.passwordSimpleCheck(selectedAccount.password, true, this.exchange.minPasswordLength);
+                this.simplePasswordFlag = !this.exchangePassword.passwordSimpleCheck(selectedAccount.password, true, this.exchange.minPasswordLength);
 
                 // see the password complexity requirements of Windows Server (like Exchange)
                 // https://technet.microsoft.com/en-us/library/hh994562%28v=ws.10%29.aspx
                 if (this.exchange.complexityEnabled) {
-                    this.simplePasswordFlag = this.simplePasswordFlag || !this.ExchangePassword.passwordComplexityCheck(selectedAccount.password);
+                    this.simplePasswordFlag = this.simplePasswordFlag || !this.exchangePassword.passwordComplexityCheck(selectedAccount.password);
 
                     if (selectedAccount.displayName) {
-                        this.containsNameFlag = this.ExchangePassword.passwordContainsName(
+                        this.containsNameFlag = this.exchangePassword.passwordContainsName(
                             selectedAccount.password,
                             selectedAccount.displayName
                         );
