@@ -9,9 +9,7 @@
 
             <p data-ng-bind-html="tr('sharepoint_accounts_action_sharepoint_add_intro')"></p>
 
-            <div class="text-center" data-ng-if="addAccountCtrl.loading">
-                <oui-loader inline="true"></oui-loader>
-            </div>
+            <oui-loader data-ng-if="addAccountCtrl.loading"></oui-loader>
 
             <form class="form-horizontal" name="addAccountCtrl.addAccountForm" novalidate
                   data-ng-show="!addAccountCtrl.loading">
