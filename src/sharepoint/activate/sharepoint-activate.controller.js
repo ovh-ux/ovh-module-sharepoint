@@ -19,9 +19,7 @@ angular
 
             this.$scope.submit = () => {
                 this.$scope.resetAction();
-                return this.sharepointService.updateSharepointAccount({
-                    serviceName: this.$stateParams.exchangeId,
-                    userPrincipalName: this.account.userPrincipalName,
+                return this.sharepointService.updateSharepointAccount(this.$stateParams.exchangeId, this.account.userPrincipalName, {
                     officeLicense: true
                 })
                     .then(() => {

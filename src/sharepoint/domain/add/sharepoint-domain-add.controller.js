@@ -2,12 +2,12 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointAddDomainController", class SharepointAddDomainController {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, Products, $stateParams, $scope, Validator) {
+        constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService, Products, Validator) {
+            this.$scope = $scope;
+            this.$stateParams = $stateParams;
             this.alerter = Alerter;
             this.sharepointService = MicrosoftSharepointLicenseService;
             this.productsService = Products;
-            this.$stateParams = $stateParams;
-            this.$scope = $scope;
             this.validatorService = Validator;
         }
 
@@ -21,18 +21,16 @@ angular
                 displayName: null
             };
 
-            this.$scope.loadDomainData = () => {
-                this.loading = true;
+            this.$scope.addDomain = () => this.addDomain();
 
-                return this.productsService.getProductsByType()
-                    .then((productsByType) => this.prepareData(productsByType.domains))
-                    .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_add_domain_error_message_text"), err, this.$scope.alerts.dashboard));
-            };
+            this.loadDomainData();
+        }
 
-            this.$scope.addDomain = () => this.sharepointService.addSharepointUpnSuffixe(this.$stateParams.exchangeId, this.model.name)
-                .then(() => this.alerter.success(this.$scope.tr("sharepoint_add_domain_confirm_message_text", this.model.displayName), this.$scope.alerts.dashboard))
-                .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_add_domain_error_message_text"), err, this.$scope.alerts.dashboard))
-                .finally(() => this.$scope.resetAction());
+        loadDomainData () {
+            this.loading = true;
+            return this.productsService.getProductsByType()
+                .then((productsByType) => this.prepareData(productsByType.domains))
+                .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_add_domain_error_message_text"), err, this.$scope.alerts.main));
         }
 
         prepareData (data) {
@@ -40,7 +38,7 @@ angular
 
             return this.sharepointService.getUsedUpnSuffixes()
                 .then((upnSuffixes) => {
-                    _.remove(domains, (domain) => upnSuffixes.indexOf(domain.name) >= 0);
+                    _.remove(domains, (domain) => _.indexOf(upnSuffixes, domain.name) >= 0);
                 })
                 .finally(() => {
                     this.loading = false;
@@ -68,5 +66,18 @@ angular
 
             // URL validation based on http://www.regexr.com/39nr7
             this.domainValid = this.validatorService.isValidURL(this.model.name);
+        }
+
+        addDomain () {
+            return this.sharepointService.addSharepointUpnSuffixe(this.$stateParams.exchangeId, this.model.name)
+                .then(() => {
+                    this.alerter.success(this.$scope.tr("sharepoint_add_domain_confirm_message_text", this.model.displayName), this.$scope.alerts.main);
+                })
+                .catch((err) => {
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_add_domain_error_message_text"), err, this.$scope.alerts.main);
+                })
+                .finally(() => {
+                    this.$scope.resetAction();
+                });
         }
     });

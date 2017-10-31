@@ -10,7 +10,7 @@
 
             <p data-ng-bind-html="tr('exchange_update_billing_periode_intro')"></p>
 
-            <form class="mt-5">
+            <form class="mb-3">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="{{i18n.exchange_tab_ACCOUNTS_table_email}}"
                            data-ng-change="updateRenewCtrl.goSearch()"
@@ -31,26 +31,28 @@
                 </div>
             </form>
 
-            <table class="table table-hover mt-3">
+            <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
-                        <th class="text-center" scope="col" data-i18n-static="exchange_update_billing_header_1M"></th>
-                        <th class="text-center" scope="col">
-                            <span data-i18n-static="exchange_update_billing_header_terminate"></span>&nbsp;<span class="text-danger">*</span>
-                        </th>
+                        <th scope="col"
+                            data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                        <th class="text-center" scope="col"
+                            data-i18n-static="exchange_update_billing_header_1M"></th>
+                        <th class="text-center required" scope="col"
+                            data-i18n-static="exchange_update_billing_header_terminate"></th>
                     </tr>
                 </thead>
 
                 <tbody data-ng-if="updateRenewCtrl.loaders.init">
                     <tr>
-                        <td colspan="3" class="loader text-center"></td>
+                        <td class="loader text-center" colspan="3"></td>
                     </tr>
                 </tbody>
 
                 <tbody data-ng-if="!updateRenewCtrl.loaders.init && !updateRenewCtrl.accountIds.length">
                     <tr>
-                        <td class="text-center" colspan="3" data-i18n-static="sharepoint_accounts_empty"></td>
+                        <td class="text-center" colspan="3"
+                            data-i18n-static="sharepoint_accounts_empty"></td>
                     </tr>
                 </tbody>
 
@@ -61,18 +63,20 @@
                             <span class="fa fa-hourglass-half ml-2" aria-hidden="true" data-ng-if="account.taskPendingId"></span>
                         </th>
                         <td class="text-center">
-                            <input type="radio" name="{{$index}}" data-ng-value="false"
+                            <input type="radio" id="account-monthly-{{$index}}" name="{{$index}}"
                                    data-ng-change="updateRenewCtrl.changeRenew(account, false)"
                                    data-ng-checked="!account.deleteAtExpiration"
                                    data-ng-disabled="!account.activated"
-                                   data-ng-model="account.deleteAtExpiration">
+                                   data-ng-model="account.deleteAtExpiration"
+                                   data-ng-value="false">
                         </td>
                         <td class="text-center">
-                            <input type="radio" name="{{$index}}" data-ng-value="true"
+                            <input type="radio" id="account-none-{{$index}}" name="{{$index}}"
                                    data-ng-change="updateRenewCtrl.changeRenew(account, true)"
                                    data-ng-checked="account.deleteAtExpiration"
                                    data-ng-disabled="!account.activated"
-                                   data-ng-model="account.deleteAtExpiration">
+                                   data-ng-model="account.deleteAtExpiration"
+                                   data-ng-value="true">
                         </td>
                     </tr>
                 </tbody>
@@ -98,7 +102,7 @@
             <div class="alert alert-warning mt-5" role="alert">
                 <div>
                     <span class="text-danger">* </span>
-                    <small data-i18n-static="exchange_update_billing_periode_delete_warning"></small>
+                    <span data-i18n-static="exchange_update_billing_periode_delete_warning"></span>
                 </div>
             </div>
         </div>
@@ -106,16 +110,17 @@
         <div data-wizard-step
              data-wizard-step-on-load="checkBuffer">
 
-            <p class="mt-5" data-i18n-static="exchange_update_billing_periode_resume"></p>
+            <p data-i18n-static="exchange_update_billing_periode_resume"></p>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col" data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
-                        <th scope="col" data-i18n-static="exchange_update_billing_header_1M" class="text-center"></th>
-                        <th class="text-center" scope="col">
-                            <span data-i18n-static="exchange_update_billing_header_terminate"></span>&nbsp;<span class="text-danger">*</span>
-                        </th>
+                        <th scope="col"
+                            data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                        <th class="text-center" scope="col"
+                            data-i18n-static="exchange_update_billing_header_1M"></th>
+                        <th class="text-center requires" scope="col"
+                            data-i18n-static="exchange_update_billing_header_terminate"></th>
                     </tr>
                 </thead>
 
@@ -139,12 +144,12 @@
                             <span class="fa fa-hourglass-half ml-2" aria-hidden="true" data-ng-if="account.taskPendingId"></span>
                         </td>
                         <td class="text-center">
-                            <span class="fa fa-check fa-lg text-success" aria-hidden="true"
+                            <span class="oui-icon oui-icon-success text-success" aria-hidden="true"
                                   data-ng-if="!account.deleteAtExpiration"></span>
                             <span data-ng-if="account.deleteAtExpiration"> - </span>
                         </td>
                         <td class="text-center">
-                            <span class="fa fa-check fa-lg text-success" aria-hidden="true"
+                            <span class="oui-icon oui-icon-success text-success" aria-hidden="true"
                                   data-ng-if="account.deleteAtExpiration"></span>
                             <span data-ng-if="!account.deleteAtExpiration"> - </span>
                         </td>
@@ -170,7 +175,7 @@
             <div class="alert alert-warning mt-5" role="alert">
                 <div>
                     <span class="text-danger">* </span>
-                    <small data-i18n-static="exchange_update_billing_periode_delete_warning"></small>
+                    <span data-i18n-static="exchange_update_billing_periode_delete_warning"></span>
                 </div>
             </div>
         </div>

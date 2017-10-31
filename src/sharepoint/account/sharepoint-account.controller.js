@@ -2,14 +2,14 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointAccountsCtrl", class SharepointAccountsCtrl {
 
-        constructor (Alerter, $location, MicrosoftSharepointLicenseService, Poller, $scope, $stateParams, $timeout) {
-            this.alerter = Alerter;
-            this.$location = $location;
-            this.sharepointService = MicrosoftSharepointLicenseService;
-            this.pollerService = Poller;
+        constructor ($scope, $location, $stateParams, $timeout, Alerter, MicrosoftSharepointLicenseService, Poller) {
             this.$scope = $scope;
+            this.$location = $location;
             this.$stateParams = $stateParams;
             this.$timeout = $timeout;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
+            this.pollerService = Poller;
         }
 
         $onInit () {
@@ -52,7 +52,10 @@ angular
                         this.$location.path(`/configuration/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`);
                     }
                 })
-                .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err));
+                .catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
+                });
         }
 
         getExchangeOrganization () {
@@ -63,17 +66,14 @@ angular
         }
 
         updateSharepoint (account, type, officeLicense) {
-            this.sharepointService.updateSharepointAccount({
-                serviceName: this.exchangeId,
-                userPrincipalName: account.userPrincipalName,
+            return this.sharepointService.updateSharepointAccount(this.exchangeId, account.userPrincipalName, {
                 accessRights: type,
                 officeLicense
-            })
-                .then(() => {
-                    this.search.value = "";
-                    this.hasResult = false;
-                    this.getAccountIds();
-                });
+            }).then(() => {
+                this.search.value = "";
+                this.hasResult = false;
+                this.getAccountIds();
+            });
         }
 
         startPoller (userPrincipalName) {
@@ -81,20 +81,18 @@ angular
                 interval: 15000,
                 successRule: { state: (account) => account.taskPendingId === 0 },
                 namespace: "sharepoint.accounts.poll"
-            })
-                .then((account) => {
-                    account.activated = true;
-                    account.userPrincipalName = userPrincipalName;
-                    const index = _.findIndex(this.accounts, { userPrincipalName });
-                    if (index > -1) {
-                        this.accounts[index] = account;
-                    }
-                })
-                .catch(() => {
-                    this.pollerService.kill({
-                        namespace: "sharepoint.accounts.poll"
-                    });
+            }).then((account) => {
+                account.activated = true;
+                account.userPrincipalName = userPrincipalName;
+                const index = _.findIndex(this.accounts, { userPrincipalName });
+                if (index > -1) {
+                    this.accounts[index] = account;
+                }
+            }).catch(() => {
+                this.pollerService.kill({
+                    namespace: "sharepoint.accounts.poll"
                 });
+            });
         }
 
         activateSharepointUser (account) {
@@ -159,21 +157,20 @@ angular
             this.loaders.search = true;
             this.accountIds = null;
 
-            return this.sharepointService.getAccounts({
-                serviceName: this.exchangeId,
-                userPrincipalName: this.search.value
-            }).then((accountIds) => {
-                this.accountIds = accountIds;
-            }).catch((err) => {
-                this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.dashboard);
-            }).finally(() => {
-                if (_.isEmpty(this.accountIds)) {
-                    this.loaders.search = false;
-                } else {
-                    this.hasResult = true;
-                }
-                this.loaders.init = false;
-            });
+            return this.sharepointService.getAccounts(this.exchangeId, this.search.value)
+                .then((accountIds) => {
+                    this.accountIds = accountIds;
+                }).catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
+                }).finally(() => {
+                    if (_.isEmpty(this.accountIds)) {
+                        this.loaders.search = false;
+                    } else {
+                        this.hasResult = true;
+                    }
+                    this.loaders.init = false;
+                });
         }
 
         resetAdminRights () {
@@ -181,23 +178,21 @@ angular
         }
 
         onTranformItem (userPrincipalName) {
-            return this.sharepointService.getAccountSharepoint({
-                serviceName: this.exchangeId,
-                userPrincipalName
-            }).then((sharepoint) => {
-                sharepoint.userPrincipalName = userPrincipalName;
-                sharepoint.activated = true;
-                sharepoint.usedQuota = filesize(sharepoint.currentUsage, { standard: "iec", output: "object" });
-                sharepoint.totalQuota = filesize(sharepoint.quota, { standard: "iec", output: "object" });
-                sharepoint.percentUse = Math.round((sharepoint.currentUsage / sharepoint.quota) * 100);
-                if (sharepoint.taskPendingId > 0) {
-                    this.startPoller(userPrincipalName);
-                }
-                return sharepoint;
-            }).catch(() => ({
-                userPrincipalName,
-                activated: false
-            }));
+            return this.sharepointService.getAccountSharepoint(this.exchangeId, userPrincipalName)
+                .then((sharepoint) => {
+                    sharepoint.userPrincipalName = userPrincipalName;
+                    sharepoint.activated = true;
+                    sharepoint.usedQuota = filesize(sharepoint.currentUsage, { standard: "iec", output: "object" });
+                    sharepoint.totalQuota = filesize(sharepoint.quota, { standard: "iec", output: "object" });
+                    sharepoint.percentUse = Math.round((sharepoint.currentUsage / sharepoint.quota) * 100);
+                    if (sharepoint.taskPendingId > 0) {
+                        this.startPoller(userPrincipalName);
+                    }
+                    return sharepoint;
+                }).catch(() => ({
+                    userPrincipalName,
+                    activated: false
+                }));
         }
 
         onTranformItemDone () {

@@ -1,12 +1,12 @@
 angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointUpdatePasswordCtrl", class SharepointUpdatePasswordCtrl {
-        constructor (Alerter, ExchangePassword, MicrosoftSharepointLicenseService, $stateParams, $scope) {
+        constructor ($scope, $stateParams, Alerter, ExchangePassword, MicrosoftSharepointLicenseService) {
+            this.$scope = $scope;
+            this.$stateParams = $stateParams;
             this.alerter = Alerter;
             this.exchangePassword = ExchangePassword;
             this.microsoftSharepointLicense = MicrosoftSharepointLicenseService;
-            this.$stateParams = $stateParams;
-            this.$scope = $scope;
         }
 
         $onInit () {
@@ -21,19 +21,12 @@ angular
         }
 
         updatingSharepointPassword () {
-            const model = {
-                serviceName: this.exchangeId,
-                userPrincipalName: this.account.userPrincipalName,
-                password: this.account.password
-            };
-
-            return this.microsoftSharepointLicense
-                .updatingSharepointPasswordAccount(model)
+            return this.microsoftSharepointLicense.updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, { password: this.account.password })
                 .then(() => {
-                    this.alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.dashboard);
+                    this.alerter.success(this.$scope.tr("sharepoint_ACTION_update_password_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
                 })
                 .catch((err) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_ACTION_update_password_error_message_text"), err, this.$scope.alerts.dashboard);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_ACTION_update_password_error_message_text"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.$scope.resetAction();

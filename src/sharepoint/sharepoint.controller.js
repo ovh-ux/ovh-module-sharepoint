@@ -2,14 +2,14 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointCtrl", class SharepointCtrl {
 
-        constructor (Alerter, constants, MicrosoftSharepointLicenseService, Products, $stateParams, $scope, $timeout) {
+        constructor ($scope, $stateParams, $timeout, Alerter, constants, MicrosoftSharepointLicenseService, Products) {
+            this.$scope = $scope;
+            this.$stateParams = $stateParams;
+            this.$timeout = $timeout;
             this.alerter = Alerter;
             this.constants = constants;
             this.sharepointService = MicrosoftSharepointLicenseService;
             this.productsService = Products;
-            this.$stateParams = $stateParams;
-            this.$scope = $scope;
-            this.$timeout = $timeout;
         }
 
         $onInit () {
@@ -23,7 +23,9 @@ angular
             this.stepPath = "";
 
             this.$scope.alerts = {
-                dashboard: "sharepointDashboardAlert"
+                page: "sharepoint.alerts.page",
+                tabs: "sharepoint.alerts.tabs",
+                main: "sharepoint.alerts.main"
             };
 
             this.getSharepoint();
@@ -62,15 +64,22 @@ angular
 
         getSharepoint () {
             return this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
-                .then((sharepoint) => { this.sharepoint = sharepoint; })
-                .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err))
-                .finally(() => { this.loaders.init = false; });
+                .then((sharepoint) => {
+                    this.sharepoint = sharepoint;
+                })
+                .catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.page);
+                })
+                .finally(() => {
+                    this.loaders.init = false;
+                });
         }
 
         getProducts () {
             return this.productsService.getProducts()
                 .then((products) => {
-                    let exchange = _.find(products, { name: this.exchangeId });
+                    const exchange = _.find(products, { name: this.exchangeId });
 
                     if (exchange) {
                         this.exchangeOrganization = exchange.organization;

@@ -2,21 +2,19 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointUpdateRenewCtrl", class SharepointUpdateRenewCtrl {
 
-        constructor (Alerter, $location, MicrosoftSharepointLicenseService, $q, $scope, $stateParams, $timeout) {
-            this.alerter = Alerter;
-            this.$location = $location;
-            this.sharepointService = MicrosoftSharepointLicenseService;
-            this.$q = $q;
+        constructor ($scope, $location, $q, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
             this.$scope = $scope;
+            this.$location = $location;
+            this.$q = $q;
             this.$stateParams = $stateParams;
-            this.$timeout = $timeout;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
-            this.timeout = null;
-
-            this.exchangeId = this.$stateParams.exchangeId;
-            this.search = { value: null };
+            this.search = {
+                value: null
+            };
             this.loaders = {
                 init: true
             };
@@ -29,15 +27,20 @@ angular
 
             this.$scope.submit = () => {
                 this.$q.all(
-                    _.map(this.buffer.changes, (sharepoint) => this.sharepointService.updateSharepointAccount({
-                        serviceName: this.exchangeId,
-                        userPrincipalName: sharepoint.userPrincipalName,
+                    _.map(this.buffer.changes, (sharepoint) => this.sharepointService.updateSharepointAccount(this.$stateParams.exchangeId, sharepoint.userPrincipalName, {
                         deleteAtExpiration: sharepoint.deleteAtExpiration
                     }))
                 )
-                    .then(() => this.alerter.success(this.$scope.tr("exchange_update_billing_periode_success"), this.$scope.alerts.dashboard))
-                    .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("exchange_update_billing_periode_failure"), err, this.$scope.alerts.dashboard))
-                    .finally(() => this.$scope.reset());
+                    .then(() => {
+                        this.alerter.success(this.$scope.tr("exchange_update_billing_periode_success"), this.$scope.alerts.main);
+                    })
+                    .catch((err) => {
+                        _.set(err, "type", err.type || "ERROR");
+                        this.alerter.alertFromSWS(this.$scope.tr("exchange_update_billing_periode_failure"), err, this.$scope.alerts.main);
+                    })
+                    .finally(() => {
+                        this.$scope.reset();
+                    });
 
             };
 
@@ -61,25 +64,22 @@ angular
             this.accountIds = null;
             this.bufferedAccounts = [];
 
-            this.sharepointService.getAccounts({
-                serviceName: this.exchangeId,
-                userPrincipalName: this.search.value
-            }).then((accountIds) => {
-                this.accountIds = accountIds;
-            }).catch((err) => {
-                this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.dashboard);
-            }).finally(() => {
-                if (_.isEmpty(this.accountIds)) {
-                    this.loaders.init = false;
-                }
-            });
+            return this.sharepointService.getAccounts(this.$stateParams.exchangeId, this.search.value)
+                .then((accountIds) => {
+                    this.accountIds = accountIds;
+                }).catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
+                    this.$scope.resetAction();
+                }).finally(() => {
+                    if (_.isEmpty(this.accountIds)) {
+                        this.loaders.init = false;
+                    }
+                });
         }
 
         onTranformItem (userPrincipalName) {
-            return this.sharepointService.getAccountSharepoint({
-                serviceName: this.exchangeId,
-                userPrincipalName
-            })
+            return this.sharepointService.getAccountSharepoint(this.$stateParams.exchangeId, userPrincipalName)
                 .then((sharepoint) => {
                     sharepoint.userPrincipalName = userPrincipalName;
                     sharepoint.activated = true;
@@ -119,10 +119,7 @@ angular
         }
 
         onTranformItemResume (userPrincipalName) {
-            return this.sharepointService.getAccountSharepoint({
-                serviceName: this.exchangeId,
-                userPrincipalName
-            })
+            return this.sharepointService.getAccountSharepoint(this.$stateParams.exchangeId, userPrincipalName)
                 .then((sharepoint) => {
                     sharepoint.userPrincipalName = userPrincipalName;
                     const buffered = _.find(this.buffer.changes, { userPrincipalName: sharepoint.userPrincipalName });
