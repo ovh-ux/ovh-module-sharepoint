@@ -2,17 +2,16 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointInformationsCtrl", class SharepointInformationsCtrl {
 
-        constructor (Alerter, $location, MicrosoftSharepointLicenseService, Products, $stateParams, $scope) {
-            this.alerter = Alerter;
+        constructor ($scope, $location, $stateParams, Alerter, MicrosoftSharepointLicenseService, Products) {
+            this.$scope = $scope;
             this.$location = $location;
+            this.$stateParams = $stateParams;
+            this.alerter = Alerter;
             this.sharepointService = MicrosoftSharepointLicenseService;
             this.productsService = Products;
-            this.$stateParams = $stateParams;
-            this.$scope = $scope;
         }
 
         $onInit () {
-            this.accountIds = [];
             this.loaders = {
                 init: false
             };
@@ -27,13 +26,13 @@ angular
                 .then((products) => {
                     this.associatedExchange = _.find(products.exchanges, { name: this.$stateParams.exchangeId });
                     if (this.associatedExchange) {
-                        this.associatedExchangeLink = ["#/configuration", this.associatedExchange.type.toLowerCase(),
-                            this.associatedExchange.organization, this.associatedExchange.name].join("/");
+                        this.associatedExchangeLink = `#/configuration/${this.associatedExchange.type.toLowerCase()}/${this.associatedExchange.organization}/${this.associatedExchange.name}`;
                     }
                 });
         }
 
         getSharepoint () {
+            this.loaders.init = true;
             return this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
                 .then((sharepoint) => {
                     this.sharepoint = sharepoint;
@@ -44,7 +43,8 @@ angular
                     }
                 })
                 .catch((err) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err);
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_error"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.loaders.init = false;
@@ -63,30 +63,6 @@ angular
                 sharepoint.left = sharepoint.quota - sharepoint.currentUsage;
             }
             this.sharepoint = sharepoint;
-        }
-
-        onTranformItem (userPrincipalName) {
-            this.loaders.init = true;
-            return this.sharepointService.getAccount({
-                organizationName: this.$stateParams.organization,
-                sharepointService: this.$stateParams.productId,
-                userPrincipalName
-            })
-                .then((account) => {
-                    this.sharepointService.getAccountTasks({
-                        organizationName: this.$stateParams.organization,
-                        sharepointService: this.$stateParams.productId,
-                        userPrincipalName
-                    })
-                        .then((tasks) => {
-                            account.tasksCount = tasks.length;
-                            return account;
-                        });
-                });
-        }
-
-        onTranformItemDone () {
-            this.loaders.init = false;
         }
 
         setExchange () {

@@ -2,41 +2,29 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointAddAccountCtrl", class SharepointAddAccountCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope) {
+        constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+            this.$scope = $scope;
+            this.$stateParams = $stateParams;
             this.alerter = Alerter;
             this.sharepointService = MicrosoftSharepointLicenseService;
-            this.$stateParams = $stateParams;
-            this.$scope = $scope;
         }
 
         $onInit () {
             this.loading = false;
-            this.sharepointDomain = this.$stateParams.productId;
-
             this.retrievingSharepointServiceOptions();
 
-            this.$scope.submit = () => {
-                this.alerter.success(this.$scope.tr("sharepoint_account_action_sharepoint_add_success_message"), this.$scope.alerts.dashboard);
-                this.$scope.resetAction();
-                window.open(
-                    this.sharepointService.getSharepointStandaloneNewAccountOrderUrl(
-                        this.sharepointDomain, this.optionsList[0].prices[0].quantity
-                    )
-                );
-            };
+            this.$scope.submit = () => this.submit();
         }
 
         retrievingSharepointServiceOptions () {
             this.loading = true;
-
-            return this.sharepointService
-                .retrievingSharepointServiceOptions(this.sharepointDomain)
+            return this.sharepointService.retrievingSharepointServiceOptions(this.$stateParams.productId)
                 .then((options) => {
                     this.optionsList = options;
                 })
                 .catch((err) => {
                     this.$scope.resetAction();
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_sharepoint_add_error_message"), err, this.$scope.alerts.dashboard);
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_action_sharepoint_add_error_message"), err, this.$scope.alerts.main);
                 })
                 .finally(() => {
                     this.loading = false;
@@ -52,4 +40,10 @@ angular
             return _.get(option, "prices[0].price.currencyCode") === "EUR" ? "&#0128;" : _.get(option, "prices[0].price.currencyCode");
         }
         /* eslint-enable class-methods-use-this */
+
+        submit () {
+            this.alerter.success(this.$scope.tr("sharepoint_account_action_sharepoint_add_success_message"), this.$scope.alerts.main);
+            this.$scope.resetAction();
+            window.open(this.sharepointService.getSharepointStandaloneNewAccountOrderUrl(this.$stateParams.productId, this.optionsList[0].prices[0].quantity));
+        }
     });

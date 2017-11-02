@@ -1,27 +1,27 @@
-<div data-ovh-alert="{{alerts.dashboard}}"></div>
+<div data-ovh-alert="{{alerts.page}}"></div>
 
-<div data-ng-if="SharepointCtrl.loaders.init">
-    <div class="clearfix"></div>
-    <div class="loader mt-5 text-center"></div>
-</div>
+<oui-loader size="l" data-ng-if="SharepointCtrl.loaders.init"></oui-loader>
 
 <div data-ng-if="!SharepointCtrl.loaders.init">
     <div class="page-header">
         <div class="row">
             <div class="col-sm-9">
-                <small>
+                <strong>
                     <span data-i18n-static="sharepoint_dashboard_offer_type"></span>
-                    <span data-i18n-static="sharepoint_dashboard_offer_type_standalone" data-ng-if="SharepointCtrl.isStandAlone"></span>
-                </small>
-                <h1 class="wordbreak" data-ng-bind="SharepointCtrl.sharepointDomain"></h1>
+                    <span data-i18n-static="sharepoint_dashboard_offer_type_standalone"
+                          data-ng-if="SharepointCtrl.isStandAlone"></span>
+                </strong>
+                <h1 class="wordbreak"
+                    data-ng-bind="SharepointCtrl.sharepointDomain"></h1>
             </div>
             <div class="col-sm-3 d-flex">
                 <div class="btn-group ml-auto mt-4">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="oui-button oui-button_dropdown mb-0" type="button" aria-haspopup="true" aria-expanded="false"
+                            data-toggle="dropdown">
                         <span data-i18n-static="common_actions"></span>
-                        <span class="caret ml-2" aria-hidden="true"></span>
+                        <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right m-0 p-0">
+                    <ul class="dropdown-menu dropdown-menu-right">
                         <li>
                             <i class="oui-icon oui-icon-gear_line" aria-hidden="true"></i>
                             <button class="btn btn-link" type="button"
@@ -42,6 +42,7 @@
                   product="sharepoint"
                   tr="tr"></ovh-tabs>
         <div class="tab-content">
+            <div data-ovh-alert="{{alerts.tabs}}"></div>
             <div class="tab-pane active platform"
                  data-ng-include="selectedTab && 'sharepoint/' + toKebabCase(selectedTab) + '/' + selectedTab + '.html'">
             </div>

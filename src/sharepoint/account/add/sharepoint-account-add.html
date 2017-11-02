@@ -9,13 +9,15 @@
 
             <p data-ng-bind-html="tr('sharepoint_accounts_action_sharepoint_add_intro')"></p>
 
-            <div class="loader text-center" data-ng-if="addAccountCtrl.loading"></div>
+            <oui-loader data-ng-if="addAccountCtrl.loading"></oui-loader>
 
             <form class="form-horizontal" name="addAccountCtrl.addAccountForm" novalidate
                   data-ng-show="!addAccountCtrl.loading">
                 <div class="form-group"
                      data-ng-repeat="option in addAccountCtrl.optionsList track by $index"
-                     data-ng-class="{'has-error': addAccountCtrl.addAccountForm.$invalid && addAccountCtrl.addAccountForm.$dirty, 'has-success': addAccountCtrl.addAccountForm.$valid && addAccountCtrl.addAccountForm.$dirty}">
+                     data-ng-class="{
+                        'has-error': addAccountCtrl.addAccountForm.$invalid && addAccountCtrl.addAccountForm.$dirty,
+                        'has-success': addAccountCtrl.addAccountForm.$valid && addAccountCtrl.addAccountForm.$dirty}">
                     <div class="clearfix">
                         <label class="control-label col-md-4" for="optionPricesQuantity-{{$index}}"
                                data-ng-bind="option.productName"></label>

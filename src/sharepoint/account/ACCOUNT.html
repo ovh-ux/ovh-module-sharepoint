@@ -1,8 +1,9 @@
 <div class="container-fluid px-0" data-ng-controller="SharepointAccountsCtrl as accountsCtrl">
-    <div class="row">
-        <div class="col-md-9">
+    <oui-loader size="l" data-ng-if="accountsCtrl.loaders.init"></oui-loader>
 
-            <div class="loader text-center" data-ng-if="accountsCtrl.loaders.init"></div>
+    <div class="row" data-ng-show="!accountsCtrl.loaders.init">
+        <div class="col-md-9">
+            <div data-ovh-alert="{{alerts.main}}"></div>
 
             <div class="alert alert-info" role="alert"
                  data-i18n-static="sharepoint_accounts_empty"
@@ -59,7 +60,8 @@
 
                         <tbody data-ng-if="!accountsCtrl.loaders.search && !accountsCtrl.accountIds.length">
                             <tr>
-                                <td class="text-center" colspan="6" data-i18n-static="sharepoint_accounts_empty"></td>
+                                <td class="text-center" colspan="6"
+                                    data-i18n-static="sharepoint_accounts_empty"></td>
                             </tr>
                         </tbody>
 
@@ -71,33 +73,43 @@
                                           data-ng-if="account.taskPendingId"></span>
                                 </th>
                                 <td>
-                                    <div class="text-center" data-ng-if="!account.activated"> - </div>
-                                    <div class="progress m-0" style="min-width:140px" data-ng-if="account.activated">
-                                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{email.percentUse}}"
-                                             data-ng-class="{'progress-bar-success' : account.percentUse < 51, 'progress-bar-warning' : account.percentUse > 50 && account.percentUse < 81, 'progress-bar-danger' : account.percentUse > 80 }"
+                                    <span data-ng-if="!account.activated">-</span>
+                                    <div class="oui-progress m-0" style="min-width:140px"
+                                         data-ng-class="{
+                                            'oui-progress_success': account.percentUse < 51,
+                                            'oui-progress_warning': account.percentUse > 50 && account.percentUse < 81,
+                                            'oui-progress_error': account.percentUse > 80
+                                        }"
+                                         data-ng-if="account.activated">
+                                        <div class="oui-progress__bar oui-progress__bar_text-left" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{account.percentUse}}"
+                                             data-ng-class="{
+                                                'oui-progress__bar_success': account.percentUse < 51,
+                                                'oui-progress__bar_warning': account.percentUse > 50 && account.percentUse < 81,
+                                                'oui-progress__bar_error': account.percentUse > 80
+                                             }"
                                              data-ng-style="{'width': account.percentUse + '%'}">
+                                            <span class="oui-progress__label"
+                                                  data-ng-bind="::account.usedQuota.value + ' ' + tr('unit_size_' + account.usedQuota.symbol) + ' / ' + account.totalQuota.value + ' ' + tr('unit_size_' + account.totalQuota.symbol)"></span>
                                         </div>
-                                        <span class="progress-bar-label"
-                                              data-ng-bind="::account.usedQuota.value + ' ' + tr('unit_size_' + account.usedQuota.symbol) + ' / ' + account.totalQuota.value + ' ' + tr('unit_size_' + account.totalQuota.symbol)"></span>
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <span class="fa fa-check fa-lg text-success" aria-hidden="true" aria-label="{{i18n.common_yes}}"
+                                    <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
                                           data-ng-if="account.accessRights === 'administrator'" ></span>
                                     <span data-ng-if="account.accessRights !== 'administrator'"> - </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="fa fa-check fa-lg text-success" aria-hidden="true" aria-label="{{i18n.common_yes}}"
+                                    <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
                                           data-ng-if="account.accessRights"></span>
                                     <span data-ng-if="!account.accessRights"> - </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="fa fa-check fa-lg text-success" aria-hidden="true" aria-label="{{i18n.common_yes}}"
+                                    <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
                                           data-ng-if="account.officeLicense"></span>
                                     <span data-ng-if="!account.officeLicense"> - </span>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-icon" type="button" title="{{i18n.sharepoint_accounts_action_change_configuration}}"
+                                    <button class="btn btn-icon" type="button" title="{{i18n.sharepoint_accounts_action_change_configuration}} {{account.userPrincipalName}}"
                                             data-linkedpopover="sharepoint/account/popover/user.html"
                                             data-linkedpopover-placement="left"
                                             data-linkedpopover-remote="true"
@@ -130,7 +142,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 mt-5 mt-lg-0">
+        <div class="col-md-3 mt-md-5 mt-lg-0">
             <button class="btn btn-block btn-default text-wrap" title="{{i18n.sharepoint_accounts_action_reset_admin_tooltip}}"
                     data-i18n-static="sharepoint_accounts_action_reset_admin"
                     data-ng-click="accountsCtrl.resetAdminRights()">

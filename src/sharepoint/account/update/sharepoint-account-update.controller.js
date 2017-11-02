@@ -2,12 +2,12 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointUpdateAccountCtrl", class SharepointUpdateAccountCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $q, $stateParams, $scope) {
-            this.alerter = Alerter;
-            this.sharepointService = MicrosoftSharepointLicenseService;
+        constructor ($scope, $q, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+            this.$scope = $scope;
             this.$q = $q;
             this.$stateParams = $stateParams;
-            this.$scope = $scope;
+            this.alerter = Alerter;
+            this.sharepointService = MicrosoftSharepointLicenseService;
         }
 
         $onInit () {
@@ -22,21 +22,11 @@ angular
             this.availableDomains = [];
             this.availableDomains.push(this.account.domain);
 
+            this.$scope.updateMsAccount = () => this.updateMsAccount();
+
             this.getMsService();
             this.getAccountDetails();
             this.getSharepointUpnSuffixes();
-
-            this.$scope.updateMsAccount = () => {
-                this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
-
-                this.sharepointService.updateSharepoint(this.exchangeId,
-                                                        this.originalValue.userPrincipalName,
-                                                        _.pick(this.account, ["userPrincipalName", "firstName", "lastName", "initials", "displayName"])
-                )
-                    .then(() => this.alerter.success(this.$scope.tr("sharepoint_account_update_configuration_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.dashboard))
-                    .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_account_update_configuration_error_message_text"), err, this.$scope.alerts.dashboard))
-                    .finally(() => this.$scope.resetAction());
-            };
         }
 
         getMsService () {
@@ -45,7 +35,7 @@ angular
         }
 
         getAccountDetails () {
-            this.sharepointService.getAccountDetails({ serviceName: this.exchangeId, userPrincipalName: this.account.userPrincipalName })
+            this.sharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
                 .then((accountDetails) => _.assign(this.account, accountDetails));
         }
 
@@ -60,5 +50,19 @@ angular
                     )
                 )
                 .then((availableDomains) => { this.availableDomains = _.union([this.account.domain], availableDomains); });
+        }
+
+        updateMsAccount () {
+            this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
+            return this.sharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, _.pick(this.account, ["userPrincipalName", "firstName", "lastName", "initials", "displayName"]))
+                .then(() => {
+                    this.alerter.success(this.$scope.tr("sharepoint_account_update_configuration_confirm_message_text", this.account.userPrincipalName), this.$scope.alerts.main);
+                })
+                .catch((err) => {
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_account_update_configuration_error_message_text"), err, this.$scope.alerts.main);
+                })
+                .finally(() => {
+                    this.$scope.resetAction();
+                });
         }
     });

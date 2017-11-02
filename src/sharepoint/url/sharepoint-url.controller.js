@@ -14,7 +14,8 @@ angular
 
         $onInit () {
             this.$scope.alerts = {
-                dashboard: "sharepointDashboardAlert"
+                page: "sharepoint.alerts.page",
+                main: "sharepoint.alerts.main"
             };
 
             this.sharepointDomain = this.$stateParams.productId;
@@ -47,14 +48,15 @@ angular
             return this.sharepointService
                 .setSharepointUrl(this.exchangeId, `${this.sharepointUrl}${this.sharepointUrlSuffix}`)
                 .then(() => {
-                    this.alerter.success(this.$scope.tr("sharepoint_set_url_success_message_text", this.exchangeId), this.$scope.alerts.dashboard);
+                    this.alerter.success(this.$scope.tr("sharepoint_set_url_success_message_text", this.exchangeId), this.$scope.alerts.main);
 
                     this.$timeout(() => {
                         this.$location.path(`/configuration/sharepoint/${this.exchangeId}/${this.sharepointDomain}`);
                     }, 3000);
                 })
-                .catch((failure) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_set_url_failure_message_text"), failure, this.$scope.alerts.dashboard);
+                .catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_set_url_failure_message_text"), err, this.$scope.alerts.main);
                 });
         }
     });
