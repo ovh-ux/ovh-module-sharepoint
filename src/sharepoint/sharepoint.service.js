@@ -88,6 +88,23 @@
             }
 
             /**
+             * Update sharepoint
+             * @param {string} serviceName
+             * @param {string|null} displayName
+             *
+             */
+            setSharepointDisplayName (serviceName, displayName) {
+                return this.OvhHttp
+                    .put(`/msServices/${serviceName}/sharepoint`, {
+                        rootPath: "apiv6",
+                        data: {
+                            displayName
+                        },
+                        clearAllCache: this.cache.sharepoints
+                    });
+            }
+
+            /**
              * @param {string} exchangeName
              * @param {array} emails
              */

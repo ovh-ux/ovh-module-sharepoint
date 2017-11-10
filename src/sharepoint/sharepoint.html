@@ -11,8 +11,37 @@
                     <span data-i18n-static="sharepoint_dashboard_offer_type_standalone"
                           data-ng-if="SharepointCtrl.isStandAlone"></span>
                 </strong>
-                <h1 class="word-break"
-                    data-ng-bind="SharepointCtrl.sharepointDomain"></h1>
+                <div class="mb-3" data-ng-show="!SharepointCtrl.editMode">
+                    <div class="d-flex">
+                        <h1 class="d-inline-block mb-0 word-break"
+                            data-ng-bind="SharepointCtrl.sharepoint.displayName || SharepointCtrl.sharepoint.domain"></h1>
+                        <button class="btn btn-icon my-auto ml-2" type="button"
+                                data-ng-click="SharepointCtrl.editDisplayName()">
+                            <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
+                            <span class="sr-only"
+                                  data-i18n-static="sharepoint_dashboard_display_name_edit"></span>
+                        </button>
+                    </div>
+                    <span class="font-italic"
+                          data-ng-bind="SharepointCtrl.sharepointDomain"
+                          data-ng-if="SharepointCtrl.sharepoint.displayName && SharepointCtrl.sharepoint.domain !== SharepointCtrl.sharepoint.displayName"></span>
+                </div>
+                <form class="my-4" name="sharePointDisplayNameForm" novalidate
+                      data-ng-show="SharepointCtrl.editMode"
+                      data-ng-submit="SharepointCtrl.saveDisplayName()">
+                    <div class="oui-input-group">
+                        <input type="text" class="oui-input" id="displayNameField" name="displayNameField" maxlength="50"
+                               data-ng-model="SharepointCtrl.displayName">
+                        <button class="oui-button oui-button_small-width" type="submit" aria-label="{{i18n.sharepoint_dashboard_display_name_save}}"
+                                data-ng-disabled="sharePointDisplayNameForm.displayNameField.$invalid">
+                            <span class="oui-icon oui-icon-success oui-icon_small" aria-hidden="true"></span>
+                        </button>
+                        <button class="oui-button oui-button_small-width" type="button" aria-label="{{i18n.common_cancel}}"
+                                data-ng-click="SharepointCtrl.resetDisplayName()">
+                            <span class="oui-icon oui-icon-error oui-icon_small" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
             </div>
             <div class="col-sm-3 d-flex">
                 <div class="btn-group ml-auto mt-4">
