@@ -47,7 +47,7 @@
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Selecione o domínio que deseja adicionar ao seu serviço SharePoint.</translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">A adição do domínio {0} será efetivada dentro de alguns minutos.</translation>
    <translation id="sharepoint_add_domain_error_message_text" qtlid="347405">O pedido de adição do domínio falhou.</translation>
-   <translation id="sharepoint_delete_domains_intro_label" qtlid="376258">Está no ponto de efetuar um pedido de eliminação para o seguinte domínio:</translation>
+   <translation id="sharepoint_delete_domains_intro_label" qtlid="376258">Está prestes a efetuar um pedido de eliminação para o seguinte domínio:</translation>
    <translation id="sharepoint_delete_domain_confirm_message_text" qtlid="347418">A eliminação do domínio {0} será efetivada dentro de alguns minutos.</translation>
    <translation id="sharepoint_delete_domain_error_message_text" qtlid="347431">O pedido de eliminação do domínio falhou.</translation>
 
@@ -81,7 +81,7 @@
    <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/mês</translation>
    <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">O seu pedido foi tomado em conta. Será reencaminhado para a interface de pagamentos OVH.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Ocorreu um erro aquando da recuperação das informações necessárias à encomenda.</translation>
-   <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">O número de contas adicionadas deve ser compreendida entre {0} e {1}</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">O número de contas adicionadas deve estar compreendido entre {0} e {1}</translation>
 
    <translation id="sharepoint_action_reset_search" qtlid="279158">Eliminar a pesquisa</translation>
 
@@ -154,7 +154,7 @@
 
    <translation id="sharepoint_ACTION_update_password_title" qtlid="347509">Modificar a password</translation>
    <translation id="sharepoint_ACTION_update_password_account_label" qtlid="33862">Conta</translation>
-   <translation id="sharepoint_ACTION_update_password_pass_label" qtlid="2270">Password</translation>
+   <translation id="sharepoint_ACTION_update_password_pass_label" qtlid="2270">Palavra-passe</translation>
    <translation id="sharepoint_ACTION_update_password_confirm_pass_label" qtlid="9983">Confirmação</translation>
    <translation id="sharepoint_ACTION_update_password_confirm_message_text" qtlid="325909">A alteração da password da conta {0} será efetiva dentro de alguns minutos.</translation>
    <translation id="sharepoint_ACTION_update_password_error_message_text" qtlid="297800">O pedido de alteração da password falhou.</translation>
