@@ -26,6 +26,9 @@
    <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Espace disque utilisé</translation>
    <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Espace disque disponible</translation>
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">Go</translation>
+   <translation id="sharepoint_dashboard_display_name_edit">Modifier</translation>
+   <translation id="sharepoint_dashboard_display_name_save">Sauvegarder</translation>
+   <translation id="sharepoint_dashboard_display_name_error">Une erreur est survenue lors de la mise à jour des informations.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Informations générales</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Utilisateurs</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domaines</translation>

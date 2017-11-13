@@ -2,8 +2,9 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointCtrl", class SharepointCtrl {
 
-        constructor ($scope, $stateParams, $timeout, Alerter, constants, MicrosoftSharepointLicenseService, Products) {
+        constructor ($scope, $rootScope, $stateParams, $timeout, Alerter, constants, MicrosoftSharepointLicenseService, Products) {
             this.$scope = $scope;
+            this.$rootScope = $rootScope;
             this.$stateParams = $stateParams;
             this.$timeout = $timeout;
             this.alerter = Alerter;
@@ -17,6 +18,7 @@ angular
             this.exchangeId = this.$stateParams.exchangeId;
             this.worldPart = this.constants.target;
             this.sharepointService.assignGuideUrl(this, "sharepointGuideUrl");
+            this.editMode = false;
             this.loaders = {
                 init: true
             };
@@ -60,6 +62,31 @@ angular
             this.$scope.$on("$locationChangeStart", () => {
                 this.$scope.resetAction();
             });
+        }
+
+        editDisplayName () {
+            this.displayName = this.sharepoint.displayName || this.sharepoint.domain;
+            this.editMode = true;
+        }
+
+        saveDisplayName () {
+            const displayName = this.displayName || null;
+            return this.sharepointService.setSharepointDisplayName(this.exchangeId, displayName)
+                .then(() => {
+                    this.sharepoint.displayName = this.displayName || this.sharepoint.domain;
+                    this.$rootScope.$broadcast("change.displayName", [this.exchangeId, this.sharepointDomain, this.displayName]);
+                })
+                .catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_dashboard_display_name_error"), err, this.$scope.alerts.tabs);
+                })
+                .finally(() => {
+                    this.editMode = false;
+                });
+        }
+
+        resetDisplayName () {
+            this.editMode = false;
         }
 
         getSharepoint () {
