@@ -95,7 +95,7 @@
    <translation id="sharepoint_account_update_configuration_title" qtlid="347444">Upravit SharePoint účet</translation>
    <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Zobrazit název</translation>
    <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">Jméno</translation>
-   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Jméno</translation>
+   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Příjmení</translation>
    <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Iniciály</translation>
    <translation id="sharepoint_account_update_configuration_user_principal_name" qtlid="347457">user_principal_name</translation>
    <translation id="sharepoint_account_update_configuration_confirm_message_text" qtlid="347470">Změny v nastavení účtu {0} budou provedeny v rámci několika minut.</translation>
