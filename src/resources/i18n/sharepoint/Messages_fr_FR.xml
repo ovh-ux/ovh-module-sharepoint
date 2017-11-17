@@ -33,6 +33,18 @@
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Utilisateurs</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domaines</translation>
    <translation id="sharepoint_tab_TASK" qtlid="96716">Tâches</translation>
+
+   <translation id="privateDatabase_tabs_tasks_function">Fonction</translation>
+   <translation id="privateDatabase_tabs_tasks_status">Statut</translation>
+   <translation id="privateDatabase_tabs_tasks_status_doing">En cours</translation>
+   <translation id="privateDatabase_tabs_tasks_status_todo">Programmée</translation>
+   <translation id="privateDatabase_tabs_tasks_status_done">Terminée</translation>
+   <translation id="privateDatabase_tabs_tasks_status_error">Erreur</translation>
+   <translation id="privateDatabase_tabs_tasks_status_cancelled">Annulée</translation>
+   <translation id="privateDatabase_tabs_tasks_todoDate">Date de début</translation>
+   <translation id="privateDatabase_tabs_tasks_finishDate">Date de fin</translation>
+   <translation id="privateDatabase_tabs_tasks_null">Aucune tâche récente</translation>
+
    <translation id="sharepoint_dashboard_error" qtlid="243832">Une erreur est survenue lors de la récupération des informations :</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Plus d'actions</translation>
 
