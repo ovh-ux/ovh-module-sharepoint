@@ -32,7 +32,7 @@
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Informations générales</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Utilisateurs</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domaines</translation>
-   <translation id="sharepoint_tab_TASK" qtlid="96716">Tâches</translation>
+   <translation id="sharepoint_tab_TASK">Tâches récentes</translation>
 
    <translation id="privateDatabase_tabs_tasks_function">Fonction</translation>
    <translation id="privateDatabase_tabs_tasks_status">Statut</translation>
