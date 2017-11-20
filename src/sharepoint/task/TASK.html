@@ -5,7 +5,7 @@
                 data-ng-if="taskCtrl.loaders.tasks"></oui-loader>
 
     <div class="alert alert-info" role="alert"
-         data-i18n-static="privateDatabase_tabs_tasks_null"
+         data-i18n-static="sharepoint_tabs_tasks_null"
          data-ng-if="!taskCtrl.loaders.tasks && !taskCtrl.hasResult">
     </div>
 
@@ -14,10 +14,10 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col" data-i18n-static="privateDatabase_tabs_tasks_function"></th>
-                    <th scope="col" data-i18n-static="privateDatabase_tabs_tasks_todoDate"></th>
-                    <th scope="col" data-i18n-static="privateDatabase_tabs_tasks_finishDate"></th>
-                    <th class="text-center" scope="col" data-i18n-static="privateDatabase_tabs_tasks_status"></th>
+                    <th scope="col" data-i18n-static="sharepoint_tabs_tasks_function"></th>
+                    <th scope="col" data-i18n-static="sharepoint_tabs_tasks_todoDate"></th>
+                    <th scope="col" data-i18n-static="sharepoint_tabs_tasks_finishDate"></th>
+                    <th class="text-center" scope="col" data-i18n-static="sharepoint_tabs_tasks_status"></th>
                     <th class="min-width text-right" scope="col">
                         <button class="btn btn-icon" type="button" title="{{i18n.refresh}}"
                                 data-ng-click="taskCtrl.getTasks()">
@@ -38,9 +38,9 @@
                     <th scope="row" data-ng-bind="::task.function"></th>
                     <td data-ng-bind="::task.todoDate | date:'medium'"></td>
                     <td data-ng-bind="::task.finishDate | date:'medium'"></td>
-                    <td class="text-center">
+                    <td class="text-center" colspan="2">
                         <span class="label"
-                              data-ng-bind="tr('privateDatabase_tabs_tasks_status_' + task.status)"
+                              data-ng-bind="tr('sharepoint_tabs_tasks_status_' + task.status)"
                               data-ng-class="{
                                 'label-success' : task.status === 'done',
                                 'label-info': task.status === 'doing' || task.status === 'todo',
@@ -49,7 +49,6 @@
                               }"
                               data-ng-if="task.status"></span>
                     </td>
-                    <td></td>
                 </tr>
             </tbody>
         </table>

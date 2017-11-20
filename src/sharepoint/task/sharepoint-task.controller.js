@@ -31,6 +31,10 @@ angular
                         this.hasResult = true;
                     }
                 })
+                .catch((err) => {
+                    _.set(err, "type", err.type || "ERROR");
+                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_tabs_tasks_error"), err, this.$scope.alerts.main);
+                })
                 .finally(() => {
                     if (_.isEmpty(this.tasksIds)) {
                         this.hasResult = false;
