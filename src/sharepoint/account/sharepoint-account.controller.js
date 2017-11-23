@@ -88,7 +88,7 @@ angular
         }
 
         startPoller (userPrincipalName) {
-            this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`, null, {
+            return this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`, null, {
                 interval: 15000,
                 successRule: { state: (account) => account.taskPendingId === 0 },
                 namespace: "sharepoint.accounts.poll"
