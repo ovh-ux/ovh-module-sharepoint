@@ -22,7 +22,6 @@ angular
                 init: true,
                 search: false
             };
-            this.iteration = 0;
 
             this.getSharepoint();
             this.getExchangeOrganization();
@@ -33,6 +32,14 @@ angular
                     namespace: "sharepoint.accounts.poll"
                 });
             });
+        }
+
+        static setAccountProperties (account, userPrincipalName) {
+            _.set(account, "userPrincipalName", userPrincipalName);
+            _.set(account, "activated", true);
+            _.set(account, "usedQuota", filesize(account.currentUsage, { standard: "iec", output: "object" }));
+            _.set(account, "totalQuota", filesize(account.quota, { standard: "iec", output: "object" }));
+            _.set(account, "percentUse", Math.round((account.currentUsage / account.quota) * 100));
         }
 
         updateSearch () {
@@ -84,6 +91,9 @@ angular
                             this.accounts[index] = sharepoint;
                         }
                     }
+                })
+                .catch(() => {
+                    this.alerter.error(this.$scope.tr("sharepoint_accounts_action_error", [account.userPrincipalName]), this.$scope.alerts.main);
                 });
         }
 
@@ -163,6 +173,10 @@ angular
             }
         }
 
+        resetAdminRights () {
+            this.$scope.setAction("admin-rights/reset/sharepoint-admin-rights-reset");
+        }
+
         getAccountIds () {
             this.loaders.search = true;
             this.accountIds = null;
@@ -181,18 +195,6 @@ angular
                     }
                     this.loaders.init = false;
                 });
-        }
-
-        resetAdminRights () {
-            this.$scope.setAction("admin-rights/reset/sharepoint-admin-rights-reset");
-        }
-
-        static setAccountProperties (account, userPrincipalName) {
-            _.set(account, "userPrincipalName", userPrincipalName);
-            _.set(account, "activated", true);
-            _.set(account, "usedQuota", filesize(account.currentUsage, { standard: "iec", output: "object" }));
-            _.set(account, "totalQuota", filesize(account.quota, { standard: "iec", output: "object" }));
-            _.set(account, "percentUse", Math.round((account.currentUsage / account.quota) * 100));
         }
 
         onTranformItem (userPrincipalName) {

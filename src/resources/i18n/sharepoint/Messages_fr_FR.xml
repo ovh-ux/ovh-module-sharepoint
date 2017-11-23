@@ -73,6 +73,7 @@
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Retirer droits administrateur</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Ajouter un licence Office</translation>
    <translation id="sharepoint_accounts_action_success">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
+   <translation id="sharepoint_accounts_action_error">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Activer SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Supprimer le compte</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Voulez-vous réellement supprimer le compte suivant de votre service Sharepoint ?</translation>
