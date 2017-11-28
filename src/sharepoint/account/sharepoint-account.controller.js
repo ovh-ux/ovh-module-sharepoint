@@ -22,7 +22,6 @@ angular
                 init: true,
                 search: false
             };
-            this.iteration = 0;
 
             this.getSharepoint();
             this.getExchangeOrganization();
@@ -35,6 +34,14 @@ angular
             });
         }
 
+        static setAccountProperties (account, userPrincipalName) {
+            _.set(account, "userPrincipalName", userPrincipalName);
+            _.set(account, "activated", true);
+            _.set(account, "usedQuota", filesize(account.currentUsage, { standard: "iec", output: "object" }));
+            _.set(account, "totalQuota", filesize(account.quota, { standard: "iec", output: "object" }));
+            _.set(account, "percentUse", Math.round((account.currentUsage / account.quota) * 100));
+        }
+
         updateSearch () {
             return this.getAccountIds();
         }
@@ -45,7 +52,8 @@ angular
         }
 
         getSharepoint () {
-            this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
+            return this.sharepointService
+                .getSharepoint(this.$stateParams.exchangeId)
                 .then((sharepoint) => {
                     this.sharepoint = sharepoint;
                     if (_.isNull(this.sharepoint.url)) {
@@ -66,26 +74,38 @@ angular
         }
 
         updateSharepoint (account, type, officeLicense) {
-            return this.sharepointService.updateSharepointAccount(this.exchangeId, account.userPrincipalName, {
-                accessRights: type,
-                officeLicense
-            }).then(() => {
-                this.search.value = "";
-                this.hasResult = false;
-                this.getAccountIds();
-            });
+            return this.sharepointService
+                .updateSharepointAccount(this.exchangeId, account.userPrincipalName, { accessRights: type, officeLicense })
+                .then(() => {
+                    this.alerter.success(this.$scope.tr("sharepoint_accounts_action_success", [account.userPrincipalName]), this.$scope.alerts.main);
+                    return this.sharepointService.getAccountSharepoint(this.exchangeId, account.userPrincipalName);
+                })
+                .then((sharepoint) => {
+                    if (sharepoint.taskPendingId > 0) {
+                        account.taskPendingId = sharepoint.taskPendingId;
+                        this.startPoller(account.userPrincipalName);
+                    } else {
+                        const index = _.findIndex(this.accounts, { userPrincipalName: account.userPrincipalName });
+                        if (index > -1) {
+                            this.constructor.setAccountProperties(sharepoint, account.userPrincipalName);
+                            this.accounts[index] = sharepoint;
+                        }
+                    }
+                })
+                .catch(() => {
+                    this.alerter.error(this.$scope.tr("sharepoint_accounts_action_error", [account.userPrincipalName]), this.$scope.alerts.main);
+                });
         }
 
         startPoller (userPrincipalName) {
-            this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/`, null, {
+            return this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`, null, {
                 interval: 15000,
                 successRule: { state: (account) => account.taskPendingId === 0 },
                 namespace: "sharepoint.accounts.poll"
             }).then((account) => {
-                account.activated = true;
-                account.userPrincipalName = userPrincipalName;
                 const index = _.findIndex(this.accounts, { userPrincipalName });
                 if (index > -1) {
+                    this.constructor.setAccountProperties(account, userPrincipalName);
                     this.accounts[index] = account;
                 }
             }).catch(() => {
@@ -153,6 +173,10 @@ angular
             }
         }
 
+        resetAdminRights () {
+            this.$scope.setAction("admin-rights/reset/sharepoint-admin-rights-reset");
+        }
+
         getAccountIds () {
             this.loaders.search = true;
             this.accountIds = null;
@@ -173,18 +197,10 @@ angular
                 });
         }
 
-        resetAdminRights () {
-            this.$scope.setAction("admin-rights/reset/sharepoint-admin-rights-reset");
-        }
-
         onTranformItem (userPrincipalName) {
             return this.sharepointService.getAccountSharepoint(this.exchangeId, userPrincipalName)
                 .then((sharepoint) => {
-                    sharepoint.userPrincipalName = userPrincipalName;
-                    sharepoint.activated = true;
-                    sharepoint.usedQuota = filesize(sharepoint.currentUsage, { standard: "iec", output: "object" });
-                    sharepoint.totalQuota = filesize(sharepoint.quota, { standard: "iec", output: "object" });
-                    sharepoint.percentUse = Math.round((sharepoint.currentUsage / sharepoint.quota) * 100);
+                    this.constructor.setAccountProperties(sharepoint, userPrincipalName);
                     if (sharepoint.taskPendingId > 0) {
                         this.startPoller(userPrincipalName);
                     }
