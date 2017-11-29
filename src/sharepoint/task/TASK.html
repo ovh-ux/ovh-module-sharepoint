@@ -34,7 +34,7 @@
             </tbody>
 
             <tbody data-ng-if="!taskCtrl.loaders.tasks && taskCtrl.tasksIds.length > 0">
-                <tr data-ng-repeat="task in taskCtrl.taskDetails track by $index">
+                <tr data-ng-repeat="task in taskCtrl.taskDetails | orderBy:'-todoDate' track by $index">
                     <th scope="row" data-ng-bind="::task.function"></th>
                     <td data-ng-bind="::task.todoDate | date:'medium'"></td>
                     <td data-ng-bind="::task.finishDate | date:'medium'"></td>
