@@ -26,10 +26,26 @@
    <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Used disk space</translation>
    <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Available disk space </translation>
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
+   <translation id="sharepoint_dashboard_display_name_edit">Modifier</translation>
+   <translation id="sharepoint_dashboard_display_name_save">Sauvegarder</translation>
+   <translation id="sharepoint_dashboard_display_name_error">Une erreur est survenue lors de la mise à jour des informations.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">General information</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Users</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domains</translation>
    <translation id="sharepoint_tab_TASK" qtlid="96716">Tasks</translation>
+
+   <translation id="sharepoint_tabs_tasks_function">Fonction</translation>
+   <translation id="sharepoint_tabs_tasks_status">Statut</translation>
+   <translation id="sharepoint_tabs_tasks_status_doing">En cours</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo">Programmée</translation>
+   <translation id="sharepoint_tabs_tasks_status_done">Terminée</translation>
+   <translation id="sharepoint_tabs_tasks_status_error">Erreur</translation>
+   <translation id="sharepoint_tabs_tasks_status_cancelled">Annulée</translation>
+   <translation id="sharepoint_tabs_tasks_todoDate">Date de début</translation>
+   <translation id="sharepoint_tabs_tasks_finishDate">Date de fin</translation>
+   <translation id="sharepoint_tabs_tasks_null">Aucune tâche récente</translation>
+   <translation id="sharepoint_tabs_tasks_error">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+
    <translation id="sharepoint_dashboard_error" qtlid="243832">An error occurred when retrieving the details:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">More actions</translation>
 
@@ -69,6 +85,7 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Enable administrator rights </translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Remove administrator rights </translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Add an Office licence </translation>
+(??)
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Enable SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Disable Sharepoint </translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Do you really want to delete the following Sharepoint account?</translation>

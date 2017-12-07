@@ -69,8 +69,8 @@
                             <tr data-ng-repeat="account in accountsCtrl.accounts track by $index">
                                 <th class="word-break" scope="row">
                                     <span class="mr-2" data-ng-bind="account.userPrincipalName"></span>
-                                    <span class="fa fa-hourglass-half" aria-hidden="true"
-                                          data-ng-if="account.taskPendingId"></span>
+                                    <oui-loader size="s" inline="true"
+                                                data-ng-if="account.taskPendingId > 0"></oui-loader>
                                 </th>
                                 <td>
                                     <span data-ng-if="!account.activated">-</span>

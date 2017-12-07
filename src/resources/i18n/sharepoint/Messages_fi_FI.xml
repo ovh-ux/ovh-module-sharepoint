@@ -26,10 +26,26 @@
    <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Käytetty levytila</translation>
    <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Käytettävissä oleva levytila</translation>
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
+   <translation id="sharepoint_dashboard_display_name_edit">Modifier</translation>
+   <translation id="sharepoint_dashboard_display_name_save">Sauvegarder</translation>
+   <translation id="sharepoint_dashboard_display_name_error">Une erreur est survenue lors de la mise à jour des informations.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Yleiset tiedot</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Käyttäjät</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Verkkotunnukset</translation>
-   <translation id="sharepoint_tab_TASK" qtlid="96716">Tehtävät</translation>
+   <translation id="sharepoint_tab_TASK">Tâches récentes</translation>
+
+   <translation id="sharepoint_tabs_tasks_function">Fonction</translation>
+   <translation id="sharepoint_tabs_tasks_status">Statut</translation>
+   <translation id="sharepoint_tabs_tasks_status_doing">En cours</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo">Programmée</translation>
+   <translation id="sharepoint_tabs_tasks_status_done">Terminée</translation>
+   <translation id="sharepoint_tabs_tasks_status_error">Erreur</translation>
+   <translation id="sharepoint_tabs_tasks_status_cancelled">Annulée</translation>
+   <translation id="sharepoint_tabs_tasks_todoDate">Date de début</translation>
+   <translation id="sharepoint_tabs_tasks_finishDate">Date de fin</translation>
+   <translation id="sharepoint_tabs_tasks_null">Aucune tâche récente</translation>
+   <translation id="sharepoint_tabs_tasks_error">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+
    <translation id="sharepoint_dashboard_error" qtlid="243832">Tapahtui virhe tietoja haettaessa:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Lisää toimintoja</translation>
 
@@ -69,6 +85,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Aktivoi adminsitraattorin oikeudet</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Poista administraattorin oikeudet</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Lisää Office-lisenssi</translation>
+   <translation id="sharepoint_accounts_action_success">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
+   <translation id="sharepoint_accounts_action_error">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Aktivoi SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Poista tili</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Haluatko varmasti poistaa seuraavan tilin SharePoint-palvelusta?</translation>

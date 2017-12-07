@@ -461,5 +461,28 @@
                         cache: this.cache.sharepoints
                     });
             }
+
+            /**
+             * Get tasks list
+             * @param {string} serviceName
+             */
+            getTasks (serviceName) {
+                return this.OvhHttp
+                    .get(`/msServices/${serviceName}/sharepoint/task`, {
+                        rootPath: "apiv6"
+                    });
+            }
+
+            /**
+             * Get task details
+             * @param {string} serviceName
+             * @param {string} tasksId
+             */
+            getTask (serviceName, tasksId) {
+                return this.OvhHttp
+                    .get(`/msServices/${serviceName}/sharepoint/task/${tasksId}`, {
+                        rootPath: "apiv6"
+                    });
+            }
         });
 }

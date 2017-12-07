@@ -13,7 +13,7 @@ angular
             this.defaultTab = "INFORMATION";
 
             this.$scope.toKebabCase = _.kebabCase;
-            this.$scope.tabs = ["INFORMATION", "ACCOUNT"];
+            this.$scope.tabs = ["INFORMATION", "ACCOUNT", "TASK"];
 
             this.getExchangeOrganization()
                 .then(() => {
