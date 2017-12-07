@@ -32,7 +32,7 @@
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">General information</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Users</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domains</translation>
-   <translation id="sharepoint_tab_TASK">Tâches récentes</translation>
+   <translation id="sharepoint_tab_TASK" qtlid="96716">Tasks</translation>
 
    <translation id="sharepoint_tabs_tasks_function">Fonction</translation>
    <translation id="sharepoint_tabs_tasks_status">Statut</translation>
@@ -85,8 +85,7 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Enable administrator rights </translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Remove administrator rights </translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Add an Office licence </translation>
-   <translation id="sharepoint_accounts_action_success">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+(??)
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Enable SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Disable Sharepoint </translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Do you really want to delete the following Sharepoint account?</translation>

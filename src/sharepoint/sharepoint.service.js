@@ -5,7 +5,6 @@
     angular
         .module("Module.sharepoint.services")
         .service("MicrosoftSharepointLicenseService", class MicrosoftSharepointLicenseService {
-
             constructor (Alerter, OvhHttp, Products, $q, SHAREPOINT_GUIDE_URLS, translator, User) {
                 this.alerter = Alerter;
                 this.OvhHttp = OvhHttp;
