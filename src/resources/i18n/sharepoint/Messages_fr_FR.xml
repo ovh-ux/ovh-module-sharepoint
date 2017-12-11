@@ -62,6 +62,7 @@
    <translation id="sharepoint_accounts_license_office" qtlid="297280">Licence Office</translation>
    <translation id="sharepoint_accounts_version" qtlid="34210">Version</translation>
    <translation id="sharepoint_accounts_state" qtlid="33790">État</translation>
+   <translation id="sharepoint_accounts_state_NOT_ACTIVE">Inactif</translation>
 
    <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Rétablir droits administrateur</translation>
    <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Droits administrateur</translation>
