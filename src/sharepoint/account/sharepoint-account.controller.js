@@ -177,6 +177,10 @@ angular
             this.$scope.setAction("admin-rights/reset/sharepoint-admin-rights-reset");
         }
 
+        activateAcount () {
+            this.$scope.setAction("activate-account/sharepoint-activate-account");
+        }
+
         onTranformItem (userPrincipalName) {
             return this.sharepointService.getAccountSharepoint(this.exchangeId, userPrincipalName)
                 .then((sharepoint) => {

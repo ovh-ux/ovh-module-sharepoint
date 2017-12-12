@@ -102,8 +102,11 @@
                                     <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
                                             data-ng-if="account.accessRights && account.configured"></span>
                                     <span data-ng-if="!account.accessRights && account.configured"> - </span>
-                                    <span class="label label-danger" data-i18n-static="sharepoint_accounts_state_NOT_ACTIVE"
-                                            data-ng-if="!account.configured"></span>
+                                    <button class="btn btn-xs btn-danger" type="button" title="{{i18n.sharepoint_accounts_action_ACTIVE}}"
+                                            data-ng-bind-html="tr('sharepoint_accounts_state_NOT_ACTIVE')"                                            
+                                            data-ng-click="accountsCtrl.activateAcount(account)"                                            
+                                            data-ng-if="!account.configured">
+                                    </button>        
                                 </td>
                                 <td class="text-center">
                                     <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
