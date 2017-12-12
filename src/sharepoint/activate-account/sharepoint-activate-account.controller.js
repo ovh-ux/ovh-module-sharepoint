@@ -2,12 +2,11 @@ angular
     .module("Module.sharepoint.controllers")
     .controller("SharepointActivateAccountCtrl", class SharepointActivateAccountCtrl {
 
-        constructor (Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope, User) {
+        constructor (Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope) {
             this.alerter = Alerter;
             this.sharepointService = MicrosoftSharepointLicenseService;
             this.$stateParams = $stateParams;
             this.$scope = $scope;
-            this.userService = User;
         }
 
         $onInit () {

@@ -63,7 +63,7 @@
    <translation id="sharepoint_accounts_version" qtlid="34210">Version</translation>
    <translation id="sharepoint_accounts_state" qtlid="33790">État</translation>
    <translation id="sharepoint_accounts_state_NOT_ACTIVE">Inactif</translation>
-   <translation id="sharepoint_accounts_action_ACTIVE">Cliquez pour activer votre compte</translation>
+   <translation id="sharepoint_accounts_action_ACTIVATE_tooltip">Cliquez pour activer votre compte</translation>
 
    <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Rétablir droits administrateur</translation>
    <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Droits administrateur</translation>
@@ -152,6 +152,7 @@
    <translation id="sharepoint_action_activate_account_intro">Le compte <span class="bold">{0}</span> n’est pas encore activé. Une fois cette opération effectuée, il bénéficiera d’une configuration par défaut.</translation>
    <translation id="sharepoint_action_activate_account_success_message">L’activation de votre compte s’est déroulée avec succès.</translation>
    <translation id="sharepoint_action_activate_account_error_message">Une erreur est survenue lors de l’activation de votre compte.</translation>
+
 
    <translation id="sharepoint_set_url_intro_title" qtlid="297683">Vous y êtes presque!</translation>
    <translation id="sharepoint_set_url_intro_label" qtlid="297696">Il vous suffit de spécifier une adresse URL pour ce nouveau Sharepoint pour pouvoir commencer à l'utiliser.</translation>

@@ -178,7 +178,7 @@ angular
         }
 
         activateAcount (account) {
-            this.$scope.setAction("activate-account/sharepoint-activate-account", account);
+            this.$scope.setAction("activate-account/sharepoint-activate-account", angular.copy(account));
         }
 
         onTranformItem (userPrincipalName) {
