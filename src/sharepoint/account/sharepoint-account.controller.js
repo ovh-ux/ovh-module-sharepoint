@@ -137,7 +137,7 @@ angular
 
         activateOffice (account) {
             if (!account.taskPendingId) {
-                this.$scope.setAction("activate/sharepoint-activate", account);
+                this.$scope.setAction("activate-office/sharepoint-activate", account);
             }
         }
 
