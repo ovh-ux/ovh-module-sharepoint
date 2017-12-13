@@ -95,21 +95,27 @@
                                 </td>
                                 <td class="text-center">
                                     <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
-                                          data-ng-if="account.accessRights === 'administrator'" ></span>
-                                    <span data-ng-if="account.accessRights !== 'administrator'"> - </span>
+                                          data-ng-if="account.accessRights === 'administrator' && account.configured"></span>
+                                    <span data-ng-if="account.accessRights !== 'administrator' || !account.configured"> - </span>
                                 </td>
                                 <td class="text-center">
                                     <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
-                                          data-ng-if="account.accessRights"></span>
-                                    <span data-ng-if="!account.accessRights"> - </span>
+                                            data-ng-if="account.accessRights && account.configured"></span>
+                                    <span data-ng-if="!account.accessRights && account.configured"> - </span>
+                                    <button class="btn btn-xs btn-danger" type="button" title="{{i18n.sharepoint_accounts_action_ACTIVATE_tooltip}}"
+                                            data-ng-bind-html="tr('sharepoint_accounts_state_NOT_ACTIVE')"                                            
+                                            data-ng-click="accountsCtrl.activateAcount(account)"                                            
+                                            data-ng-if="!account.configured">
+                                    </button>        
                                 </td>
                                 <td class="text-center">
                                     <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
-                                          data-ng-if="account.officeLicense"></span>
-                                    <span data-ng-if="!account.officeLicense"> - </span>
+                                          data-ng-if="account.officeLicense && account.configured"></span>
+                                    <span data-ng-if="!account.officeLicense || !account.configured"> - </span>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-icon" type="button" title="{{i18n.sharepoint_accounts_action_change_configuration}} {{account.userPrincipalName}}"
+                                            data-ng-if="account.configured"
                                             data-linkedpopover="sharepoint/account/popover/user.html"
                                             data-linkedpopover-placement="left"
                                             data-linkedpopover-remote="true"
