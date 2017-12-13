@@ -18,10 +18,16 @@ angular
                     .then(() => {
                         this.alerter.success(
                             this.$scope.tr("sharepoint_action_activate_account_success_message", this.account.userPrincipalName),
-                            this.$scope.alerts.dashboard
+                            this.$scope.alerts.main
                         );
                     })
-                    .catch((err) => this.alerter.alertFromSWS(this.$scope.tr("sharepoint_action_activate_account_error_message"), err, this.$scope.alerts.dashboard))
+                    .catch((err) => {
+                        this.alerter.alertFromSWS(
+                            this.$scope.tr("sharepoint_action_activate_account_error_message", this.account.userPrincipalName),
+                            err,
+                            this.$scope.alerts.main
+                        );
+                    })
                     .finally(() => this.$scope.resetAction());
             };
         }

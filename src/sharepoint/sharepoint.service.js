@@ -293,7 +293,7 @@
                     .post(`/msServices/${serviceName}/account/${account}/sharepoint/configure`, {
                         rootPath: "apiv6",
                         data: { },
-                        clearAllCache: this.cache.sharepoints
+                        clearAllCache: this.cache.accounts
                     });
             }
 
@@ -346,7 +346,7 @@
             }
 
             /**
-             * Get account
+             * Get Sharepoint account
              * @param {string} organizationName
              * @param {string} sharepointService
              * @param {string} userPrincipalName
@@ -360,7 +360,7 @@
             }
 
             /**
-             * Get account tasks
+             * Get Sharepoint account tasks
              * @param {string} organizationName
              * @param {string} sharepointService
              * @param {string} userPrincipalName
