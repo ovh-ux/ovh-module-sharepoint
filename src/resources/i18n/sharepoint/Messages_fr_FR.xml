@@ -164,8 +164,8 @@
    <translation id="sharepoint__action_activate_office_licence_error_message" qtlid="364576">La demande d'activation de la licence Office a échouée.</translation>
 
    <translation id="sharepoint_action_activate_account_title">Activation compte Sharepoint</translation>   
-   <translation id="sharepoint_action_activate_account_intro">Le compte {0} n’est pas encore activé. Une fois cette opération effectuée, il bénéficiera d’une configuration par défaut.</translation>
-   <translation id="sharepoint_action_activate_account_success_message">L'activation de votre compte {0} a été initié avec succès.</translation>
+   <translation id="sharepoint_action_activate_account_intro">Le compte {0} n’est pas encore activé. Une fois cette opération effectuée, il bénéficiera d’une configuration standard.</translation>
+   <translation id="sharepoint_action_activate_account_success_message">L'activation de votre compte {0} est en cours de réalisation. L’opération peut prendre quelques minutes.</translation>
    <translation id="sharepoint_action_activate_account_error_message">Une erreur est survenue lors de l’activation de votre compte {0}</translation>
 
    <translation id="sharepoint_set_url_intro_title" qtlid="297683">Vous y êtes presque!</translation>
