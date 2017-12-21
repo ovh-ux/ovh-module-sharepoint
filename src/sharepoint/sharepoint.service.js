@@ -292,7 +292,6 @@
                 return this.OvhHttp
                     .post(`/msServices/${serviceName}/account/${account}/sharepoint/configure`, {
                         rootPath: "apiv6",
-                        data: { },
                         clearAllCache: this.cache.accounts
                     });
             }
