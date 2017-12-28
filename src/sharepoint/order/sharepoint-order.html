@@ -12,19 +12,11 @@
             <div class="col-md-9 col-lg-6">
                 <p data-i18n-static="sharepoint_activate_intro_text"></p>
 
-                <div class="oui-checkbox my-5" data-ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'">
-                    <input type="checkbox" class="oui-checkbox__input" id="standAlone" name="standAlone"
-                           data-ng-model="orderCtrl.associateExchange">
-                    <label class="oui-checkbox__label-container" for="standAlone">
-                        <span class="oui-checkbox__label"
-                              data-i18n-static="sharepoint_activate_intro_warning_associated_label"></span>
-                        <span class="oui-checkbox__icon">
-                            <span class="oui-icon oui-icon-checkbox-unchecked" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-checked" aria-hidden="true"></span>
-                            <span class="oui-icon oui-icon-checkbox-checkmark" aria-hidden="true"></span>
-                        </span>
-                    </label>
-                </div>
+                <oui-checkbox class="my-5"  id="standAlone" name="standAlone"
+                    ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'"
+                    model="orderCtrl.associateExchange"
+                    text="{{::i18n.sharepoint_activate_intro_warning_associated_label}}">
+                </oui-checkbox>
 
                 <form name="orderCtrl.activateSharepointForm">
                     <div data-ng-show="!orderCtrl.associateExchange">
