@@ -1,6 +1,6 @@
 <div class="container-fluid px-0" data-ng-controller="SharepointAccountsCtrl as accountsCtrl">
     <div class="text-center" data-ng-if="accountsCtrl.loaders.init">
-        <oui-spinner class="d-inline-block" size="l"></oui-spinner>
+        <oui-spinner data-size="l"></oui-spinner>
     </div>
 
     <div class="row" data-ng-show="!accountsCtrl.loaders.init">
@@ -71,8 +71,7 @@
                             <tr data-ng-repeat="account in accountsCtrl.accounts track by $index">
                                 <th class="word-break" scope="row">
                                     <span class="mr-2" data-ng-bind="account.userPrincipalName"></span>
-                                    <oui-spinner size="s" class="d-inline-block"
-                                                data-ng-if="account.taskPendingId > 0"></oui-spinner>
+                                    <oui-spinner data-size="s" data-ng-if="account.taskPendingId > 0"></oui-spinner>
                                 </th>
                                 <td>
                                     <span data-ng-if="!account.activated">-</span>

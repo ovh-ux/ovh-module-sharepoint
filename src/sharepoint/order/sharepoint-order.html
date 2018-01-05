@@ -6,16 +6,16 @@
     <div class="container-fluid px-5">
         <div data-ovh-alert="{{orderCtrl.alerts.main}}"></div>
 
-        <oui-spinner size="l" data-ng-if="orderCtrl.loaders.init"></oui-spinner>
+        <oui-spinner data-size="l" data-ng-if="orderCtrl.loaders.init"></oui-spinner>
 
         <div class="row" data-ng-show="!orderCtrl.loaders.init">
             <div class="col-md-9 col-lg-6">
                 <p data-i18n-static="sharepoint_activate_intro_text"></p>
 
                 <oui-checkbox class="my-5"  id="standAlone" name="standAlone"
-                    ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'"
-                    model="orderCtrl.associateExchange"
-                    text="{{::i18n.sharepoint_activate_intro_warning_associated_label}}">
+                    data-ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'"
+                    data-model="orderCtrl.associateExchange"
+                    data-text="{{::i18n.sharepoint_activate_intro_warning_associated_label}}">
                 </oui-checkbox>
 
                 <form name="orderCtrl.activateSharepointForm">
