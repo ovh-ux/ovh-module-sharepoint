@@ -1,6 +1,7 @@
 <div class="container-fluid px-0" data-ng-controller="SharepointInformationsCtrl as informationsCtrl">
-
-    <oui-loader size="l" data-ng-if="informationsCtrl.loaders.init"></oui-loader>
+    <div class="text-center" data-ng-if="informationsCtrl.loaders.init">
+        <oui-spinner data-size="l"></oui-spinner>
+    </div>
 
     <div class="row" data-ng-show="!informationsCtrl.loaders.init">
         <div class="col-md-9">
