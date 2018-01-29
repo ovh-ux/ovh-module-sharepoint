@@ -10,7 +10,7 @@
             <p data-i18n-static="sharepoint_add_domains_intro_label"
                data-ng-if="addDomainCtrl.availableDomainsBuffer && addDomainCtrl.availableDomainsBuffer.length > 0"></p>
 
-            <oui-loader data-ng-if="addDomainCtrl.loading"></oui-loader>
+            <oui-spinner data-ng-if="addDomainCtrl.loading"></oui-spinner>
 
             <form name="addDomainCtrl.addDomainForm"
                   data-ng-show="!addDomainCtrl.loading">

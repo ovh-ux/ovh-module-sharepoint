@@ -36,6 +36,7 @@ angular
 
             this.$scope.currentAction = null;
             this.$scope.currentActionData = null;
+            this.displayName = null;
 
             this.$scope.setAction = (action, data) => {
                 this.$scope.currentAction = action;
@@ -70,11 +71,11 @@ angular
         }
 
         saveDisplayName () {
-            const displayName = this.displayName || null;
+            const displayName = this.displayName || this.sharepoint.domain;
             return this.sharepointService.setSharepointDisplayName(this.exchangeId, displayName)
                 .then(() => {
-                    this.sharepoint.displayName = this.displayName || this.sharepoint.domain;
-                    this.$rootScope.$broadcast("change.displayName", [this.exchangeId, this.sharepointDomain, this.displayName]);
+                    this.sharepoint.displayName = displayName;
+                    this.$rootScope.$broadcast("change.displayName", [this.sharepointDomain, this.displayName]);
                 })
                 .catch((err) => {
                     _.set(err, "type", err.type || "ERROR");

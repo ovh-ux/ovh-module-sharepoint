@@ -1,6 +1,8 @@
 <div data-ovh-alert="{{alerts.page}}"></div>
 
-<oui-loader size="l" data-ng-if="SharepointCtrl.loaders.init"></oui-loader>
+<div class="text-center" data-ng-if="SharepointCtrl.loaders.init">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
 
 <div data-ng-if="!SharepointCtrl.loaders.init">
     <div class="page-header">
