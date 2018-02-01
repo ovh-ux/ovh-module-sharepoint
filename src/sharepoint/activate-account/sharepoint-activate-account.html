@@ -1,0 +1,11 @@
+<div data-ng-controller="SharepointActivateAccountCtrl as activateAccountCtrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="submit"
+         data-wizard-title="i18n.sharepoint_action_activate_account_title">
+
+        <div data-wizard-step>
+            <p data-ng-bind-html="tr('sharepoint_action_activate_account_intro', [activateAccountCtrl.account.userPrincipalName])"></p>         
+        </div>
+    </div>
+</div>

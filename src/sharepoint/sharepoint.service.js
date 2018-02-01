@@ -284,6 +284,20 @@
             }
 
             /**
+             * Activate a sharepoint on an account
+             * @param {string} serviceName
+             * @param {string} userPrincipalName
+             */
+            activateSharepointOnAccount (serviceName, account) {
+                return this.OvhHttp
+                    .post(`/msServices/${serviceName}/account/${account}/sharepoint/configure`, {
+                        rootPath: "apiv6",
+                        clearAllCache: this.cache.accounts
+                    });
+            }
+
+
+            /**
              *
              * @param {string} serviceName
              * @param {string} account
@@ -331,7 +345,7 @@
             }
 
             /**
-             * Get account
+             * Get Sharepoint account
              * @param {string} organizationName
              * @param {string} sharepointService
              * @param {string} userPrincipalName
@@ -345,7 +359,7 @@
             }
 
             /**
-             * Get account tasks
+             * Get Sharepoint account tasks
              * @param {string} organizationName
              * @param {string} sharepointService
              * @param {string} userPrincipalName

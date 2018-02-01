@@ -157,7 +157,7 @@ angular
 
         activateOffice (account) {
             if (!account.taskPendingId) {
-                this.$scope.setAction("activate/sharepoint-activate", account);
+                this.$scope.setAction("activate-office/sharepoint-activate", account);
             }
         }
 
@@ -195,6 +195,10 @@ angular
                     }
                     this.loaders.init = false;
                 });
+        }
+
+        activateAcount (account) {
+            this.$scope.setAction("activate-account/sharepoint-activate-account", angular.copy(account));
         }
 
         onTranformItem (userPrincipalName) {
