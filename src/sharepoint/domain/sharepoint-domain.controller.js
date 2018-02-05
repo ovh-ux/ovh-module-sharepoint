@@ -17,21 +17,11 @@ angular
         }
 
         getSharepointUpnSuffixes () {
-            this.loading = true;
             this.upnSuffixesIds = null;
 
             return this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
-                .then((upnSuffixesIds) => {
-                    this.upnSuffixesIds = upnSuffixesIds;
-                })
-                .catch((err) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
-                })
-                .finally(() => {
-                    if (_.isEmpty(this.upnSuffixesIds)) {
-                        this.loading = false;
-                    }
-                });
+                .then((upnSuffixesIds) => { this.upnSuffixesIds = upnSuffixesIds.map((id) => ({ id })); })
+                .catch((err) => { this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main); });
         }
 
         /* eslint-disable no-shadow */
@@ -49,8 +39,4 @@ angular
                 }));
         }
         /* eslint-enable no-shadow */
-
-        onTranformItemDone () {
-            this.loading = false;
-        }
     });
