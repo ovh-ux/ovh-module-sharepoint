@@ -68,9 +68,7 @@ angular
 
         getExchangeOrganization () {
             this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
-                .then((organization) => {
-                    this.isStandAlone = _.isNull(organization);
-                });
+                .then((organization) => { this.isStandAlone = _.isNull(organization); });
         }
 
         updateSharepoint (account, type, officeLicense) {
@@ -182,8 +180,8 @@ angular
             this.accountIds = null;
 
             return this.sharepointService.getAccounts(this.exchangeId, this.search.value)
-                .then((accountIds) => {
-                    this.accountIds = accountIds;
+                .then((ids) => {
+                    this.accountIds = ids.map((accountId) => ({ accountId }));
                 }).catch((err) => {
                     _.set(err, "type", err.type || "ERROR");
                     this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
@@ -208,10 +206,6 @@ angular
                 }).catch(() => ({
                     userPrincipalName,
                     activated: false
-                }));
-        }
-
-        onTranformItemDone () {
-            this.loaders.search = false;
+                })).finally(() => { this.loaders.search = false; });
         }
     });
