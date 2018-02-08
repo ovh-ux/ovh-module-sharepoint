@@ -46,14 +46,18 @@
                     <oui-column data-title="tr('sharepoint_accounts_userPrincipalName')" data-property="userPrincipalName"></oui-column>
                     <oui-column data-title="tr('sharepoint_accounts_one_drive_space')">
                         <span data-ng-if="!$row.activated">-</span>
-                        <div class="oui-progress m-0" style="min-width:140px"
+                        <div class="oui-progress m-0"
                              data-ng-class="{
                                 'oui-progress_success': $row.percentUse < 51,
                                 'oui-progress_warning': $row.percentUse > 50 && $row.percentUse < 81,
                                 'oui-progress_error': $row.percentUse > 80
                             }"
                              data-ng-if="$row.activated">
-                            <div class="oui-progress__bar oui-progress__bar_text-left" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{$row.percentUse}}"
+                            <div class="oui-progress__bar oui-progress__bar_text-left"
+                                 role="progressbar"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 aria-valuenow="{{$row.percentUse}}"
                                  data-ng-class="{
                                     'oui-progress__bar_success': $row.percentUse < 51,
                                     'oui-progress__bar_warning': $row.percentUse > 50 && $row.percentUse < 81,
@@ -76,11 +80,12 @@
                         <span data-ng-if="!$row.accessRights"> - </span>
                     </oui-column>
                     <oui-column data-title="tr('sharepoint_accounts_license_office')" data-property="officeLicense">
-                        <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
+                        <span class="oui-icon oui-icon-success text-success"
+                              aria-label="{{i18n.common_yes}}"
                               data-ng-if="$row.officeLicense"></span>
                         <span data-ng-if="!$row.officeLicense"> - </span>
                     </oui-column>
-                    <oui-action-menu  data-align="end" data-compact>
+                    <oui-action-menu data-align="end" data-compact>
                         <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_change_configuration')}}"
                                               data-on-click="accountsCtrl.updateAccount($row)"
                                               data-disabled="$row.taskPendingId"

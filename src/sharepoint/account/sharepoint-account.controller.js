@@ -206,6 +206,6 @@ angular
                 }).catch(() => ({
                     userPrincipalName,
                     activated: false
-                })).finally(() => { this.loaders.search = false; });
+                }));
         }
     });

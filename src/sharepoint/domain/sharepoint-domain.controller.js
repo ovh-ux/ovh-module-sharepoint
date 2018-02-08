@@ -20,7 +20,7 @@ angular
             this.upnSuffixesIds = null;
 
             return this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
-                .then((upnSuffixesIds) => { this.upnSuffixesIds = upnSuffixesIds.map((id) => ({ id })); })
+                .then((ids) => { this.upnSuffixesIds = ids.map((id) => ({ id })); })
                 .catch((err) => { this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main); });
         }
 
