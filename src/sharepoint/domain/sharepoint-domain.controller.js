@@ -24,6 +24,11 @@ angular
                 .catch((err) => { this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main); });
         }
 
+        showMoreInformation (domain) {
+            let message = `${this.$scope.tr("sharepoint_accounts_err")} ${domain.cnameTooltip}`;
+            this.alerter.alertFromSWS(message, undefined, this.$scope.alerts.main);
+        }
+
         /* eslint-disable no-shadow */
         onTranformItem (suffix) {
             return this.sharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)

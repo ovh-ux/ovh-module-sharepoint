@@ -20,11 +20,10 @@
                           data-ng-if="$row.taskPendingId"></span>
                 </oui-column>
                 <oui-column data-title="tr('exchange_tab_domain_diagnostic')">
-                    <span data-ng-if="!$row.ownershipValidated">
-                        <span class="d-block" data-i18n-static="sharepoint_domains_cname_check_info1"></span>
-                        <span data-i18n-static="sharepoint_domains_cname_check_info2"></span>
-                        <span class="label label-danger" data-i18n-static="sharepoint_domains_cname_check_label"></span>
-                        (<span data-ng-bind="$row.cnameTooltip" title="{{i18n.sharepoint_domains_cname_check_title}}"></span>)
+                    <span data-ng-if="$row.ownershipValidated === false">
+                        <i class="oui-icon oui-icon-info_circle"
+                           data-ng-click="domainsCtrl.showMoreInformation($row)"></i>
+                        <span data-i18n-static="sharepoint_domains_cname_check_info1"></span>
                     </span>
                 </oui-column>
                 <oui-column data-title="tr('exchange_tab_domain_status')">
@@ -35,7 +34,7 @@
                           data-ng-if="$row.state === 'creating' && $row.ownershipValidated"></span>
                     <span class="label label-info"
                           data-i18n-static="sharepoint_domains_state_validation"
-                          data-ng-if="!$row.ownershipValidated"></span>
+                          data-ng-if="$row.ownershipValidated === false"></span>
                     <span class="label label-danger"
                           data-i18n-static="sharepoint_domains_state_deleting"
                           data-ng-if="$row.state === 'deleting'"></span>
@@ -44,6 +43,9 @@
                     <oui-action-menu-item data-text="{{i18n.sharepoint_domains_delete_tooltips}}"
                                           data-on-click="setAction('domain/delete/sharepoint-domain-delete', $row)"
                                           data-disabled="$row.taskPendingId"></oui-action-menu-item>
+                    <oui-action-menu-item data-text="{{i18n.sharepoint_domains_more_details}}"
+                                          data-ng-click="domainsCtrl.showMoreInformation($row)"
+                                          data-ng-if="$row.ownershipValidated === false"></oui-action-menu-item>
                 </oui-action-menu>
             </oui-datagrid>
 
