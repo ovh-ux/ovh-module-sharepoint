@@ -40,10 +40,10 @@
                           data-ng-if="$row.state === 'deleting'"></span>
                 </oui-column>
                 <oui-action-menu data-align="end" data-compact>
-                    <oui-action-menu-item data-text="{{i18n.sharepoint_domains_delete_tooltips}}"
+                    <oui-action-menu-item data-text="{{tr('sharepoint_domains_delete_tooltips')}}"
                                           data-on-click="setAction('domain/delete/sharepoint-domain-delete', $row)"
                                           data-disabled="$row.taskPendingId"></oui-action-menu-item>
-                    <oui-action-menu-item data-text="{{i18n.sharepoint_domains_more_details}}"
+                    <oui-action-menu-item data-text="{{tr('sharepoint_domains_more_details')}}"
                                           data-ng-click="domainsCtrl.showMoreInformation($row)"
                                           data-ng-if="$row.ownershipValidated === false"></oui-action-menu-item>
                 </oui-action-menu>

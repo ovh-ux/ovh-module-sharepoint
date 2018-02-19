@@ -25,7 +25,7 @@ angular
         }
 
         showMoreInformation (domain) {
-            let message = `${this.$scope.tr("sharepoint_accounts_err")} ${domain.cnameTooltip}`;
+            const message = `${this.$scope.tr("sharepoint_accounts_err")} ${domain.cnameTooltip}`;
             this.alerter.alertFromSWS(message, undefined, this.$scope.alerts.main);
         }
 
@@ -34,7 +34,7 @@ angular
             return this.sharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
                 .then((suffix) => {
                     if (!suffix.ownershipValidated) {
-                        suffix.cnameTooltip = this.$scope.tr("sharepoint_domains_cname_check_tooltip", suffix.cnameToCheck || " ");
+                        suffix.cnameTooltip = this.$scope.tr("sharepoint_domains_cname_check_tooltip", suffix.cnameToCheck ? `${suffix.cnameToCheck}.${suffix.suffix}` : " ");
                     }
                     suffix.displayName = this.punycode.toUnicode(suffix.suffix);
                     return suffix;
