@@ -41,105 +41,78 @@
                     </form>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col" data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
-                                <th scope="col" data-i18n-static="sharepoint_accounts_one_drive_space"></th>
-                                <th class="text-center" scope="col" data-i18n-static="sharepoint_accounts_administrator"></th>
-                                <th class="text-center" scope="col" data-i18n-static="sharepoint_accounts_user"></th>
-                                <th class="text-center" scope="col" data-i18n-static="sharepoint_accounts_license_office"></th>
-                                <th class="min-width" scope="col"></th>
-                            </tr>
-                        </thead>
-
-                        <tbody data-ng-if="accountsCtrl.loaders.search">
-                            <tr>
-                                <td class="loader text-center" colspan="6"></td>
-                            </tr>
-                        </tbody>
-
-                        <tbody data-ng-if="!accountsCtrl.loaders.search && !accountsCtrl.accountIds.length">
-                            <tr>
-                                <td class="text-center" colspan="6"
-                                    data-i18n-static="sharepoint_accounts_empty"></td>
-                            </tr>
-                        </tbody>
-
-                        <tbody data-ng-if="!accountsCtrl.loaders.search && accountsCtrl.accountIds.length > 0">
-                            <tr data-ng-repeat="account in accountsCtrl.accounts track by $index">
-                                <th class="word-break" scope="row">
-                                    <span class="mr-2" data-ng-bind="account.userPrincipalName"></span>
-                                    <oui-spinner data-size="s" data-ng-if="account.taskPendingId > 0"></oui-spinner>
-                                </th>
-                                <td>
-                                    <span data-ng-if="!account.activated">-</span>
-                                    <div class="oui-progress m-0" style="min-width:140px"
-                                         data-ng-class="{
-                                            'oui-progress_success': account.percentUse < 51,
-                                            'oui-progress_warning': account.percentUse > 50 && account.percentUse < 81,
-                                            'oui-progress_error': account.percentUse > 80
-                                        }"
-                                         data-ng-if="account.activated">
-                                        <div class="oui-progress__bar oui-progress__bar_text-left" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{account.percentUse}}"
-                                             data-ng-class="{
-                                                'oui-progress__bar_success': account.percentUse < 51,
-                                                'oui-progress__bar_warning': account.percentUse > 50 && account.percentUse < 81,
-                                                'oui-progress__bar_error': account.percentUse > 80
-                                             }"
-                                             data-ng-style="{'width': account.percentUse + '%'}">
-                                            <span class="oui-progress__label"
-                                                  data-ng-bind="::account.usedQuota.value + ' ' + tr('unit_size_' + account.usedQuota.symbol) + ' / ' + account.totalQuota.value + ' ' + tr('unit_size_' + account.totalQuota.symbol)"></span>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
-                                          data-ng-if="account.accessRights === 'administrator'" ></span>
-                                    <span data-ng-if="account.accessRights !== 'administrator'"> - </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
-                                          data-ng-if="account.accessRights"></span>
-                                    <span data-ng-if="!account.accessRights"> - </span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
-                                          data-ng-if="account.officeLicense"></span>
-                                    <span data-ng-if="!account.officeLicense"> - </span>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-icon" type="button" title="{{i18n.sharepoint_accounts_action_change_configuration}} {{account.userPrincipalName}}"
-                                            data-linkedpopover="sharepoint/account/popover/user.html"
-                                            data-linkedpopover-placement="left"
-                                            data-linkedpopover-remote="true"
-                                            data-linkedpopover-single="true"
-                                            data-linkedpopover-title="{{i18n.common_actions}}">
-                                        <span class="oui-icon oui-icon-gear_line _line oui-icon_small" aria-hidden="true"></span>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="clearfix"
-                 data-ng-if="accountsCtrl.accountIds">
-                <div data-pagination-front
-                     data-items="accountsCtrl.accountIds"
-                     data-paginated-items="accountsCtrl.accounts"
-                     data-current-page="currentPage"
-                     data-items-per-page="itemsPerPage"
-                     data-nb-pages="nbPages"
-                     data-transform-item="accountsCtrl.onTranformItem(item)"
-                     data-on-transform-item-done="accountsCtrl.onTranformItemDone(items)"
-                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
-                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
-                     data-on-page-change="accountsCtrl.loaders.search = true"
-                     data-ng-show="!accountsCtrl.loaders.init && accountsCtrl.accounts.length > 0">
-                </div>
+                <oui-datagrid data-rows="accountsCtrl.accountIds"
+                              data-row-loader="accountsCtrl.onTranformItem($row.accountId)">
+                    <oui-column data-title="tr('sharepoint_accounts_userPrincipalName')" data-property="userPrincipalName"></oui-column>
+                    <oui-column data-title="tr('sharepoint_accounts_one_drive_space')">
+                        <span data-ng-if="!$row.activated">-</span>
+                        <div class="oui-progress m-0"
+                             data-ng-class="{
+                                'oui-progress_success': $row.percentUse < 51,
+                                'oui-progress_warning': $row.percentUse > 50 && $row.percentUse < 81,
+                                'oui-progress_error': $row.percentUse > 80
+                            }"
+                             data-ng-if="$row.activated">
+                            <div class="oui-progress__bar oui-progress__bar_text-left"
+                                 role="progressbar"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 aria-valuenow="{{$row.percentUse}}"
+                                 data-ng-class="{
+                                    'oui-progress__bar_success': $row.percentUse < 51,
+                                    'oui-progress__bar_warning': $row.percentUse > 50 && $row.percentUse < 81,
+                                    'oui-progress__bar_error': $row.percentUse > 80
+                                 }"
+                                 data-ng-style="{'width': $row.percentUse + '%'}">
+                                <span class="oui-progress__label"
+                                      data-ng-bind="::$row.usedQuota.value + ' ' + tr('unit_size_' + $row.usedQuota.symbol) + ' / ' + $row.totalQuota.value + ' ' + tr('unit_size_' + $row.totalQuota.symbol)"></span>
+                            </div>
+                        </div>
+                    </oui-column>
+                    <oui-column data-title="tr('sharepoint_accounts_administrator')" data-property="accessRights">
+                        <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
+                              data-ng-if="$row.accessRights === 'administrator'" ></span>
+                        <span data-ng-if="$row.accessRights !== 'administrator'"> - </span>
+                    </oui-column>
+                    <oui-column data-title="tr('sharepoint_accounts_user')" data-property="accessRights">
+                        <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
+                              data-ng-if="$row.accessRights"></span>
+                        <span data-ng-if="!$row.accessRights"> - </span>
+                    </oui-column>
+                    <oui-column data-title="tr('sharepoint_accounts_license_office')" data-property="officeLicense">
+                        <span class="oui-icon oui-icon-success text-success"
+                              aria-label="{{i18n.common_yes}}"
+                              data-ng-if="$row.officeLicense"></span>
+                        <span data-ng-if="!$row.officeLicense"> - </span>
+                    </oui-column>
+                    <oui-action-menu data-align="end" data-compact>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_change_configuration')}}"
+                                              data-on-click="accountsCtrl.updateAccount($row)"
+                                              data-disabled="$row.taskPendingId"
+                                              data-ng-if="accountsCtrl.isStandAlone"></oui-action-menu-item>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_change_password')}}"
+                                              data-on-click="accountsCtrl.updatePassword($row)"
+                                              data-disabled="$row.taskPendingId"
+                                              data-ng-if="$row.accessRights"></oui-action-menu-item>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_admin_add')}}"
+                                              data-on-click="accountsCtrl.activateSharepointAdmin($row)"
+                                              data-disabled="$row.taskPendingId"
+                                              data-ng-if="$row.accessRights && $row.accessRights === 'user'"></oui-action-menu-item>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_admin_remove')}}"
+                                              data-on-click="accountsCtrl.activateSharepointUser($row)"
+                                              data-disabled="$row.taskPendingId"
+                                              data-ng-if="$row.accessRights && $row.accessRights === 'administrator'"></oui-action-menu-item>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_sharepoint_activate')}}"
+                                              data-on-click="accountsCtrl.activateSharepoint($row)"
+                                              data-ng-if="!$row.activated"></oui-action-menu-item>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_office_upgrade')}}"
+                                              data-on-click="accountsCtrl.activateOffice($row)"
+                                              data-ng-if="!$row.officeLicense"></oui-action-menu-item>
+                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_sharepoint_remove')}}"
+                                              data-on-click="accountsCtrl.deactivateSharepoint($row)"
+                                              data-disabled="$row.taskPendingId"></oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-datagrid>
             </div>
         </div>
 
