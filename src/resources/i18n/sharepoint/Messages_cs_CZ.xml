@@ -26,25 +26,25 @@
    <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Použitý diskový prostor</translation>
    <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Disponibilní diskový prostor</translation>
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
-   <translation id="sharepoint_dashboard_display_name_edit">Modifier</translation>
-   <translation id="sharepoint_dashboard_display_name_save">Sauvegarder</translation>
-   <translation id="sharepoint_dashboard_display_name_error">Une erreur est survenue lors de la mise à jour des informations.</translation>
+   <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Upravit</translation>
+   <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Záloha</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Při aktualizaci informací došlo k chybě.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Základní informace</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Uživatelé</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domény</translation>
-   <translation id="sharepoint_tab_TASK">Tâches récentes</translation>
+   <translation id="sharepoint_tab_TASK" qtlid="136217">Nedávné úkoly</translation>
 
-   <translation id="sharepoint_tabs_tasks_function">Fonction</translation>
-   <translation id="sharepoint_tabs_tasks_status">Statut</translation>
-   <translation id="sharepoint_tabs_tasks_status_doing">En cours</translation>
-   <translation id="sharepoint_tabs_tasks_status_todo">Programmée</translation>
-   <translation id="sharepoint_tabs_tasks_status_done">Terminée</translation>
-   <translation id="sharepoint_tabs_tasks_status_error">Erreur</translation>
-   <translation id="sharepoint_tabs_tasks_status_cancelled">Annulée</translation>
-   <translation id="sharepoint_tabs_tasks_todoDate">Date de début</translation>
-   <translation id="sharepoint_tabs_tasks_finishDate">Date de fin</translation>
-   <translation id="sharepoint_tabs_tasks_null">Aucune tâche récente</translation>
-   <translation id="sharepoint_tabs_tasks_error">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Funkce</translation>
+   <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Stav</translation>
+   <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">Probíhá</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Programmée</translation>
+   <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Ukončeno</translation>
+   <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Chyba</translation>
+   <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Zrušeno</translation>
+   <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Datum vytvoření</translation>
+   <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Datum ukončení</translation>
+   <translation id="sharepoint_tabs_tasks_null" qtlid="159163">Žádné nedávné úkoly</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Při získávání detailů došlo k chybě:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Více akcí</translation>
@@ -85,8 +85,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Aktivovat administrátorská práva</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Obnovit administrátorská práva</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Přidat licenci Office</translation>
-   <translation id="sharepoint_accounts_action_success">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Aktivovat SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Deaktivovat SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Opravdu si přejete odstranit následující SharePoint účet?</translation>
@@ -113,7 +113,7 @@
    <translation id="sharepoint_account_update_configuration_title" qtlid="347444">Upravit SharePoint účet</translation>
    <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Zobrazit název</translation>
    <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">Jméno</translation>
-   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Příjmení</translation>
+   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Název</translation>
    <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Iniciály</translation>
    <translation id="sharepoint_account_update_configuration_user_principal_name" qtlid="347457">user_principal_name</translation>
    <translation id="sharepoint_account_update_configuration_confirm_message_text" qtlid="347470">Změny v nastavení účtu {0} budou provedeny v rámci několika minut.</translation>
