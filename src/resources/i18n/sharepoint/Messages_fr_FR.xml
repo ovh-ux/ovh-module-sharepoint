@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Validation</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Suppression</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Supprimer le domaine</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Voir les détails</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Sélectionnez le domaine que vous souhaitez ajouter à votre service SharePoint.</translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">L'ajout du domaine {0} sera effectif d'ici quelques minutes.</translation>

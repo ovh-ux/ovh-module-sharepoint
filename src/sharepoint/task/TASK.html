@@ -1,74 +1,25 @@
 <div class="container-fluid px-0" data-ng-controller="SharepointTasksCtrl as taskCtrl">
     <div data-ovh-alert="{{alerts.main}}"></div>
 
-    <div class="text-center" data-ng-if="taskCtrl.loaders.tasks">
-        <oui-spinner data-size="l"></oui-spinner>
-    </div>
-
-    <div class="alert alert-info" role="alert"
-         data-i18n-static="sharepoint_tabs_tasks_null"
-         data-ng-if="!taskCtrl.loaders.tasks && !taskCtrl.hasResult">
-    </div>
-
-    <div class="table-responsive"
-         data-ng-if="!taskCtrl.loaders.tasks && taskCtrl.hasResult">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col" data-i18n-static="sharepoint_tabs_tasks_function"></th>
-                    <th scope="col" data-i18n-static="sharepoint_tabs_tasks_todoDate"></th>
-                    <th scope="col" data-i18n-static="sharepoint_tabs_tasks_finishDate"></th>
-                    <th class="text-center" scope="col" data-i18n-static="sharepoint_tabs_tasks_status"></th>
-                    <th class="min-width text-right" scope="col">
-                        <button class="btn btn-icon" type="button" title="{{i18n.refresh}}"
-                                data-ng-click="taskCtrl.getTasks()">
-                            <span class="fa fa-refresh" aria-hidden="true"></span>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody data-ng-if="taskCtrl.loaders.pager">
-                <tr>
-                    <td class="loader text-center" colspan="5"></td>
-                </tr>
-            </tbody>
-
-            <tbody data-ng-if="!taskCtrl.loaders.tasks && taskCtrl.tasksIds.length > 0">
-                <tr data-ng-repeat="task in taskCtrl.taskDetails | orderBy:'-todoDate' track by $index">
-                    <th scope="row" data-ng-bind="::task.function"></th>
-                    <td data-ng-bind="::task.todoDate | date:'medium'"></td>
-                    <td data-ng-bind="::task.finishDate | date:'medium'"></td>
-                    <td class="text-center" colspan="2">
-                        <span class="label"
-                              data-ng-bind="tr('sharepoint_tabs_tasks_status_' + task.status)"
-                              data-ng-class="{
-                                'label-success' : task.status === 'done',
-                                'label-info': task.status === 'doing' || task.status === 'todo',
-                                'label-danger': task.status === 'error',
-                                'table-warning': task.status === 'cancelled'
-                              }"
-                              data-ng-if="task.status"></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="clearfix"
-         data-ng-if="taskCtrl.tasksIds">
-        <div data-pagination-front
-             data-items="taskCtrl.tasksIds"
-             data-paginated-items="taskCtrl.taskDetails"
-             data-current-page="currentPage"
-             data-nb-pages="nbPages"
-             data-items-per-page="itemsPerPage"
-             data-item-per-page-placeholder="{{tr('pagination_display')}}"
-             data-transform-item="taskCtrl.onTransformItem(item)"
-             data-on-page-change="taskCtrl.loaders.pager = true"
-             data-on-transform-item-done="taskCtrl.onTransformItemDone(items)"
-             data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
-             data-ng-show="!taskCtrl.loaders.tasks && taskCtrl.taskDetails.length > 0">
-        </div>
-    </div>
+    <oui-datagrid data-rows="taskCtrl.tasksIds"
+                  data-row-loader="taskCtrl.onTransformItem($row.id)">
+        <oui-column data-title="tr('sharepoint_tabs_tasks_function')" data-property="function"></oui-column>
+        <oui-column data-title="tr('sharepoint_tabs_tasks_todoDate')" data-property="todoDate">
+            <span data-ng-bind="::$row.todoDate | date:'medium'"></span>
+        </oui-column>
+        <oui-column data-title="tr('sharepoint_tabs_tasks_finishDate')" data-property="finishDate">
+            <span data-ng-bind="::$row.finishDate | date:'medium'"></span>
+        </oui-column>
+        <oui-column data-title="tr('sharepoint_tabs_tasks_status')" data-property="status">
+            <span class="label"
+                  data-ng-bind="tr('sharepoint_tabs_tasks_status_' + $row.status)"
+                  data-ng-class="{
+                    'label-success' : $row.status === 'done',
+                    'label-info': $row.status === 'doing' || $row.status === 'todo',
+                    'label-danger': $row.status === 'error',
+                    'table-warning': $row.status === 'cancelled'
+                  }"
+                  data-ng-if="$row.status"></span>
+        </oui-column>
+    </oui-datagrid>
 </div>

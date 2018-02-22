@@ -17,21 +17,16 @@ angular
         }
 
         getSharepointUpnSuffixes () {
-            this.loading = true;
             this.upnSuffixesIds = null;
 
             return this.sharepointService.getSharepointUpnSuffixes(this.exchangeId)
-                .then((upnSuffixesIds) => {
-                    this.upnSuffixesIds = upnSuffixesIds;
-                })
-                .catch((err) => {
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main);
-                })
-                .finally(() => {
-                    if (_.isEmpty(this.upnSuffixesIds)) {
-                        this.loading = false;
-                    }
-                });
+                .then((ids) => { this.upnSuffixesIds = ids.map((id) => ({ id })); })
+                .catch((err) => { this.alerter.alertFromSWS(this.$scope.tr("sharepoint_accounts_err"), err, this.$scope.alerts.main); });
+        }
+
+        showMoreInformation (domain) {
+            const message = `${this.$scope.tr("sharepoint_accounts_err")} ${domain.cnameTooltip}`;
+            this.alerter.alertFromSWS(message, undefined, this.$scope.alerts.main);
         }
 
         /* eslint-disable no-shadow */
@@ -39,7 +34,7 @@ angular
             return this.sharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
                 .then((suffix) => {
                     if (!suffix.ownershipValidated) {
-                        suffix.cnameTooltip = this.$scope.tr("sharepoint_domains_cname_check_tooltip", suffix.cnameToCheck || " ");
+                        suffix.cnameTooltip = this.$scope.tr("sharepoint_domains_cname_check_tooltip", suffix.cnameToCheck ? `${suffix.cnameToCheck}.${suffix.suffix}` : " ");
                     }
                     suffix.displayName = this.punycode.toUnicode(suffix.suffix);
                     return suffix;
@@ -49,8 +44,4 @@ angular
                 }));
         }
         /* eslint-enable no-shadow */
-
-        onTranformItemDone () {
-            this.loading = false;
-        }
     });
