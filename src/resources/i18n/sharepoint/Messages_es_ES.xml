@@ -26,25 +26,25 @@
    <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Espacio en disco utilizado</translation>
    <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Espacio en disco disponible</translation>
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
-   <translation id="sharepoint_dashboard_display_name_edit">Modifier</translation>
-   <translation id="sharepoint_dashboard_display_name_save">Sauvegarder</translation>
-   <translation id="sharepoint_dashboard_display_name_error">Une erreur est survenue lors de la mise à jour des informations.</translation>
+   <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Editar</translation>
+   <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Guardar</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Une erreur est survenue lors de la mise à jour des informations.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Información general</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Usuarios</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Dominios</translation>
-   <translation id="sharepoint_tab_TASK">Tâches récentes</translation>
+   <translation id="sharepoint_tab_TASK" qtlid="136217">Tareas recientes</translation>
 
-   <translation id="sharepoint_tabs_tasks_function">Fonction</translation>
-   <translation id="sharepoint_tabs_tasks_status">Statut</translation>
-   <translation id="sharepoint_tabs_tasks_status_doing">En cours</translation>
-   <translation id="sharepoint_tabs_tasks_status_todo">Programmée</translation>
-   <translation id="sharepoint_tabs_tasks_status_done">Terminée</translation>
-   <translation id="sharepoint_tabs_tasks_status_error">Erreur</translation>
-   <translation id="sharepoint_tabs_tasks_status_cancelled">Annulée</translation>
-   <translation id="sharepoint_tabs_tasks_todoDate">Date de début</translation>
-   <translation id="sharepoint_tabs_tasks_finishDate">Date de fin</translation>
-   <translation id="sharepoint_tabs_tasks_null">Aucune tâche récente</translation>
-   <translation id="sharepoint_tabs_tasks_error">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Función</translation>
+   <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Estado</translation>
+   <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">En proceso</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Programada</translation>
+   <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Finalizada</translation>
+   <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Error</translation>
+   <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Cancelada</translation>
+   <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Fecha de inicio</translation>
+   <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Fecha de finalización </translation>
+   <translation id="sharepoint_tabs_tasks_null" qtlid="159163">No hay tareas recientes</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Se ha producido un error al cargar la información:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Más acciones</translation>
@@ -85,8 +85,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Activar los permisos de administrador</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Quitar permisos de administrador</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Añadir una licencia de Office</translation>
-   <translation id="sharepoint_accounts_action_success">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Activar SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Eliminar la cuenta</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">¿Seguro que quiere eliminar la siguiente cuenta del servicio SharePoint?</translation>
