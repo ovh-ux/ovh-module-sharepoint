@@ -1,30 +1,29 @@
 angular
-    .module("Module.sharepoint.controllers")
-    .controller("SharepointTasksCtrl", class SharepointTasksCtrl {
+  .module('Module.sharepoint.controllers')
+  .controller('SharepointTasksCtrl', class SharepointTasksCtrl {
+    constructor($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+      this.$scope = $scope;
+      this.$stateParams = $stateParams;
+      this.alerter = Alerter;
+      this.sharepointService = MicrosoftSharepointLicenseService;
+    }
 
-        constructor ($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
-            this.$scope = $scope;
-            this.$stateParams = $stateParams;
-            this.alerter = Alerter;
-            this.sharepointService = MicrosoftSharepointLicenseService;
-        }
+    $onInit() {
+      this.getTasks();
+    }
 
-        $onInit () {
-            this.getTasks();
-        }
+    getTasks() {
+      this.tasksIds = null;
 
-        getTasks () {
-            this.tasksIds = null;
+      return this.sharepointService.getTasks(this.$stateParams.exchangeId)
+        .then((ids) => { this.tasksIds = ids.map(id => ({ id })); })
+        .catch((err) => {
+          _.set(err, 'type', err.type || 'ERROR');
+          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_tabs_tasks_error'), err, this.$scope.alerts.main);
+        });
+    }
 
-            return this.sharepointService.getTasks(this.$stateParams.exchangeId)
-                .then((ids) => { this.tasksIds = ids.map((id) => ({ id })); })
-                .catch((err) => {
-                    _.set(err, "type", err.type || "ERROR");
-                    this.alerter.alertFromSWS(this.$scope.tr("sharepoint_tabs_tasks_error"), err, this.$scope.alerts.main);
-                });
-        }
-
-        onTransformItem (taskId) {
-            return this.sharepointService.getTask(this.$stateParams.exchangeId, taskId);
-        }
-    });
+    onTransformItem(taskId) {
+      return this.sharepointService.getTask(this.$stateParams.exchangeId, taskId);
+    }
+  });

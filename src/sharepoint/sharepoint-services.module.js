@@ -1,1 +1,1 @@
-angular.module("Module.sharepoint.services", []);
+angular.module('Module.sharepoint.services', []);

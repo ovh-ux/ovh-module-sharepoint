@@ -1,1 +1,1 @@
-angular.module("Module.sharepoint.controllers", []);
+angular.module('Module.sharepoint.controllers', []);
