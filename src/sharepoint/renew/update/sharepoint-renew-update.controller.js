@@ -1,11 +1,12 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdateRenewCtrl', class SharepointUpdateRenewCtrl {
-    constructor($scope, $location, $q, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+    constructor($scope, $location, $q, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
       this.$scope = $scope;
       this.$location = $location;
       this.$q = $q;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
     }
@@ -35,11 +36,11 @@ angular
           )),
         )
           .then(() => {
-            this.alerter.success(this.$scope.tr('exchange_update_billing_periode_success'), this.$scope.alerts.main);
+            this.alerter.success(this.$translate.instant('exchange_update_billing_periode_success'), this.$scope.alerts.main);
           })
           .catch((err) => {
             _.set(err, 'type', err.type || 'ERROR');
-            this.alerter.alertFromSWS(this.$scope.tr('exchange_update_billing_periode_failure'), err, this.$scope.alerts.main);
+            this.alerter.alertFromSWS(this.$translate.instant('exchange_update_billing_periode_failure'), err, this.$scope.alerts.main);
           })
           .finally(() => {
             this.$scope.reset();
@@ -71,7 +72,7 @@ angular
           this.accountIds = accountIds;
         }).catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_accounts_err'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);
           this.$scope.resetAction();
         }).finally(() => {
           if (_.isEmpty(this.accountIds)) {

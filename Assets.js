@@ -32,7 +32,7 @@ module.exports = {
     },
     resources: {
         i18n: [
-            "src/resources/i18n/sharepoint/**/*.xml"
+            "src/**/translations/**/*.xml"
         ]
     }
 };

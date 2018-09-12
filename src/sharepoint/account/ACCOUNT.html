@@ -8,7 +8,7 @@
             <div data-ovh-alert="{{alerts.main}}"></div>
 
             <div class="alert alert-info" role="alert"
-                 data-i18n-static="sharepoint_accounts_empty"
+                 data-translate="sharepoint_accounts_empty"
                  data-ng-if="!accountsCtrl.loaders.init && !accountsCtrl.hasResult">
             </div>
 
@@ -17,16 +17,16 @@
                     <form class="form-inline d-md-flex justify-content-md-end" name="searchSharePointAccountForm">
                         <div class="form-group">
                             <label class="sr-only" for="sharePointAccountSearch"
-                                   data-ng-bind="::i18n.common_search"></label>
+                                   data-translate="common_search"></label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="sharePointAccountSearch" name="sharePointAccountSearch" placeholder="{{::i18n.exchange_tab_ACCOUNTS_table_email}}"
+                                <input type="text" class="form-control" id="sharePointAccountSearch" name="sharePointAccountSearch" placeholder="{{:: 'exchange_tab_ACCOUNTS_table_email' | translate }}"
                                        data-ng-change="accountsCtrl.updateSearch()"
                                        data-ng-disabled="accountsCtrl.loaders.search"
                                        data-ng-model="accountsCtrl.search.value"
                                        data-ng-model-options='{ debounce: 800 }'>
 
                                 <div class="input-group-btn" data-ng-if="accountsCtrl.search.value">
-                                    <button class="btn btn-default" type="button" aria-label="{{i18n.common_cancel}}"
+                                    <button class="btn btn-default" type="button" aria-label="{{ 'common_cancel' | translate }}"
                                             data-ng-click="accountsCtrl.emptySearch()"
                                             data-ng-disabled="accountsCtrl.loaders.search">
                                         <span class="fa fa-times" aria-hidden="true"></span>
@@ -43,8 +43,8 @@
 
                 <oui-datagrid data-rows="accountsCtrl.accountIds"
                               data-row-loader="accountsCtrl.onTranformItem($row.accountId)">
-                    <oui-column data-title="tr('sharepoint_accounts_userPrincipalName')" data-property="userPrincipalName"></oui-column>
-                    <oui-column data-title="tr('sharepoint_accounts_one_drive_space')">
+                    <oui-column data-title="'sharepoint_accounts_userPrincipalName' | translate" data-property="userPrincipalName"></oui-column>
+                    <oui-column data-title="'sharepoint_accounts_one_drive_space' | translate">
                         <span data-ng-if="!$row.activated">-</span>
                         <div class="oui-progress m-0"
                              data-ng-class="{
@@ -65,50 +65,50 @@
                                  }"
                                  data-ng-style="{'width': $row.percentUse + '%'}">
                                 <span class="oui-progress__label"
-                                      data-ng-bind="::$row.usedQuota.value + ' ' + tr('unit_size_' + $row.usedQuota.symbol) + ' / ' + $row.totalQuota.value + ' ' + tr('unit_size_' + $row.totalQuota.symbol)"></span>
+                                      data-ng-bind="::$row.usedQuota.value + ' ' + ('unit_size_' + $row.usedQuota.symbol | translate) + ' / ' + $row.totalQuota.value + ' ' + ('unit_size_' + $row.totalQuota.symbol | translate)"></span>
                             </div>
                         </div>
                     </oui-column>
-                    <oui-column data-title="tr('sharepoint_accounts_administrator')" data-property="accessRights">
-                        <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
+                    <oui-column data-title="'sharepoint_accounts_administrator' | translate" data-property="accessRights">
+                        <span class="oui-icon oui-icon-success text-success" aria-label="{{ 'common_yes' | translate }}"
                               data-ng-if="$row.accessRights === 'administrator'" ></span>
                         <span data-ng-if="$row.accessRights !== 'administrator'"> - </span>
                     </oui-column>
-                    <oui-column data-title="tr('sharepoint_accounts_user')" data-property="accessRights">
-                        <span class="oui-icon oui-icon-success text-success" aria-label="{{i18n.common_yes}}"
+                    <oui-column data-title="'sharepoint_accounts_user' | translate" data-property="accessRights">
+                        <span class="oui-icon oui-icon-success text-success" aria-label="{{ 'common_yes' | translate }}"
                               data-ng-if="$row.accessRights"></span>
                         <span data-ng-if="!$row.accessRights"> - </span>
                     </oui-column>
-                    <oui-column data-title="tr('sharepoint_accounts_license_office')" data-property="officeLicense">
+                    <oui-column data-title="'sharepoint_accounts_license_office' | translate" data-property="officeLicense">
                         <span class="oui-icon oui-icon-success text-success"
-                              aria-label="{{i18n.common_yes}}"
+                              aria-label="{{ 'common_yes' | translate }}"
                               data-ng-if="$row.officeLicense"></span>
                         <span data-ng-if="!$row.officeLicense"> - </span>
                     </oui-column>
                     <oui-action-menu data-align="end" data-compact>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_change_configuration')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_change_configuration' | translate }}"
                                               data-on-click="accountsCtrl.updateAccount($row)"
                                               data-disabled="$row.taskPendingId"
                                               data-ng-if="accountsCtrl.isStandAlone"></oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_change_password')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_change_password' | translate }}"
                                               data-on-click="accountsCtrl.updatePassword($row)"
                                               data-disabled="$row.taskPendingId"
                                               data-ng-if="$row.accessRights"></oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_admin_add')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_admin_add' | translate }}"
                                               data-on-click="accountsCtrl.activateSharepointAdmin($row)"
                                               data-disabled="$row.taskPendingId"
                                               data-ng-if="$row.accessRights && $row.accessRights === 'user'"></oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_admin_remove')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_admin_remove' | translate }}"
                                               data-on-click="accountsCtrl.activateSharepointUser($row)"
                                               data-disabled="$row.taskPendingId"
                                               data-ng-if="$row.accessRights && $row.accessRights === 'administrator'"></oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_sharepoint_activate')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_sharepoint_activate' | translate }}"
                                               data-on-click="accountsCtrl.activateSharepoint($row)"
                                               data-ng-if="!$row.activated"></oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_office_upgrade')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_office_upgrade' | translate }}"
                                               data-on-click="accountsCtrl.activateOffice($row)"
                                               data-ng-if="!$row.officeLicense"></oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{tr('sharepoint_accounts_action_sharepoint_remove')}}"
+                        <oui-action-menu-item data-text="{{ 'sharepoint_accounts_action_sharepoint_remove' | translate }}"
                                               data-on-click="accountsCtrl.deactivateSharepoint($row)"
                                               data-disabled="$row.taskPendingId"></oui-action-menu-item>
                     </oui-action-menu>
@@ -117,12 +117,12 @@
         </div>
 
         <div class="col-md-3 mt-md-5 mt-lg-0">
-            <button class="btn btn-block btn-default text-wrap" title="{{i18n.sharepoint_accounts_action_reset_admin_tooltip}}"
-                    data-i18n-static="sharepoint_accounts_action_reset_admin"
+            <button class="btn btn-block btn-default text-wrap" title="{{ 'sharepoint_accounts_action_reset_admin_tooltip' | translate }}"
+                    data-translate="sharepoint_accounts_action_reset_admin"
                     data-ng-click="accountsCtrl.resetAdminRights()">
             </button>
-            <button class="btn btn-block btn-default text-wrap" title="{{i18n.exchange_ACTION_order_accounts_button}}"
-                    data-i18n-static="exchange_ACTION_order_accounts_button"
+            <button class="btn btn-block btn-default text-wrap" title="{{ 'exchange_ACTION_order_accounts_button' | translate }}"
+                    data-translate="exchange_ACTION_order_accounts_button"
                     data-ng-click="setAction('account/add/sharepoint-account-add', {})"
                     data-ng-if="accountsCtrl.isStandAlone">
             </button>

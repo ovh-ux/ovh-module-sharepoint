@@ -2,11 +2,12 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdatePasswordCtrl', class SharepointUpdatePasswordCtrl {
     constructor(
-      $scope, $stateParams,
+      $scope, $stateParams, $translate,
       Alerter, ExchangePassword, MicrosoftSharepointLicenseService,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.exchangePassword = ExchangePassword;
       this.microsoftSharepointLicense = MicrosoftSharepointLicenseService;
@@ -28,8 +29,8 @@ angular
         .updatingSharepointPasswordAccount(this.exchangeId, this.account.userPrincipalName, {
           password: this.account.password,
         })
-        .then(() => this.alerter.success(this.$scope.tr('sharepoint_ACTION_update_password_confirm_message_text', this.account.userPrincipalName), this.$scope.alerts.main))
-        .catch(err => this.alerter.alertFromSWS(this.$scope.tr('sharepoint_ACTION_update_password_error_message_text'), err, this.$scope.alerts.main))
+        .then(() => this.alerter.success(this.$translate.instant('sharepoint_ACTION_update_password_confirm_message_text', { t0: this.account.userPrincipalName }), this.$scope.alerts.main))
+        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_ACTION_update_password_error_message_text'), err, this.$scope.alerts.main))
         .finally(() => {
           this.$scope.resetAction();
         });
@@ -46,7 +47,7 @@ angular
 
     setPasswordTooltipMessage() {
       const messageId = this.exchange.complexityEnabled ? 'sharepoint_ACTION_update_password_complexity_message_all' : 'sharepoint_ACTION_update_password_complexity_message_length';
-      this.passwordTooltip = this.$scope.tr(messageId, [this.exchange.minPasswordLength]);
+      this.passwordTooltip = this.$translate.instant(messageId, { t0: this.exchange.minPasswordLength });
     }
 
     retrievingExchangeOrganization() {
@@ -99,7 +100,7 @@ angular
           if (selectedAccount.samaccountName
             && _.some(selectedAccount.password, selectedAccount.samaccountName)) {
             if (!this.containsSamAccountNameLabel) {
-              this.containsSamAccountNameLabel = this.$scope.tr('exchange_ACTION_update_account_step1_password_contains_samaccount_name', [selectedAccount.samaccountName]);
+              this.containsSamAccountNameLabel = this.$translate.instant('exchange_ACTION_update_account_step1_password_contains_samaccount_name', { t0: selectedAccount.samaccountName });
             }
 
             this.containsSamAccountNameFlag = true;

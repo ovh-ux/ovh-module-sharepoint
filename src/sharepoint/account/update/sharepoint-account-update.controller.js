@@ -1,10 +1,11 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdateAccountCtrl', class SharepointUpdateAccountCtrl {
-    constructor($scope, $q, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+    constructor($scope, $q, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
       this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
     }
@@ -55,10 +56,10 @@ angular
       this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
       return this.sharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, _.pick(this.account, ['userPrincipalName', 'firstName', 'lastName', 'initials', 'displayName']))
         .then(() => {
-          this.alerter.success(this.$scope.tr('sharepoint_account_update_configuration_confirm_message_text', this.account.userPrincipalName), this.$scope.alerts.main);
+          this.alerter.success(this.$translate.instant('sharepoint_account_update_configuration_confirm_message_text', { t0: this.account.userPrincipalName }), this.$scope.alerts.main);
         })
         .catch((err) => {
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_account_update_configuration_error_message_text'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_account_update_configuration_error_message_text'), err, this.$scope.alerts.main);
         })
         .finally(() => {
           this.$scope.resetAction();

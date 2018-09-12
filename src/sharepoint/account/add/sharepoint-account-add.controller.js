@@ -1,9 +1,10 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAddAccountCtrl', class SharepointAddAccountCtrl {
-    constructor($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+    constructor($scope, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
     }
@@ -23,7 +24,7 @@ angular
         })
         .catch((err) => {
           this.$scope.resetAction();
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_accounts_action_sharepoint_add_error_message'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_action_sharepoint_add_error_message'), err, this.$scope.alerts.main);
         })
         .finally(() => {
           this.loading = false;
@@ -39,7 +40,7 @@ angular
     }
 
     submit() {
-      this.alerter.success(this.$scope.tr('sharepoint_account_action_sharepoint_add_success_message'), this.$scope.alerts.main);
+      this.alerter.success(this.$translate.instant('sharepoint_account_action_sharepoint_add_success_message'), this.$scope.alerts.main);
       this.$scope.resetAction();
       window.open(this.sharepointService.getSharepointStandaloneNewAccountOrderUrl(
         this.$stateParams.productId,

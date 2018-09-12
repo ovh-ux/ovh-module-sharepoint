@@ -5,13 +5,13 @@
   angular
     .module('Module.sharepoint.services')
     .service('MicrosoftSharepointLicenseService', class MicrosoftSharepointLicenseService {
-      constructor(Alerter, OvhHttp, Products, $q, SHAREPOINT_GUIDE_URLS, translator, User) {
+      constructor(Alerter, OvhHttp, Products, $q, SHAREPOINT_GUIDE_URLS, $translate, User) {
         this.alerter = Alerter;
         this.OvhHttp = OvhHttp;
         this.Products = Products;
         this.$q = $q;
         this.SHAREPOINT_GUIDE_URLS = SHAREPOINT_GUIDE_URLS;
-        this.translator = translator;
+        this.$translate = $translate;
         this.User = User;
 
         this.cache = {
@@ -29,7 +29,7 @@
             this.orderBaseUrl = orderBaseUrl;
           })
           .catch((error) => {
-            this.alerter.alertFromSWS(this.translator.tr('sharepoint_dashboard_error'), error);
+            this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), error);
           });
       }
 

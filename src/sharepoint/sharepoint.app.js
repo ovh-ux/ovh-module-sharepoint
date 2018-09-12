@@ -10,6 +10,7 @@ angular.module('Module.sharepoint', [
     $stateProvider.state('app.microsoft.sharepoint', {
       abstract: true,
       template: '<div ui-view></div>',
+      translations: ['sharepoint'],
     });
 
     $stateProvider.state('app.microsoft.sharepoint.order', {
@@ -23,9 +24,6 @@ angular.module('Module.sharepoint', [
             leftMenuVisible: true,
             configurationSelected: true,
           });
-        }],
-        translator: ['translator', function (translator) {
-          return translator.load(['sharepoint']).then(() => translator);
         }],
       },
     });
@@ -43,9 +41,6 @@ angular.module('Module.sharepoint', [
             leftMenuVisible: true,
             configurationSelected: true,
           });
-        }],
-        translator: ['translator', function (translator) {
-          return translator.load(['sharepoint']).then(() => translator);
         }],
       },
     });
@@ -67,9 +62,6 @@ angular.module('Module.sharepoint', [
             configurationSelected: true,
           });
         }],
-        translator: ['translator', function (translator) {
-          return translator.load(['sharepoint']).then(() => translator);
-        }],
       },
     });
 
@@ -87,15 +79,11 @@ angular.module('Module.sharepoint', [
             configurationSelected: true,
           });
         }],
-        translator: ['translator', function (translator) {
-          return translator.load(['sharepoint']).then(() => translator);
-        }],
       },
     });
   },
-]).run(['translator', 'MicrosoftSharepointLicenseService', function (translator) {
-  translator.load(['sharepoint']);
-}]).constant('SHAREPOINT_GUIDE_URLS', {
+])
+.constant('SHAREPOINT_GUIDE_URLS', {
   CZ: '',
   DE: 'https://www.ovh.de/g2249.aktivierung_und_verwaltung_ihres_ovh_sharepoint',
   ES: 'https://www.ovh.es/g2249.activacion_y_gestion_de_un_sharepoint_ovh',
