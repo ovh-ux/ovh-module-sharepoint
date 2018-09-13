@@ -92,7 +92,7 @@
                      data-nb-pages="nbPages"
                      data-transform-item="updateRenewCtrl.onTranformItem(item)"
                      data-on-transform-item-done="updateRenewCtrl.onTranformItemDone()"
-                     data-page-placeholder="{{ 'pagination_page' | translate: { t0: currentPage, t1: nbPages } }}"
+                     data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
                      data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
                      data-on-page-change="updateRenewCtrl.loaders.init = true"
                      data-ng-show="!updateRenewCtrl.loaders.init && updateRenewCtrl.accounts.length > 0">
@@ -166,7 +166,7 @@
                      data-nb-pages="nbPages"
                      data-transform-item="updateRenewCtrl.onTranformItemResume(item)"
                      data-on-transform-item-done="updateRenewCtrl.onTranformItemDone()"
-                     data-page-placeholder="{{ 'pagination_page' | translate: { t0: currentPage, t1: nbPages } }}"
+                     data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
                      data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
                      data-ng-show="!updateRenewCtrl.loaders.init && updateRenewCtrl.accounts.length > 0">
                 </div>
