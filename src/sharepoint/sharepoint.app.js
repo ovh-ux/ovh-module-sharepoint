@@ -10,7 +10,7 @@ angular.module('Module.sharepoint', [
     $stateProvider.state('app.microsoft.sharepoint', {
       abstract: true,
       template: '<div ui-view></div>',
-      translations: ['sharepoint'],
+      translations: ['exchange', 'sharepoint'],
     });
 
     $stateProvider.state('app.microsoft.sharepoint.order', {
