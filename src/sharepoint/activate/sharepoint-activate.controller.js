@@ -1,7 +1,8 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointActivateOfficeCtrl', class SharepointActivateOfficeCtrl {
-    constructor(Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope, $translate, User) {
+    constructor(Alerter, MicrosoftSharepointLicenseService,
+      $stateParams, $scope, $translate, User) {
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.$stateParams = $stateParams;

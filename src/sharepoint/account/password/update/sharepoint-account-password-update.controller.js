@@ -47,7 +47,9 @@ angular
 
     setPasswordTooltipMessage() {
       const messageId = this.exchange.complexityEnabled ? 'sharepoint_ACTION_update_password_complexity_message_all' : 'sharepoint_ACTION_update_password_complexity_message_length';
-      this.passwordTooltip = this.$translate.instant(messageId, { t0: this.exchange.minPasswordLength });
+      this.passwordTooltip = this.$translate.instant(messageId, {
+        t0: this.exchange.minPasswordLength,
+      });
     }
 
     retrievingExchangeOrganization() {

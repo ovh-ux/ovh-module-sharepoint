@@ -1,7 +1,8 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdateRenewCtrl', class SharepointUpdateRenewCtrl {
-    constructor($scope, $location, $q, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
+    constructor($scope, $location, $q, $stateParams, $translate,
+      Alerter, MicrosoftSharepointLicenseService) {
       this.$scope = $scope;
       this.$location = $location;
       this.$q = $q;
