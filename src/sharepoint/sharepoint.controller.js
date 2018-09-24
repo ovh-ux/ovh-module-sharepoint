@@ -2,13 +2,14 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointCtrl', class SharepointCtrl {
     constructor(
-      $scope, $rootScope, $stateParams, $timeout,
+      $scope, $rootScope, $stateParams, $timeout, $translate,
       Alerter, constants, MicrosoftSharepointLicenseService, Products,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.constants = constants;
       this.sharepointService = MicrosoftSharepointLicenseService;
@@ -81,7 +82,7 @@ angular
         })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_dashboard_display_name_error'), err, this.$scope.alerts.tabs);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_display_name_error'), err, this.$scope.alerts.tabs);
         })
         .finally(() => {
           this.editMode = false;
@@ -99,7 +100,7 @@ angular
         })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_dashboard_error'), err, this.$scope.alerts.page);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.page);
         })
         .finally(() => {
           this.loaders.init = false;

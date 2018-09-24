@@ -2,13 +2,14 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAccountsCtrl', class SharepointAccountsCtrl {
     constructor(
-      $scope, $location, $stateParams, $timeout,
+      $scope, $location, $stateParams, $timeout, $translate,
       Alerter, MicrosoftSharepointLicenseService, Poller,
     ) {
       this.$scope = $scope;
       this.$location = $location;
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.pollerService = Poller;
@@ -64,7 +65,7 @@ angular
         })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
         });
     }
 
@@ -80,7 +81,7 @@ angular
           officeLicense,
         })
         .then(() => {
-          this.alerter.success(this.$scope.tr('sharepoint_accounts_action_success', [account.userPrincipalName]), this.$scope.alerts.main);
+          this.alerter.success(this.$translate.instant('sharepoint_accounts_action_success', { t0: account.userPrincipalName }), this.$scope.alerts.main);
           return this.sharepointService.getAccountSharepoint(
             this.exchangeId,
             account.userPrincipalName,
@@ -101,7 +102,7 @@ angular
           }
         })
         .catch(() => {
-          this.alerter.error(this.$scope.tr('sharepoint_accounts_action_error', [account.userPrincipalName]), this.$scope.alerts.main);
+          this.alerter.error(this.$translate.instant('sharepoint_accounts_action_error', { t0: account.userPrincipalName }), this.$scope.alerts.main);
         });
     }
 
@@ -194,7 +195,7 @@ angular
           this.accountIds = ids.map(accountId => ({ accountId }));
         }).catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_accounts_err'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);
         }).finally(() => {
           if (_.isEmpty(this.accountIds)) {
             this.loaders.search = false;

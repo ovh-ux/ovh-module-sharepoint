@@ -3,16 +3,16 @@
 
     <oui-datagrid data-rows="taskCtrl.tasksIds"
                   data-row-loader="taskCtrl.onTransformItem($row.id)">
-        <oui-column data-title="tr('sharepoint_tabs_tasks_function')" data-property="function"></oui-column>
-        <oui-column data-title="tr('sharepoint_tabs_tasks_todoDate')" data-property="todoDate">
+        <oui-column data-title="'sharepoint_tabs_tasks_function' | translate" data-property="function"></oui-column>
+        <oui-column data-title="'sharepoint_tabs_tasks_todoDate' | translate" data-property="todoDate">
             <span data-ng-bind="::$row.todoDate | date:'medium'"></span>
         </oui-column>
-        <oui-column data-title="tr('sharepoint_tabs_tasks_finishDate')" data-property="finishDate">
+        <oui-column data-title="'sharepoint_tabs_tasks_finishDate' | translate" data-property="finishDate">
             <span data-ng-bind="::$row.finishDate | date:'medium'"></span>
         </oui-column>
-        <oui-column data-title="tr('sharepoint_tabs_tasks_status')" data-property="status">
+        <oui-column data-title="'sharepoint_tabs_tasks_status' | translate" data-property="status">
             <span class="label"
-                  data-ng-bind="tr('sharepoint_tabs_tasks_status_' + $row.status)"
+                  data-ng-bind="'sharepoint_tabs_tasks_status_' + $row.status | translate"
                   data-ng-class="{
                     'label-success' : $row.status === 'done',
                     'label-info': $row.status === 'doing' || $row.status === 'todo',

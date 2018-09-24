@@ -2,21 +2,21 @@
     <div data-wizard
          data-wizard-on-cancel="resetAction"
          data-wizard-on-finish="submit"
-         data-wizard-title="i18n.sharepoint_action_activate_office_licence_title">
+         data-wizard-title="'sharepoint_action_activate_office_licence_title' | translate">
 
         <div data-wizard-step
              data-wizard-step-valid="activateOfficeCtrl.hasLicence === true">
 
-            <p data-ng-bind-html="tr('sharepoint_action_activate_office_licence_intro')"></p>
+            <p data-ng-bind-html="'sharepoint_action_activate_office_licence_intro' | translate"></p>
 
             <div class="ml-3 mt-4">
                 <div class="radio">
                     <label>
                         <input type="radio" name="activateOffice"
                                data-ng-model="activateOfficeCtrl.hasLicence" data-ng-value="false">
-                        <span data-i18n-static="sharepoint_action_activate_office_licence_option_no"></span><br>
+                        <span data-translate="sharepoint_action_activate_office_licence_option_no"></span><br>
                         <a data-ng-href="{{activateOfficeCtrl.licenceOrderUrl}}" target="_blank">
-                            <span data-i18n-static="sharepoint_action_activate_office_licence_option_link"></span>
+                            <span data-translate="sharepoint_action_activate_office_licence_option_link"></span>
                             <span class="fa fa-external-link" aria-hidden="true"></span>
                         </a>
                     </label>
@@ -25,7 +25,7 @@
                     <label>
                         <input type="radio" name="activateOffice"
                                data-ng-model="activateOfficeCtrl.hasLicence" data-ng-value="true">
-                        <span data-i18n-static="sharepoint_action_activate_office_licence_option_yes"></span>
+                        <span data-translate="sharepoint_action_activate_office_licence_option_yes"></span>
                     </label>
                 </div>
             </div>

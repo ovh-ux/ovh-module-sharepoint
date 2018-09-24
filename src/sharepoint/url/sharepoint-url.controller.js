@@ -2,13 +2,14 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUrlCtrl', class SharepointUrlCtrl {
     constructor(
-      $location, $scope, $stateParams, $timeout,
+      $location, $scope, $stateParams, $timeout, $translate,
       Alerter, constants, MicrosoftSharepointLicenseService,
     ) {
       this.$location = $location;
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$timeout = $timeout;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.constants = constants;
       this.sharepointService = MicrosoftSharepointLicenseService;
@@ -49,7 +50,7 @@ angular
       return this.sharepointService
         .setSharepointUrl(this.exchangeId, `${this.sharepointUrl}${this.sharepointUrlSuffix}`)
         .then(() => {
-          this.alerter.success(this.$scope.tr('sharepoint_set_url_success_message_text', this.exchangeId), this.alerts.main);
+          this.alerter.success(this.$translate.instant('sharepoint_set_url_success_message_text', { t0: this.exchangeId }), this.alerts.main);
 
           this.$timeout(() => {
             this.$location.path(`/configuration/sharepoint/${this.exchangeId}/${this.sharepointDomain}`);
@@ -57,7 +58,7 @@ angular
         })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_set_url_failure_message_text'), err, this.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_set_url_failure_message_text'), err, this.alerts.main);
         });
     }
   });

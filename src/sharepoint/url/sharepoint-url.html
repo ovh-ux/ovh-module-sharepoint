@@ -1,5 +1,5 @@
 <div class="page-header mb-5">
-    <strong data-i18n-static="sharepoint_dashboard_offer_type"></strong>
+    <strong data-translate="sharepoint_dashboard_offer_type"></strong>
     <h1 class="word-break" data-ng-bind="SharepointUrlCtrl.sharepointDomain"></h1>
 </div>
 
@@ -9,28 +9,28 @@
             <div data-ovh-alert="{{SharepointUrlCtrl.alerts.main}}"></div>
 
             <div data-ng-if="message">
-                <div data-i18n-static="sharepoint_set_url_success_message_title"></div>
-                <strong data-ng-bind="tr('sharepoint_set_url_success_message_text', SharepointUrlCtrl.exchangeId)"></strong>
+                <div data-translate="sharepoint_set_url_success_message_title"></div>
+                <strong data-translate="sharepoint_set_url_success_message_text" data-translate-values="{ t0: SharepointUrlCtrl.exchangeId }"></strong>
             </div>
 
             <div data-ng-show="!message">
-                <h2 data-i18n-static="sharepoint_set_url_intro_title"></h2>
+                <h2 data-translate="sharepoint_set_url_intro_title"></h2>
                 <p>
                     <span class="fa fa-life-ring" aria-hidden="true"></span>
-                    <span data-i18n-static="sharepoint_dashboard_guides_help_label"></span>
-                    <a data-ng-href="{{SharepointCtrl.sharepointGuideUrl}}" target="_blank" title="{{tr('sharepoint_dashboard_guides_url')}}">
-                        <span data-i18n-static="exchange_dashboard_guides_url"></span>
+                    <span data-translate="sharepoint_dashboard_guides_help_label"></span>
+                    <a data-ng-href="{{SharepointCtrl.sharepointGuideUrl}}" target="_blank" title="{{ 'sharepoint_dashboard_guides_url' | translate }}">
+                        <span data-translate="exchange_dashboard_guides_url"></span>
                         <span class="fa fa-external-link" aria-hidden="true"></span>
                     </a>
                 </p>
-                <p data-i18n-static="sharepoint_set_url_intro_label"></p>
+                <p data-translate="sharepoint_set_url_intro_label"></p>
 
                 <form name="activateSharepointForm" data-ng-submit="SharepointUrlCtrl.activatingSharepoint()">
                     <div class="form-group">
                         <label class="control-label" for="urlSharepoint"
-                               data-i18n-static="sharepoint_set_url_textfield_label"></label>
+                               data-translate="sharepoint_set_url_textfield_label"></label>
                         <div class="input-group mb-4">
-                            <input type="text" class="form-control" id="urlSharepoint" maxlength="256" placeholder="{{i18n.sharepoint_activate_url_placeholder}}" required
+                            <input type="text" class="form-control" id="urlSharepoint" maxlength="256" placeholder="{{ 'sharepoint_activate_url_placeholder' | translate }}" required
                                    data-ng-model="SharepointUrlCtrl.sharepointUrl">
                             <span class="input-group-addon"
                                   data-ng-bind="SharepointUrlCtrl.sharepointUrlSuffix">
@@ -39,11 +39,11 @@
                     </div>
 
                     <div class="alert alert-warning" role="alert"
-                         data-i18n-static="sharepoint_set_url_textfield_warn">
+                         data-translate="sharepoint_set_url_textfield_warn">
                     </div>
 
                     <button class="oui-button oui-button_primary oui-button_large-height mt-5" type="submit"
-                            data-i18n-static="sharepoint_set_url_button_label"
+                            data-translate="sharepoint_set_url_button_label"
                             data-ng-disabled="activateSharepointForm.$invalid || !SharepointUrlCtrl.sharepointUrlSuffix">
                     </button>
                 </form>

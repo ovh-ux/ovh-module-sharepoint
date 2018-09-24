@@ -2,12 +2,12 @@
     <div data-wizard
          data-wizard-on-cancel="resetAction"
          data-wizard-on-finish="submit"
-         data-wizard-title="i18n.sharepoint_accounts_action_reset_admin_short_title">
+         data-wizard-title="'sharepoint_accounts_action_reset_admin_short_title' | translate">
 
         <div data-wizard-step>
-            <p data-ng-bind-html="tr('sharepoint_accounts_action_reset_admin_question')"></p>
+            <p data-ng-bind-html="'sharepoint_accounts_action_reset_admin_question' | translate"></p>
             <div class="alert alert-info" role="alert"
-                 data-i18n-static="sharepoint_accounts_action_reset_admin_tooltip"></div>
+                 data-translate="sharepoint_accounts_action_reset_admin_tooltip"></div>
         </div>
     </div>
 </div>
