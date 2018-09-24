@@ -1,11 +1,13 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointActivateOfficeCtrl', class SharepointActivateOfficeCtrl {
-    constructor(Alerter, MicrosoftSharepointLicenseService, $stateParams, $scope, User) {
+    constructor(Alerter, MicrosoftSharepointLicenseService,
+      $stateParams, $scope, $translate, User) {
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.$stateParams = $stateParams;
       this.$scope = $scope;
+      this.$translate = $translate;
       this.userService = User;
     }
 
@@ -24,11 +26,11 @@ angular
           })
           .then(() => {
             this.alerter.success(
-              this.$scope.tr('sharepoint_action_activate_office_licence_success_message', this.account.userPrincipalName),
+              this.$translate.instant('sharepoint_action_activate_office_licence_success_message', { t0: this.account.userPrincipalName }),
               this.$scope.alerts.dashboard,
             );
           })
-          .catch(err => this.alerter.alertFromSWS(this.$scope.tr('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.dashboard))
+          .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint__action_activate_office_licence_error_message'), err, this.$scope.alerts.dashboard))
           .finally(() => this.$scope.resetAction());
       };
     }
@@ -36,6 +38,6 @@ angular
     getUser() {
       return this.userService.getUser()
         .then((user) => { this.licenceOrderUrl = `https://www.ovh.com/${user.ovhSubsidiary.toLowerCase()}/office-365`; })
-        .catch(() => this.alerter.alertFromSWS(this.$scope.tr('sharepoint_accounts_action_sharepoint_add_error_message')));
+        .catch(() => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_action_sharepoint_add_error_message')));
     }
   });

@@ -2,12 +2,13 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointInformationsCtrl', class SharepointInformationsCtrl {
     constructor(
-      $scope, $location, $stateParams,
+      $scope, $location, $stateParams, $translate,
       Alerter, MicrosoftSharepointLicenseService, Products,
     ) {
       this.$scope = $scope;
       this.$location = $location;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.productsService = Products;
@@ -48,7 +49,7 @@ angular
         })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
         })
         .finally(() => {
           this.loaders.init = false;

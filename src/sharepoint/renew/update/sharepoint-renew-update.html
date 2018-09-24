@@ -3,23 +3,23 @@
          data-wizard-bread-crumb
          data-wizard-on-cancel="reset"
          data-wizard-on-finish="submit"
-         data-wizard-title="i18n.exchange_update_billing_action_title">
+         data-wizard-title="'exchange_update_billing_action_title' | translate">
 
         <div data-wizard-step
              data-wizard-step-valid="updateRenewCtrl.buffer.hasChanged">
 
-            <p data-ng-bind-html="tr('exchange_update_billing_periode_intro')"></p>
+            <p data-ng-bind-html="'exchange_update_billing_periode_intro' | translate"></p>
 
             <form class="mb-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="{{i18n.exchange_tab_ACCOUNTS_table_email}}"
+                    <input type="text" class="form-control" placeholder="{{ 'exchange_tab_ACCOUNTS_table_email' | translate }}"
                            data-ng-change="updateRenewCtrl.goSearch()"
                            data-ng-disabled="updateRenewCtrl.loaders.init"
                            data-ng-model="updateRenewCtrl.search.value"
                            data-ng-model-options="{ debounce: 800 }">
                     <div class="input-group-btn"
                          data-ng-if="updateRenewCtrl.search.value">
-                        <button type="button" class="btn btn-default" title="{{i18n.sharepoint_action_reset_search}}"
+                        <button type="button" class="btn btn-default" title="{{ 'sharepoint_action_reset_search' | translate }}"
                                 data-ng-click="updateRenewCtrl.emptySearch()">
                             <span class="fa fa-times" aria-hidden="true"></span>
                         </button>
@@ -35,11 +35,11 @@
                 <thead>
                     <tr>
                         <th scope="col"
-                            data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                            data-translate="sharepoint_accounts_userPrincipalName"></th>
                         <th class="text-center" scope="col"
-                            data-i18n-static="exchange_update_billing_header_1M"></th>
+                            data-translate="exchange_update_billing_header_1M"></th>
                         <th class="text-center required" scope="col"
-                            data-i18n-static="exchange_update_billing_header_terminate"></th>
+                            data-translate="exchange_update_billing_header_terminate"></th>
                     </tr>
                 </thead>
 
@@ -52,7 +52,7 @@
                 <tbody data-ng-if="!updateRenewCtrl.loaders.init && !updateRenewCtrl.accountIds.length">
                     <tr>
                         <td class="text-center" colspan="3"
-                            data-i18n-static="sharepoint_accounts_empty"></td>
+                            data-translate="sharepoint_accounts_empty"></td>
                     </tr>
                 </tbody>
 
@@ -92,8 +92,8 @@
                      data-nb-pages="nbPages"
                      data-transform-item="updateRenewCtrl.onTranformItem(item)"
                      data-on-transform-item-done="updateRenewCtrl.onTranformItemDone()"
-                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
-                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
+                     data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
+                     data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
                      data-on-page-change="updateRenewCtrl.loaders.init = true"
                      data-ng-show="!updateRenewCtrl.loaders.init && updateRenewCtrl.accounts.length > 0">
                 </div>
@@ -102,7 +102,7 @@
             <div class="alert alert-warning mt-5" role="alert">
                 <div>
                     <span class="text-danger">* </span>
-                    <span data-i18n-static="exchange_update_billing_periode_delete_warning"></span>
+                    <span data-translate="exchange_update_billing_periode_delete_warning"></span>
                 </div>
             </div>
         </div>
@@ -110,17 +110,17 @@
         <div data-wizard-step
              data-wizard-step-on-load="checkBuffer">
 
-            <p data-i18n-static="exchange_update_billing_periode_resume"></p>
+            <p data-translate="exchange_update_billing_periode_resume"></p>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col"
-                            data-i18n-static="sharepoint_accounts_userPrincipalName"></th>
+                            data-translate="sharepoint_accounts_userPrincipalName"></th>
                         <th class="text-center" scope="col"
-                            data-i18n-static="exchange_update_billing_header_1M"></th>
+                            data-translate="exchange_update_billing_header_1M"></th>
                         <th class="text-center requires" scope="col"
-                            data-i18n-static="exchange_update_billing_header_terminate"></th>
+                            data-translate="exchange_update_billing_header_terminate"></th>
                     </tr>
                 </thead>
 
@@ -132,7 +132,7 @@
 
                 <tbody data-ng-if="!updateRenewCtrl.loaders.init && !updateRenewCtrl.accountIds.length">
                     <tr>
-                        <td class="text-center" colspan="3" data-i18n-static="sharepoint_accounts_empty"></td>
+                        <td class="text-center" colspan="3" data-translate="sharepoint_accounts_empty"></td>
                     </tr>
                 </tbody>
 
@@ -166,8 +166,8 @@
                      data-nb-pages="nbPages"
                      data-transform-item="updateRenewCtrl.onTranformItemResume(item)"
                      data-on-transform-item-done="updateRenewCtrl.onTranformItemDone()"
-                     data-page-placeholder="{{tr('pagination_page', [currentPage, nbPages])}}"
-                     data-item-per-page-placeholder="{{tr('pagination_display')}}"
+                     data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
+                     data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
                      data-ng-show="!updateRenewCtrl.loaders.init && updateRenewCtrl.accounts.length > 0">
                 </div>
             </div>
@@ -175,7 +175,7 @@
             <div class="alert alert-warning mt-5" role="alert">
                 <div>
                     <span class="text-danger">* </span>
-                    <span data-i18n-static="exchange_update_billing_periode_delete_warning"></span>
+                    <span data-translate="exchange_update_billing_periode_delete_warning"></span>
                 </div>
             </div>
         </div>

@@ -2,11 +2,12 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAddDomainController', class SharepointAddDomainController {
     constructor(
-      $scope, $stateParams,
+      $scope, $stateParams, $translate,
       Alerter, MicrosoftSharepointLicenseService, Products, Validator,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.productsService = Products;
@@ -32,7 +33,7 @@ angular
       this.loading = true;
       return this.productsService.getProductsByType()
         .then(productsByType => this.prepareData(productsByType.domains))
-        .catch(err => this.alerter.alertFromSWS(this.$scope.tr('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main));
+        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main));
     }
 
     prepareData(data) {
@@ -76,8 +77,8 @@ angular
     addDomain() {
       return this.sharepointService
         .addSharepointUpnSuffixe(this.$stateParams.exchangeId, this.model.name)
-        .then(() => this.alerter.success(this.$scope.tr('sharepoint_add_domain_confirm_message_text', this.model.displayName), this.$scope.alerts.main))
-        .catch(err => this.alerter.alertFromSWS(this.$scope.tr('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
+        .then(() => this.alerter.success(this.$translate.instant('sharepoint_add_domain_confirm_message_text', { t0: this.model.displayName }), this.$scope.alerts.main))
+        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
         .finally(() => {
           this.$scope.resetAction();
         });

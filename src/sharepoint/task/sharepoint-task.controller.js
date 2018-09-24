@@ -1,9 +1,10 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointTasksCtrl', class SharepointTasksCtrl {
-    constructor($scope, $stateParams, Alerter, MicrosoftSharepointLicenseService) {
+    constructor($scope, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
+      this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
     }
@@ -19,7 +20,7 @@ angular
         .then((ids) => { this.tasksIds = ids.map(id => ({ id })); })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
-          this.alerter.alertFromSWS(this.$scope.tr('sharepoint_tabs_tasks_error'), err, this.$scope.alerts.main);
+          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_tabs_tasks_error'), err, this.$scope.alerts.main);
         });
     }
 
