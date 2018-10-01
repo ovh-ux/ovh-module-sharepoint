@@ -185,4 +185,33 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">au moins un chiffre</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">premier caractère doit être alphanumérique</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Le mot de passe sera également modifié pour le service Exchange associé.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title">Période de renouvellement</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro">Choisissez la périodicité souhaitée pour le renouvellement automatique de chaque compte. <br />Celle-ci sera appliquée à partir du prochain renouvellement.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M">Mensuel</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate">Aucune</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning">Attention! Ce choix implique que le service va expirer à terme et les données seront perdues. Il sera alors impossible de récupérer les données du compte.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume">Vous allez changer la période de renouvellement de vos comptes :</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title">Mode de facturation</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak">Mot de passe trop simple.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Exchange.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different">Mots de passe différents.</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button">Commander des comptes</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message">Adresse email déjà existante.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account">Supprimer un compte</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label">Compte</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain">Supprimer un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain">Domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option">Sélectionner un domaine dans la liste</translation>
+   <translation id="sharepoint_exchange_tab_domain_search">Rechercher un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none">Aucun résultat trouvé</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option">Saisir un nom de domaine non géré par votre compte OVH</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN">Ajout de domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title">Utiliser un sous-domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain">Pour ajouter un sous-domaine d'un de vos domaines OVH, vous pouvez cocher "Saisir un nom de domaine non géré par votre compte OVH" et le saisir dans le champ correspondant.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic">Diagnostic</translation>
+   <translation id="sharepoint_exchange_tab_domain_status">Statut</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
 </translations>

@@ -2,7 +2,7 @@
     <div data-wizard
          data-wizard-on-cancel="resetAction"
          data-wizard-on-finish="addDomain"
-         data-wizard-title="'exchange_tab_domain_add_domain' | translate">
+         data-wizard-title="'sharepoint_exchange_tab_domain_add_domain' | translate">
 
         <div data-wizard-step
              data-wizard-step-valid="addDomainCtrl.model.name && addDomainCtrl.domainValid">
@@ -21,12 +21,12 @@
                                data-ng-model="addDomainCtrl.domainType">
                         <label class="oui-radio__label-container" for="addOption-ovhDomain">
                             <span class="oui-radio__label"
-                                  data-translate="exchange_tab_domain_add_step1_select_domain_option"></span>
+                                  data-translate="sharepoint_exchange_tab_domain_add_step1_select_domain_option"></span>
                         </label>
                         <div class="row mt-4" data-ng-if="addDomainCtrl.domainType === 'ovhDomain'">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="{{ 'exchange_tab_domain_search' | translate }}"
+                                    <input type="text" class="form-control" placeholder="{{ 'sharepoint_exchange_tab_domain_search' | translate }}"
                                            data-ng-change="addDomainCtrl.resetName()"
                                            data-ng-model="addDomainCtrl.search.value">
                                     <div class="input-group-btn"
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <p class="mt-3 text-center"
-                                   data-translate="exchange_tab_domain_add_step1_domain_none"
+                                   data-translate="sharepoint_exchange_tab_domain_add_step1_domain_none"
                                    data-ng-if="addDomainCtrl.availableDomains.length === 0 && addDomainCtrl.search.value"></p>
 
                                 <select class="mt-3 w-100" size="6"
@@ -67,11 +67,11 @@
                                data-ng-model="addDomainCtrl.domainType">
                         <label class="oui-radio__label-container" for="addOption-nonOvhDomain">
                             <span class="oui-radio__label"
-                                  data-translate="exchange_tab_domain_add_step1_user_owned_option"></span>
+                                  data-translate="sharepoint_exchange_tab_domain_add_step1_user_owned_option"></span>
                         </label>
                         <div class="mt-4"
                              data-ng-if="addDomainCtrl.domainType === 'nonOvhDomain'">
-                            <input type="text" class="oui-input" name="manualDisplayName" placeholder="{{ 'exchange_tab_domain_domain' | translate }}"
+                            <input type="text" class="oui-input" name="manualDisplayName" placeholder="{{ 'sharepoint_exchange_tab_domain_domain' | translate }}"
                                    data-ng-change="addDomainCtrl.changeName()"
                                    data-ng-class="{'oui-input_error': addDomainCtrl.addDomainForm.manualDisplayName.$dirty && !addDomainCtrl.domainValid}"
                                    data-ng-model="addDomainCtrl.model.displayName">
@@ -82,17 +82,17 @@
                 <div class="form-group"
                      data-ng-if="!addDomainCtrl.availableDomainsBuffer || addDomainCtrl.availableDomainsBuffer.length === 0">
                     <label class="oui-label" for="domainDisplayName"
-                           data-translate="exchange_tab_domain_add_step1_user_owned_option"></label>
-                    <input type="text" class="oui-input" id="domainDisplayName" placeholder="{{ 'exchange_tab_domain_domain' | translate }}"
+                           data-translate="sharepoint_exchange_tab_domain_add_step1_user_owned_option"></label>
+                    <input type="text" class="oui-input" id="domainDisplayName" placeholder="{{ 'sharepoint_exchange_tab_domain_domain' | translate }}"
                            data-ng-change="addDomainCtrl.changeName()"
                            data-ng-model="addDomainCtrl.model.displayName">
                 </div>
             </form>
 
             <div data-wizard-step-help>
-                <h3 data-translate="exchange_tab_TASKS_ADD_DOMAIN"></h3>
-                <h4 data-translate="exchange_tab_domain_step1_helpwizard_subdomain_title"></h4>
-                <p data-ng-bind-html="'exchange_tab_domain_step1_helpwizard_subdomain' | translate"></p>
+                <h3 data-translate="sharepoint_exchange_tab_TASKS_ADD_DOMAIN"></h3>
+                <h4 data-translate="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title"></h4>
+                <p data-ng-bind-html="'sharepoint_exchange_tab_domain_step1_helpwizard_subdomain' | translate"></p>
             </div>
         </div>
     </div>
