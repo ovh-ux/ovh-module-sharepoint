@@ -3,16 +3,16 @@
          data-wizard-bread-crumb
          data-wizard-on-cancel="reset"
          data-wizard-on-finish="submit"
-         data-wizard-title="'exchange_update_billing_action_title' | translate">
+         data-wizard-title="'sharepoint_exchange_update_billing_action_title' | translate">
 
         <div data-wizard-step
              data-wizard-step-valid="updateRenewCtrl.buffer.hasChanged">
 
-            <p data-ng-bind-html="'exchange_update_billing_periode_intro' | translate"></p>
+            <p data-ng-bind-html="'sharepoint_exchange_update_billing_periode_intro' | translate"></p>
 
             <form class="mb-3">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="{{ 'exchange_tab_ACCOUNTS_table_email' | translate }}"
+                    <input type="text" class="form-control" placeholder="{{ 'sharepoint_exchange_tab_ACCOUNTS_table_email' | translate }}"
                            data-ng-change="updateRenewCtrl.goSearch()"
                            data-ng-disabled="updateRenewCtrl.loaders.init"
                            data-ng-model="updateRenewCtrl.search.value"
@@ -37,9 +37,9 @@
                         <th scope="col"
                             data-translate="sharepoint_accounts_userPrincipalName"></th>
                         <th class="text-center" scope="col"
-                            data-translate="exchange_update_billing_header_1M"></th>
+                            data-translate="sharepoint_exchange_update_billing_header_1M"></th>
                         <th class="text-center required" scope="col"
-                            data-translate="exchange_update_billing_header_terminate"></th>
+                            data-translate="sharepoint_exchange_update_billing_header_terminate"></th>
                     </tr>
                 </thead>
 
@@ -102,7 +102,7 @@
             <div class="alert alert-warning mt-5" role="alert">
                 <div>
                     <span class="text-danger">* </span>
-                    <span data-translate="exchange_update_billing_periode_delete_warning"></span>
+                    <span data-translate="sharepoint_exchange_update_billing_periode_delete_warning"></span>
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
         <div data-wizard-step
              data-wizard-step-on-load="checkBuffer">
 
-            <p data-translate="exchange_update_billing_periode_resume"></p>
+            <p data-translate="sharepoint_exchange_update_billing_periode_resume"></p>
 
             <table class="table table-hover">
                 <thead>
@@ -118,9 +118,9 @@
                         <th scope="col"
                             data-translate="sharepoint_accounts_userPrincipalName"></th>
                         <th class="text-center" scope="col"
-                            data-translate="exchange_update_billing_header_1M"></th>
+                            data-translate="sharepoint_exchange_update_billing_header_1M"></th>
                         <th class="text-center requires" scope="col"
-                            data-translate="exchange_update_billing_header_terminate"></th>
+                            data-translate="sharepoint_exchange_update_billing_header_terminate"></th>
                     </tr>
                 </thead>
 
@@ -175,7 +175,7 @@
             <div class="alert alert-warning mt-5" role="alert">
                 <div>
                     <span class="text-danger">* </span>
-                    <span data-translate="exchange_update_billing_periode_delete_warning"></span>
+                    <span data-translate="sharepoint_exchange_update_billing_periode_delete_warning"></span>
                 </div>
             </div>
         </div>
