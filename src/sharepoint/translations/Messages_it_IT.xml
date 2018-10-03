@@ -28,7 +28,7 @@
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
    <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Modifica</translation>
    <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Salva</translation>
-   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Une erreur est survenue lors de la mise à jour des informations.</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Si è verificato un errore durante l'aggiornamento delle informazioni.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Informazioni generali</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Utenti</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domini</translation>
@@ -44,7 +44,7 @@
    <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Data di inizio</translation>
    <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Data di fine</translation>
    <translation id="sharepoint_tabs_tasks_null" qtlid="159163">Nessun intervento recente</translation>
-   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Si è verificato un errore durante il recupero delle attività recenti.</translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Si è verificato un errore durante il recupero delle informazioni:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Altre azioni</translation>
@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Convalida</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Cancella</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Eliminare il dominio</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Visualizzare i dettagli</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Seleziona il dominio che vuoi aggiungere al tuo servizio SharePoint.</translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">L'aggiunta del dominio {0} sarà effettivo tra pochi minuti.</translation>
@@ -85,8 +86,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Attiva i diritti di amministratore</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Rimuovi i diritti di amministratore</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Aggiungi una licenza Office</translation>
-   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modifica della configurazione dell'account SharePoint {0} è stata avviata correttamente.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Si è verificato un errore durante la modifica della configurazione dell'account SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Attiva SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Disattiva SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Vuoi davvero eliminare questo account dal tuo Sharepoint ?</translation>
@@ -111,7 +112,7 @@
    <translation id="sharepoint_accounts_action_change_configuration" qtlid="218354">Modifica l'account </translation>
 
    <translation id="sharepoint_account_update_configuration_title" qtlid="347444">Modifica l'account SharePoint</translation>
-   <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Nome visualizzato</translation>
+   <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Nome da visualizzare</translation>
    <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">Nome</translation>
    <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Nome</translation>
    <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Initiali</translation>
@@ -184,4 +185,34 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">almeno una cifra</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">Il primo carattere deve essere alfanumerico</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">La password verrà modificata anche per il servizio Exchange associato.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Periodo di rinnovo</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Scegli la periodicità per il rinnovo automatico di ogni account. <br /> Sarà applicata a partire dal prossimo rinnovo.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Mensile</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Nessuno</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Attenzione! Questa opzione comporta la scadenza del servizio al termine e la perdita dei dati. Sarà impossibile recuperare i dati dell'account.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Stai per modificare il periodo di rinnovo automatico dei tuoi account:</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Modalità di fatturazione.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Password troppo semplice</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">La password non può contenere il nome da visualizzare o il login Exchange, né parte di essi.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different" qtlid="139637">Password diverse</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">Account e-mail</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button" qtlid="139169">Ordina account</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">Account e-mail</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message" qtlid="190849">Indirizzo mail già esistente.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account" qtlid="137725">Elimina un account</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label" qtlid="33862">Account</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain" qtlid="137933">Elimina un dominio</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain" qtlid="8458">Dominio</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Aggiungi un dominio</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option" qtlid="136971">Seleziona un dominio dalla lista</translation>
+   <translation id="sharepoint_exchange_tab_domain_search" qtlid="136633">Ricerca un dominio</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none" qtlid="434538">Nessun risultato trovato</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option" qtlid="397533">Inserisci un dominio non gestito dal tuo account OVH</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN" qtlid="137335">Aggiungi un dominio</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Utilizza un sottodominio</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Per aggiungere un sottodominio di uno dei tuoi domini OVH, clicca su "Inserisci un dominio non gestito dal tuo account OVH" e inseriscilo nel campo corrispondente.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic" qtlid="95059">Diagnostica</translation>
+   <translation id="sharepoint_exchange_tab_domain_status" qtlid="26443">Stato</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Aggiungi un dominio</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Consulta le nostre guide online</translation>
 </translations>

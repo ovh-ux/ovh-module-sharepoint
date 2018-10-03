@@ -6,12 +6,12 @@
    <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
    <translation id="sharepoint_dashboard_offer_type_standalone" qtlid="347340">Standalone</translation>
    <translation id="sharepoint_dashboard_guides_help_label" qtlid="297085">Heeft u hulp nodig bij het configureren van uw SharePoint?</translation>
-   <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Bijbehorende Exchange dienst</translation>
+   <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Bijbehorende Exchange-dienst</translation>
 
    <translation id="sharepoint_dashboard_address" qtlid="258938">Adres van de server</translation>
    <translation id="sharepoint_dashboard_type" qtlid="297111">Server type</translation>
    <translation id="sharepoint_dashboard_organization" qtlid="32278">Organisatie</translation>
-   <translation id="sharepoint_dashboard_state" qtlid="297124">Service status</translation>
+   <translation id="sharepoint_dashboard_state" qtlid="297124">Service-status</translation>
    <translation id="sharepoint_dashboard_state_ok" qtlid="31522">OK</translation>
    <translation id="sharepoint_dashboard_state_suspended" qtlid="136100">Vervallen</translation>
    <translation id="sharepoint_dashboard_accounts" qtlid="297137">Aantal actieve accounts </translation>
@@ -20,7 +20,7 @@
    <translation id="sharepoint_dashboard_url_label" qtlid="297163">URL:</translation>
    <translation id="sharepoint_dashboard_guides_url" qtlid="416566">Activatie en beheer van uw Sharepoint</translation>
    <translation id="sharepoint_dashboard_creating_url_label" qtlid="154949">De activering wordt uitgevoerd</translation>
-   <translation id="sharepoint_dashboard_linked_exchange_label" qtlid="297189">Bijbehorende Exchange server:</translation>
+   <translation id="sharepoint_dashboard_linked_exchange_label" qtlid="297189">Bijbehorende Exchange-server:</translation>
    <translation id="sharepoint_dashboard_quota" qtlid="297202">Quota's</translation>
    <translation id="sharepoint_dashboard_quota_total_label" qtlid="297215">Totale diskruimte</translation>
    <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Gebruikte schijfruimte</translation>
@@ -28,7 +28,7 @@
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
    <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Wijzigen</translation>
    <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Backup</translation>
-   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Une erreur est survenue lors de la mise à jour des informations.</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Er is een fout opgetreden tijdens het updaten van de informatie. </translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Algemene informatie</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Gebruikers</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domeinen</translation>
@@ -37,14 +37,14 @@
    <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Functie</translation>
    <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Status</translation>
    <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">Wordt uitgevoerd</translation>
-   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Programmée</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Gepland</translation>
    <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Beëindigd</translation>
    <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Error</translation>
    <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Geannuleerd</translation>
    <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Startdatum</translation>
    <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Einddatum</translation>
    <translation id="sharepoint_tabs_tasks_null" qtlid="159163">Geen recente taken</translation>
-   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Er is een fout opgetreden tijdens het ophalen van de recente taken. </translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Er is een fout opgetreden tijdens het ophalen van de gegevens:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Meer acties</translation>
@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Validatie</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Verwijdering</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Het domein verwijderen</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">De details bekijken</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Selecteer het domein waar u uw SharePoint oplossing aan toe wilt voegen. </translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">Het {0} domein zal binnen enkele minuten toegevoegd zijn. </translation>
@@ -76,28 +77,28 @@
    <translation id="sharepoint_accounts_version" qtlid="34210">Versie</translation>
    <translation id="sharepoint_accounts_state" qtlid="33790">Status</translation>
 
-   <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Herstel admin rechten</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Admin rechten</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_question" qtlid="297319">Weet u zeker dat u de admin rechten voor uw Sharepoint dienst wilt herstellen?</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_tooltip" qtlid="297332">Admin rechten resetten. Deze optie is handig wanneer u per ongeluk de rechten wijzigt van de SharePoint interface. </translation>
+   <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Herstel admin-rechten</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Admin-rechten</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_question" qtlid="297319">Weet u zeker dat u de admin-rechten voor uw Sharepoint dienst wilt herstellen?</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_tooltip" qtlid="297332">Admin-rechten resetten. Deze optie is handig wanneer u per ongeluk de rechten wijzigt van de SharePoint-interface. </translation>
    <translation id="sharepoint_accounts_action_reset_admin_error" qtlid="297345">Het verzoek om de SharePoint admin rechten te resetten is mislukt. </translation>
    <translation id="sharepoint_accounts_action_reset_admin_success" qtlid="297358">Het verzoek om de SharePoint admin rechten te resetten is verwerkt. </translation>
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Activeer de admin rechten</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Verwijder de admin rechten</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Voeg een Office licentie toe</translation>
-   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">De wijziging in de configuratie van het {0} SharePoint-account is gestart.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Er is een fout opgetreden bij het bewerken van de {0} SharePoint-accountconfiguratie.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Activeer SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">SharePoint uitschakelen</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Weet u zeker dat u het volgende SharePoint account wilt verwijderen? </translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_warning" qtlid="349036">Let op! Als u deze optie kiest zal uw oplossing worden verwijderd aan het einde van de huidige maand en za; de data verloren gaan. U zult niet langer in staat zijn om de data van het account op te halen.</translation>
    <translation id="sharepoint_account_action_sharepoint_remove_success_message" qtlid="349049">Het {0} account zal aan het eind van de maand verwijderd zijn. </translation>
    <translation id="sharepoint_account_action_sharepoint_remove_error_message" qtlid="349062">Verwijdering account mislukt. </translation>
-   <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Voeg een SharePoint account toe</translation>
-   <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Voeg extra SharePoint accounts toe aan uw platform: </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Voeg een SharePoint-account toe</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Voeg extra SharePoint-accounts toe aan uw platform: </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">Er is een bestelbon aangemaakt. De oplossingen worden na ontvangst van betaling geactiveerd worden. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/maand</translation>
-   <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693"></translation>
+   <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Uw verzoek is verwerkt. U zult worden doorgestuurd naar de OVH betalingsinterface. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Er is een fout opgetreden tijdens het ophalen van de benodigde informatie voor de bestelling.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">Het aantal toegevoegde accounts moet tussen {0} en {1} zijn</translation>
 
@@ -184,4 +185,34 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">minstens één cijfer</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">eerste teken moet alfanumeriek zijn</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Het wachtwoord voor de bijbehorende Exchange dienst zal ook gewijzigd worden. </translation>
+   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Verlengingsperiode</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Selecteer de gewenste periode voor de automatische verlenging van elk account. <br /> Dit gaat in vanaf de volgende verlenging.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Maandelijks</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Geen</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Let op! Deze keuze houdt in dat de dienst uiteindelijk zal vervallen en de gegevens verloren zullen gaan. Het is dan niet meer mogelijk om de gegevens van de account te herstellen.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">U gaat de verlengingsperiode van uw rekeningen wijzigen:</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Facturatie status</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Erg eenvoudig wachtwoord</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Het wachtwoord mag niet bestaan uit uw Exchange logingegevens of een deel daarvan.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different" qtlid="139637">Verschillende wachtwoorden</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button" qtlid="139169">Accounts bestellen</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">E-mailaccount</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message" qtlid="190849">Het e-mailadres bestaat al.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account" qtlid="137725">Een account verwijderen</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label" qtlid="33862">Account</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain" qtlid="137933">Een domein verwijderen</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain" qtlid="8458">Domein</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Een domein toevoegen</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option" qtlid="136971">Selecteer een domein uit de lijst</translation>
+   <translation id="sharepoint_exchange_tab_domain_search" qtlid="136633">Een domein zoeken</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none" qtlid="434538">Geen resultaten gevonden</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option" qtlid="397533">Voer een domeinnaam in die niet beheerd wordt door uw OVH account</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN" qtlid="137335">Een domein toevoegen </translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Gebruik een subdomein</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Om een van de subdomeinen van uw OVH domein toe te voegen, vinkt u 'Voeg een domeinnaam toe die niet beheerd is door uw OVH account' aan en voer het in in het bijbehorende veld. </translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic" qtlid="95059">Diagnostisch</translation>
+   <translation id="sharepoint_exchange_tab_domain_status" qtlid="26443">Status</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Een domein toevoegen</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Raadpleeg onze online handleidingen.</translation>
 </translations>

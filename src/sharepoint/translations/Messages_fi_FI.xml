@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Vahvistus</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Poisto</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Poista verkkotunnus</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Katso lisätiedot</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Valitse SharePoint-palveluun lisättävä verkkotunnus.</translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">Verkkotunnuksen {0} lisäys on voimassa muutamassa minuutissa. </translation>
@@ -184,4 +185,34 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">vähintään yksi numero</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">ensimmäisen merkin on oltava aakkosnumeerinen</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Salasana vaihdetaan myös liitetylle Exchange-palvelulle.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Uusinta-ajanjakso</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Valitse haluamasi uudistamisväli automaattista uudistamista varten jokaiselle tilille. <br />Tätä sovelletaan seuraavasta uudistamisesta alkaen.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Kuukausittainen</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Ei mitään</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Ota huomioon että tämä valinta aiheuttaa palvelun vanhentumisen ja data menetetään pysyvästi. Datan palautus ei ole mahdollista.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Olet vaihtamassa automaattisen uudistamisen ajanjaksoa seuraaville tileillesi:</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Laskutustapa</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Salasana on liian yksinkertainen</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Salasana ei voi sisältää kokonaista tai osittaista tilin näyttönimeä tai Exchange-käyttäjätunnusta.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different" qtlid="139637">Salasanat ovat erilaiset</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button" qtlid="139169">Tilaa tilejä</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">Sähköpostitili</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message" qtlid="190849">Adresse email déjà existante.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account" qtlid="137725">Poista tili</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label" qtlid="33862">Tili</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain" qtlid="137933">Verkkotunnuksen poisto</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain" qtlid="8458">Verkkotunnus</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Lisää verkkotunnus</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option" qtlid="136971">Valitse verkkotunnus listasta</translation>
+   <translation id="sharepoint_exchange_tab_domain_search" qtlid="136633">Etsi verkkotunnusta</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none" qtlid="434538">Yhtään tulosta ei löytynyt</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option" qtlid="397533">Syötä verkkotunnus, joka ei ole OVH:n hallinnoima</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN" qtlid="137335">Verkkotunnuksen lisäys</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Ali-verkkotunnuksen käyttö</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Lisätäksesi aliverkkotunnuksen johonkin OVH:n verkkotunnuksistasi ruksaa "Syötä verkkotunnus, joka ei ole OVH:n hallinoima" ja syötä se sille kuuluvaan kohtaan.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic" qtlid="95059">Ongelmankartoitus</translation>
+   <translation id="sharepoint_exchange_tab_domain_status" qtlid="26443">Tila</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Lisää verkkotunnus</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Katso ohjeemme</translation>
 </translations>
