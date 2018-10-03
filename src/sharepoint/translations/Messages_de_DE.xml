@@ -28,7 +28,7 @@
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
    <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Ändern</translation>
    <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Speichern</translation>
-   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Une erreur est survenue lors de la mise à jour des informations.</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Bei der Aktualisierung der Informationen ist ein Fehler aufgetreten.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Allgemeine Informationen</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Benutzer</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domains</translation>
@@ -37,14 +37,14 @@
    <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Funktion</translation>
    <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Status</translation>
    <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">Wird ausgeführt</translation>
-   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Programmée</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Geplant</translation>
    <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Abgeschlossen</translation>
    <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Fehler</translation>
    <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Abgebrochen</translation>
    <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Startdatum</translation>
    <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Ablaufdatum</translation>
    <translation id="sharepoint_tabs_tasks_null" qtlid="159163">Keine aktuellen Tasks</translation>
-   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Beim Abrufen der aktuellen Tasks ist ein Fehler aufgetreten.</translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Beim Abruf der Informationen ist ein Fehler aufgetreten:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Mehr Aktionen</translation>
@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Validierung</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Löschung</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Die Domain löschen</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Details anzeigen</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Bitte wählen Sie die Domain aus, die Sie zu Ihrem  Service SharePoint hinzufügen möchten. </translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">Domain {0} wird innerhalb weniger Minuten hinzugefügt. </translation>
@@ -74,7 +75,7 @@
    <translation id="sharepoint_accounts_administrator" qtlid="43948">Administrator</translation>
    <translation id="sharepoint_accounts_license_office" qtlid="297280">Office Lizenz</translation>
    <translation id="sharepoint_accounts_version" qtlid="34210">Version</translation>
-   <translation id="sharepoint_accounts_state" qtlid="33790">Zustand</translation>
+   <translation id="sharepoint_accounts_state" qtlid="33790">Status</translation>
 
    <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Administrator-Rechte wiederherstellen</translation>
    <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Administrator-Rechte</translation>
@@ -85,8 +86,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Administrator-Rechte aktivieren</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Administrator-Rechte entziehen</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Office Lizenz hinzufügen </translation>
-   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">Die Änderung der Konfiguration des SharePoint Accounts {0} wurde erfolgreich gestartet.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Bei der Änderung der Konfiguration des SharePoint Accounts {0} ist ein Fehler aufgetreten.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">SharePoint aktivieren</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Konto löschen </translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Möchten Sie wirklich folgenden Account von Ihrem Sharepoint Service löschen? </translation>
@@ -96,7 +97,7 @@
    <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Einen SharePoint Account hinzufügen </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Zusätzliche SharePoint Accounts zur Plattform hinzufügen: </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">Es wird nun ein Bestellschein erstellt. Die Services werden nach Zahlungseingang freigeschaltet. </translation>
-   <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/Monat</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/ Monat</translation>
    <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Ihre Anfrage wurde erfasst. Sie werden jetzt zum OVH Zahlungsinterface weitergeleitet. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Beim Abruf der für die Bestellung notwendigen Informationen ist ein Fehler aufgetreten. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">Die Anzahl der zusätzlichen Accounts muss zwischen {0} und {1} sein.</translation>
@@ -107,11 +108,11 @@
    <translation id="sharepoint_accounts_action_licence_downgrade" qtlid="297436">Zurück zu SharePoint Foundation</translation>
    <translation id="sharepoint_accounts_action_office_upgrade" qtlid="297449">Office Lizenz hinzufügen</translation>
    <translation id="sharepoint_accounts_action_office_downgrade" qtlid="297462">Office Lizenz zurückziehen</translation>
-   <translation id="sharepoint_accounts_action_change_password" qtlid="8434">Das Passwort ändern</translation>
+   <translation id="sharepoint_accounts_action_change_password" qtlid="8434">Passwort ändern</translation>
    <translation id="sharepoint_accounts_action_change_configuration" qtlid="218354">Den Account bearbeiten</translation>
 
    <translation id="sharepoint_account_update_configuration_title" qtlid="347444">SharePoint Account bearbeiten </translation>
-   <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Anzuzeigender Name</translation>
+   <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Anzeigename</translation>
    <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">Vorname</translation>
    <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Name</translation>
    <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Initialen</translation>
@@ -184,4 +185,34 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">mindestens eine Ziffer</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">das erste Zeichen muss alphanumerisch sein</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Das Passwort der dazugehörigen Exchange Dienstleistung wird ebenfalls geändert.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title">Période de renouvellement</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro">Choisissez la périodicité souhaitée pour le renouvellement automatique de chaque compte. <br />Celle-ci sera appliquée à partir du prochain renouvellement.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M">Mensuel</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate">Aucune</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning">Attention! Ce choix implique que le service va expirer à terme et les données seront perdues. Il sera alors impossible de récupérer les données du compte.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume">Vous allez changer la période de renouvellement de vos comptes :</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title">Mode de facturation</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak">Mot de passe trop simple.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Exchange.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different">Mots de passe différents.</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button">Commander des comptes</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message">Adresse email déjà existante.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account">Supprimer un compte</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label">Compte</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain">Supprimer un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain">Domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option">Sélectionner un domaine dans la liste</translation>
+   <translation id="sharepoint_exchange_tab_domain_search">Rechercher un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none">Aucun résultat trouvé</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option">Saisir un nom de domaine non géré par votre compte OVH</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN">Ajout de domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title">Utiliser un sous-domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain">Pour ajouter un sous-domaine d'un de vos domaines OVH, vous pouvez cocher "Saisir un nom de domaine non géré par votre compte OVH" et le saisir dans le champ correspondant.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic">Diagnostic</translation>
+   <translation id="sharepoint_exchange_tab_domain_status">Statut</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Ziehen Sie unsere Online-Hilfen zu Rate.</translation>
 </translations>

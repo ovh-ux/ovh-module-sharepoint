@@ -28,7 +28,7 @@
    <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
    <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Editar</translation>
    <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Guardar</translation>
-   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Une erreur est survenue lors de la mise à jour des informations.</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Se ha producido un error al actualizar la información.</translation>
    <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Información general</translation>
    <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Usuarios</translation>
    <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Dominios</translation>
@@ -44,7 +44,7 @@
    <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Fecha de inicio</translation>
    <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Fecha de finalización </translation>
    <translation id="sharepoint_tabs_tasks_null" qtlid="159163">No hay tareas recientes</translation>
-   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Se ha producido un error al cargar las tareas recientes.</translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Se ha producido un error al cargar la información:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Más acciones</translation>
@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Validación</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Eliminación</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Eliminar el dominio</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Ver los detalles</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Seleccione el dominio que quiere añadir a su servicio SharePoint.</translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">La adición del dominio {0} será efectiva en los próximos minutos.</translation>
@@ -85,8 +86,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Activar los permisos de administrador</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Quitar permisos de administrador</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Añadir una licencia de Office</translation>
-   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modificación de la configuración de la cuenta de SharePoint {0} se ha iniciado correctamente.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Se ha producido un error al modificar la configuración de la cuenta de SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Activar SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Eliminar la cuenta</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">¿Seguro que quiere eliminar la siguiente cuenta del servicio SharePoint?</translation>
@@ -184,4 +185,34 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">al menos una cifra</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">el primer carácter debe ser alfanumérico</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">La contraseña del servicio Exchange asociado también se cambiará.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title">Période de renouvellement</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro">Choisissez la périodicité souhaitée pour le renouvellement automatique de chaque compte. <br />Celle-ci sera appliquée à partir du prochain renouvellement.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M">Mensuel</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate">Aucune</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning">Attention! Ce choix implique que le service va expirer à terme et les données seront perdues. Il sera alors impossible de récupérer les données du compte.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume">Vous allez changer la période de renouvellement de vos comptes :</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title">Mode de facturation</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak">Mot de passe trop simple.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Exchange.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different">Mots de passe différents.</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button">Commander des comptes</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message">Adresse email déjà existante.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account">Supprimer un compte</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label">Compte</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain">Supprimer un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain">Domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option">Sélectionner un domaine dans la liste</translation>
+   <translation id="sharepoint_exchange_tab_domain_search">Rechercher un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none">Aucun résultat trouvé</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option">Saisir un nom de domaine non géré par votre compte OVH</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN">Ajout de domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title">Utiliser un sous-domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain">Pour ajouter un sous-domaine d'un de vos domaines OVH, vous pouvez cocher "Saisir un nom de domaine non géré par votre compte OVH" et le saisir dans le champ correspondant.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic">Diagnostic</translation>
+   <translation id="sharepoint_exchange_tab_domain_status">Statut</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Consulte nuestras guías.</translation>
 </translations>

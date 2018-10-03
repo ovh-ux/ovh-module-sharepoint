@@ -37,20 +37,20 @@
    <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Funkcja</translation>
    <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Status</translation>
    <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">W toku</translation>
-   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Programmée</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Zaplanowane</translation>
    <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Zakończona</translation>
    <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Błąd</translation>
    <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Anulowane</translation>
    <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Data rozpoczęcia</translation>
    <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Data zakończenia</translation>
    <translation id="sharepoint_tabs_tasks_null" qtlid="159163">Brak wcześniejszych zadań</translation>
-   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Une erreur est survenue lors de la récupération des tâches récentes.</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Wystąpił błąd podczas pobierania ostatnich zadań.</translation>
 
    <translation id="sharepoint_dashboard_error" qtlid="243832">Wystąpił błąd podczas pobierania informacji:</translation>
    <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Więcej operacji</translation>
 
    <translation id="sharepoint_domains_cname_check_label" qtlid="129847">CNAME</translation>
-   <translation id="sharepoint_domains_cname_check_tooltip" qtlid="349127">Aby potwierdzić, że jesteś właścicielem domeny, utówrz wpis CNAME: <br /><br /><span class="bold">{0}</span> wskazujący na <span class="bold">ovh.com</span>.<br /><br /> Operację tę należy wykonać w ciągu 48 godzin.</translation>
+   <translation id="sharepoint_domains_cname_check_tooltip" qtlid="349127">Aby potwierdzić, że jesteś właścicielem domeny, utwórz wpis CNAME: <br /><br /><span class="bold">{0}</span> wskazujący na <span class="bold">ovh.com</span>.<br /><br /> Operację tę należy wykonać w ciągu 48 godzin.</translation>
    <translation id="sharepoint_domains_cname_check_title" qtlid="139273">Weryfikacja kontaktu właściciela</translation>
    <translation id="sharepoint_domains_cname_check_info1" qtlid="136646">Trwa potwierdzanie domeny</translation>
    <translation id="sharepoint_domains_cname_check_info2" qtlid="347366">Prosimy o utworzenie wpisu</translation>
@@ -59,6 +59,7 @@
    <translation id="sharepoint_domains_state_validation" qtlid="33802">Zatwierdź</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Usuwanie</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Usuń domenę</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Sprawdź szczegóły</translation>
 
    <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Wybierz domenę, którą chcesz dodać do usługi SharePoint.</translation>
    <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">Domena {0} zostanie dodana w ciągu kilku minut.</translation>
@@ -85,8 +86,8 @@
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Włącz uprawnienia administratora</translation>
    <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Usuń uprawnienia administratora</translation>
    <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Dodaj licencję Office</translation>
-   <translation id="sharepoint_accounts_action_success" qtlid="447586">La modification de la configuration du compte SharePoint {0} a été lancée avec succès.</translation>
-   <translation id="sharepoint_accounts_action_error" qtlid="447599">Une erreur est survenue lors de la modification de la configuration du compte SharePoint {0}.</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">Modyfikacja konfiguracji konta SharePoint {0} została pomyślnie uruchomiona.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Wystąpił błąd podczas modyfikacji konfiguracji konta SharePoint {0}.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Włącz usługę SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Usuń konto</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Czy chcesz usunąć następujące konto z usługi Sharepoint?</translation>
@@ -184,4 +185,34 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">przynajmniej jedna cyfra</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">pierwszy znak musi być alfanumeryczny</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Hasło przypisanej usługi Exchange również zostanie zmienione.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title">Période de renouvellement</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro">Choisissez la périodicité souhaitée pour le renouvellement automatique de chaque compte. <br />Celle-ci sera appliquée à partir du prochain renouvellement.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M">Mensuel</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate">Aucune</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning">Attention! Ce choix implique que le service va expirer à terme et les données seront perdues. Il sera alors impossible de récupérer les données du compte.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume">Vous allez changer la période de renouvellement de vos comptes :</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title">Mode de facturation</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak">Mot de passe trop simple.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Exchange.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different">Mots de passe différents.</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button">Commander des comptes</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email">Compte e-mail</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message">Adresse email déjà existante.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account">Supprimer un compte</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label">Compte</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain">Supprimer un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain">Domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option">Sélectionner un domaine dans la liste</translation>
+   <translation id="sharepoint_exchange_tab_domain_search">Rechercher un domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none">Aucun résultat trouvé</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option">Saisir un nom de domaine non géré par votre compte OVH</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN">Ajout de domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title">Utiliser un sous-domaine</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain">Pour ajouter un sous-domaine d'un de vos domaines OVH, vous pouvez cocher "Saisir un nom de domaine non géré par votre compte OVH" et le saisir dans le champ correspondant.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic">Diagnostic</translation>
+   <translation id="sharepoint_exchange_tab_domain_status">Statut</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain">Ajouter un domaine</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Sprawdź nasze przewodniki online</translation>
 </translations>
