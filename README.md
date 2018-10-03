@@ -12,10 +12,6 @@
 
 ### Bower
 
-```sh
-$ bower install ovh-module-sharepoint --save
-```
-
 ### NPM
 
 ```sh
@@ -28,7 +24,6 @@ $ npm install ovh-module-sharepoint --save
 $ git clone https://github.com/ovh-ux/ovh-module-sharepoint.git
 $ cd ovh-module-sharepoint
 $ npm install
-$ bower install
 ```
 
 You've developed a new cool feature? Fixed an annoying bug? We'd be happy
