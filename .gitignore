@@ -1,6 +1,2 @@
-.idea/
-node_modules/
-bower_components/
-tmp/
-**/translations/*.json
-*.log
+node_modules
+tools
