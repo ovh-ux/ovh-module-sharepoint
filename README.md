@@ -8,35 +8,29 @@
 
 > Sharepoint module.
 
-## Installation
-
-### Bower
-
-### NPM
+## Install
 
 ```sh
-$ npm install ovh-module-sharepoint --save
+yarn add ovh-module-sharepoint
 ```
 
-## Get the sources
+## Usage
 
-```sh
-$ git clone https://github.com/ovh-ux/ovh-module-sharepoint.git
-$ cd ovh-module-sharepoint
-$ npm install
+```js
+angular.module('App', [
+  '…',
+  'Module.sharepoint',
+  '…',
+])
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Related
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-module-sharepoint/blob/master/CONTRIBUTING.md)
-
-## Related links
-
-* Contribute: https://github.com/ovh-ux/ovh-module-sharepoint/blob/master/CONTRIBUTING.md
-* Report bugs: https://github.com/ovh-ux/ovh-module-sharepoint/issues
-* Get latest version: https://github.com/ovh-ux/ovh-module-sharepoint
+* [Web Control Panel UI](https://github.com/ovh-ux/ovh-manager-web).
+* [Emailpro Module](https://github.com/ovh-ux/ovh-module-emailpro).
+* [Exchange Module](https://github.com/ovh-ux/ovh-module-exchange).
+* [Office Module](https://github.com/ovh-ux/ovh-module-office).
 
 ## License
 
-See https://github.com/ovh-ux/ovh-module-sharepoint/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
