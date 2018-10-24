@@ -42,19 +42,19 @@
                             <oui-tile-description>
                                 <oui-progress data-min-value="0"
                                               data-max-value="1024">
-                                    <oui-progress-bar data-ng-if="informationsCtrl.sharepoint.currentUsage/1024/1024/1024 <= 70"
+                                    <oui-progress-bar data-ng-if="informationsCtrl.currentusageInGb() <= 70"
                                                       data-type="success"
-                                                      data-value="informationsCtrl.sharepoint.currentUsage/1024/1024/1024">
+                                                      data-value="informationsCtrl.currentusageInGb()">
                                         <span data-ng-bind="(informationsCtrl.sharepoint.currentUsage | humanReadableSize) + ' / ' + (informationsCtrl.sharepoint.quota | humanReadableSize)"></span>
                                     </oui-progress-bar>
-                                    <oui-progress-bar data-ng-if="informationsCtrl.sharepoint.currentUsage/1024/1024/1024 > 70 && informationsCtrl.sharepoint.currentUsage/1024/1024/1024 <= 85"
+                                    <oui-progress-bar data-ng-if="informationsCtrl.currentusageInGb() > 70 && informationsCtrl.currentusageInGb() <= 85"
                                                       data-type="warning"
-                                                      data-value="informationsCtrl.sharepoint.currentUsage/1024/1024/1024">
+                                                      data-value="informationsCtrl.currentusageInGb()">
                                         <span data-ng-bind="(informationsCtrl.sharepoint.currentUsage | humanReadableSize) + ' / ' + (informationsCtrl.sharepoint.quota | humanReadableSize)"></span>
                                     </oui-progress-bar>
-                                    <oui-progress-bar data-ng-if="informationsCtrl.sharepoint.currentUsage/1024/1024/1024 > 85"
+                                    <oui-progress-bar data-ng-if="informationsCtrl.currentusageInGb() > 85"
                                                       data-type="error"
-                                                      data-value="informationsCtrl.sharepoint.currentUsage/1024/1024/1024">
+                                                      data-value="informationsCtrl.currentusageInGb()">
                                         <span data-ng-bind="(informationsCtrl.sharepoint.currentUsage | humanReadableSize) + ' / ' + (informationsCtrl.sharepoint.quota | humanReadableSize)"></span>
                                     </oui-progress-bar>
                                 </oui-progress>

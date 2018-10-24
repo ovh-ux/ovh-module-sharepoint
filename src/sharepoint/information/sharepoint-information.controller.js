@@ -58,4 +58,8 @@ angular
       }
       this.sharepoint = sharepoint;
     }
+
+    currentusageInGb() {
+      return (this.sharepoint.currentUsage)/1024/1024/1024;
+    }
   });
