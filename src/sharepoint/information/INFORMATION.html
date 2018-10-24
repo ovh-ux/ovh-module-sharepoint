@@ -13,12 +13,13 @@
                             <oui-tile-description>
                                 <a data-ng-href="https://{{informationsCtrl.sharepoint.url}}"
                                    target="_blank"
+                                   rel="noopener"
                                    data-ng-if="informationsCtrl.sharepoint.state !== 'creating'">
                                     <span data-ng-bind="'https://' + informationsCtrl.sharepoint.url"></span>
                                     <span class="fa fa-external-link" aria-hidden="true"></span>
                                 </a>
                                 <span data-translate="sharepoint_dashboard_creating_url_label"
-                                      data-ng-show="informationsCtrl.sharepoint.state === 'creating'"></span>
+                                      data-ng-if="informationsCtrl.sharepoint.state === 'creating'"></span>
                             </oui-tile-description>
                         </oui-tile-definition>
                         <oui-tile-definition data-term="{{:: 'sharepoint_dashboard_linked_exchange_label' | translate}}"
