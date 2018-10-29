@@ -60,6 +60,6 @@ angular
     }
 
     currentusageInGb() {
-      return this.sharepoint.currentUsage/(1024 ** 3);
+      return this.sharepoint.currentUsage / (1024 ** 3);
     }
   });
