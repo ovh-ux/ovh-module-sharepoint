@@ -2,8 +2,13 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAddDomainController', class SharepointAddDomainController {
     constructor(
-      $scope, $stateParams, $translate,
-      Alerter, MicrosoftSharepointLicenseService, Products, Validator,
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      MicrosoftSharepointLicenseService,
+      Products,
+      WucValidator,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -11,7 +16,7 @@ angular
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.productsService = Products;
-      this.validatorService = Validator;
+      this.validatorService = WucValidator;
     }
 
     $onInit() {
