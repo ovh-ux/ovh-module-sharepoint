@@ -14,18 +14,6 @@ angular
       this.$scope.toKebabCase = _.kebabCase;
       this.$scope.tabs = ['INFORMATION', 'ACCOUNT', 'TASK'];
 
-      this.getExchangeOrganization()
-        .then(() => {
-          if (!_.isNull(this.$stateParams.tab)
-            && _.some(
-              this.$scope.tabs,
-              item => item === angular.uppercase(this.$stateParams.tab),
-            )) {
-            this.$scope.setSelectedTab(angular.uppercase(this.$stateParams.tab));
-          } else {
-            this.$scope.setSelectedTab(this.defaultTab);
-          }
-        });
 
       this.$scope.setSelectedTab = (tab) => {
         if (!_.isEmpty(tab)) {
@@ -35,13 +23,18 @@ angular
         }
         this.$location.search('tab', this.$scope.selectedTab);
       };
-    }
 
-    getExchangeOrganization() {
-      return this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
-        .then((organization) => {
-          if (!organization) {
-            this.$scope.tabs.splice(1, 0, 'DOMAIN');
+      this.sharepointService.getAssociatedExchangeService(this.$stateParams.exchangeId)
+        .catch(() => this.$scope.tabs.splice(1, 0, 'DOMAIN'))
+        .finally(() => {
+          if (!_.isNull(this.$stateParams.tab)
+            && _.some(
+              this.$scope.tabs,
+              item => item === angular.uppercase(this.$stateParams.tab),
+            )) {
+            this.$scope.setSelectedTab(angular.uppercase(this.$stateParams.tab));
+          } else {
+            this.$scope.setSelectedTab(this.defaultTab);
           }
         });
     }

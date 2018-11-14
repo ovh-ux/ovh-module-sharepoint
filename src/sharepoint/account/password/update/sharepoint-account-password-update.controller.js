@@ -19,7 +19,11 @@ angular
       this.passwordTooltip = null;
 
       this.retrievingMSService();
-      this.retrievingExchangeOrganization();
+
+      this.microsoftSharepointLicense.getAssociatedExchangeService(this.exchangeId)
+        .then(() => {
+          this.hasAssociatedExchange = true;
+        });
 
       this.$scope.updatingSharepointPassword = () => this.updatingSharepointPassword();
     }
@@ -50,14 +54,6 @@ angular
       this.passwordTooltip = this.$translate.instant(messageId, {
         t0: this.exchange.minPasswordLength,
       });
-    }
-
-    retrievingExchangeOrganization() {
-      return this.microsoftSharepointLicense
-        .retrievingExchangeOrganization(this.exchangeId)
-        .then((organization) => {
-          this.hasAssociatedExchange = !_.isEmpty(organization);
-        });
     }
 
     setPasswordsFlag(selectedAccount) {

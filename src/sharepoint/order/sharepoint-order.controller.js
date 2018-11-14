@@ -3,7 +3,7 @@ angular
   .controller('SharepointOrderCtrl', class SharepointOrderCtrl {
     constructor(
       $scope, $q, $stateParams,
-      constants, Exchange, MicrosoftSharepointLicenseService, Products, User,
+      constants, Exchange, MicrosoftSharepointLicenseService, User,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -11,7 +11,6 @@ angular
       this.constants = constants;
       this.exchangeService = Exchange;
       this.sharepointService = MicrosoftSharepointLicenseService;
-      this.productsService = Products;
       this.userService = User;
     }
 
@@ -46,8 +45,7 @@ angular
     }
 
     getExchanges() {
-      return this.productsService.getProductsByType()
-        .then(productsByType => productsByType.exchanges)
+      return this.sharepointService.getExchangeServices()
         .then(exchanges => _.map(exchanges, (exchange) => {
           const newExchange = angular.copy(exchange);
 
