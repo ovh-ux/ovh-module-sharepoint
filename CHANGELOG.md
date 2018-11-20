@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.2...v7.0.3) (2018-11-20)
+
+
+### Bug Fixes
+
+* **products:** remove use of Products service ([a06230a](https://github.com/ovh-ux/ovh-module-sharepoint/commit/a06230a))
+
+
+
 <a name="7.0.2"></a>
 ## [7.0.2](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.1...v7.0.2) (2018-10-24)
 
