@@ -8,7 +8,7 @@ angular
       Alerter,
       MicrosoftSharepointLicenseService,
       OvhApiDomain,
-      Validator,
+      WucValidator,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -16,7 +16,7 @@ angular
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
       this.OvhApiDomain = OvhApiDomain;
-      this.validatorService = Validator;
+      this.validatorService = WucValidator;
     }
 
     $onInit() {
