@@ -3,7 +3,7 @@ angular
   .controller('SharepointInformationsCtrl', class SharepointInformationsCtrl {
     constructor(
       $scope, $location, $stateParams, $translate,
-      Alerter, MicrosoftSharepointLicenseService, Products,
+      Alerter, MicrosoftSharepointLicenseService,
     ) {
       this.$scope = $scope;
       this.$location = $location;
@@ -11,38 +11,34 @@ angular
       this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
-      this.productsService = Products;
     }
 
     $onInit() {
       this.loaders = {
         init: false,
       };
+      this.exchangeId = this.$stateParams.exchangeId;
+      this.hideAssociatedExchange = !this.exchangeId;
 
-      this.getProductsByType();
+      this.getAssociatedExchange();
       this.getSharepoint();
-      this.getExchangeOrganization();
     }
 
-    getProductsByType() {
-      return this.productsService.getProductsByType()
-        .then((products) => {
-          this.associatedExchange = _.find(products.exchanges, {
-            name: this.$stateParams.exchangeId,
-          });
-          if (this.associatedExchange) {
-            this.associatedExchangeLink = `#/configuration/${this.associatedExchange.type.toLowerCase()}/${this.associatedExchange.organization}/${this.associatedExchange.name}`;
-          }
+    getAssociatedExchange() {
+      return this.sharepointService.getAssociatedExchangeService(this.exchangeId)
+        .then(({ exchangeService, exchangeLink }) => {
+          this.associatedExchange = exchangeService;
+          this.associatedExchangeLink = exchangeLink;
         });
     }
 
     getSharepoint() {
       this.loaders.init = true;
-      return this.sharepointService.getSharepoint(this.$stateParams.exchangeId)
+      return this.sharepointService.getSharepoint(this.exchangeId)
         .then((sharepoint) => {
           this.sharepoint = sharepoint;
           if (!this.sharepoint.url) {
-            this.$location.path(`/configuration/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`);
+            this.$location.path(`/configuration/sharepoint/${this.exchangeId}/${this.sharepoint.domain}/setUrl`);
           } else {
             this.calculateQuotas(sharepoint);
           }
@@ -56,21 +52,10 @@ angular
         });
     }
 
-    getExchangeOrganization() {
-      return this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
-        .then((organization) => {
-          this.hideAssociatedExchange = !organization;
-        });
-    }
-
     calculateQuotas(sharepoint) {
       if (sharepoint.quota && sharepoint.currentUsage) {
         _.set(sharepoint, 'left', sharepoint.quota - sharepoint.currentUsage);
       }
       this.sharepoint = sharepoint;
-    }
-
-    setExchange() {
-      this.productsService.setSelectedProduct(this.associatedExchange);
     }
   });

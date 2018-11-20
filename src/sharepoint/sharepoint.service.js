@@ -5,14 +5,22 @@
   angular
     .module('Module.sharepoint.services')
     .service('MicrosoftSharepointLicenseService', class MicrosoftSharepointLicenseService {
-      constructor(Alerter, OvhHttp, Products, $q, SHAREPOINT_GUIDE_URLS, $translate, User) {
+      constructor(
+        $q,
+        $translate,
+        Alerter,
+        OvhHttp,
+        OvhApiEmailExchange,
+        SHAREPOINT_GUIDE_URLS,
+        User,
+      ) {
         this.alerter = Alerter;
         this.OvhHttp = OvhHttp;
-        this.Products = Products;
         this.$q = $q;
         this.SHAREPOINT_GUIDE_URLS = SHAREPOINT_GUIDE_URLS;
         this.$translate = $translate;
         this.User = User;
+        this.OvhApiEmailExchange = OvhApiEmailExchange;
 
         this.cache = {
           models: 'UNIVERS_MODULE_SHAREPOINT_MODELS',
@@ -359,20 +367,6 @@
       }
 
       /**
-       * @param {string} exchangeId
-       */
-      retrievingExchangeOrganization(exchangeId) {
-        return this.Products
-          .getProductsByType()
-          .then((productsByType) => {
-            const exchange = _.find(productsByType.exchanges, { name: exchangeId });
-
-            // If Sharepoint standalone, no exchange service attached to it.
-            return exchange ? exchange.organization : null;
-          });
-      }
-
-      /**
        * An API function will be developed to get directly the info.
        * For now, an exchange with hostname "ex.mail.ovh.net" should have the suffix ".sp.ovh.net"
        * An exchange with hostname "ex2.mail.ovh.net" will have the suffix ".sp2.ovh.net"
@@ -483,6 +477,38 @@
         return this.OvhHttp
           .get(`/msServices/${serviceName}/sharepoint/task/${tasksId}`, {
             rootPath: 'apiv6',
+          });
+      }
+
+      getExchangeServices() {
+        return this.OvhApiEmailExchange.service().v7()
+          .query()
+          .expand(false)
+          .aggregate('displayName')
+          .execute({ organizationName: '*' })
+          .$promise
+          .then(services => _.filter(services, service => _.has(service, 'value.displayName') && _.has(service, 'value.offer')))
+          .then(services => _.map(services, service => ({
+            name: service.key,
+            displayName: service.value.displayName,
+            organization: _.get(service.path.split('/'), '[3]'),
+            type: `EXCHANGE_${service.value.offer.toUpperCase()}`,
+          })));
+      }
+
+      getAssociatedExchangeService(exchangeId) {
+        return this.getExchangeServices()
+          .then(services => _.find(services, {
+            name: exchangeId,
+          }))
+          .then((exchangeService) => {
+            if (exchangeService) {
+              return {
+                exchangeService,
+                exchangeLink: `#/configuration/${exchangeService.type.toLowerCase()}/${exchangeService.organization}/${exchangeService.name}`,
+              };
+            }
+            return this.$q.reject();
           });
       }
     });

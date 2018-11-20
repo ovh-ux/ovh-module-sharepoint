@@ -2,16 +2,21 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAddDomainController', class SharepointAddDomainController {
     constructor(
-      $scope, $stateParams, $translate,
-      Alerter, MicrosoftSharepointLicenseService, Products, Validator,
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      MicrosoftSharepointLicenseService,
+      OvhApiDomain,
+      WucValidator,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
-      this.productsService = Products;
-      this.validatorService = Validator;
+      this.OvhApiDomain = OvhApiDomain;
+      this.validatorService = WucValidator;
     }
 
     $onInit() {
@@ -31,9 +36,18 @@ angular
 
     loadDomainData() {
       this.loading = true;
-      return this.productsService.getProductsByType()
-        .then(productsByType => this.prepareData(productsByType.domains))
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main));
+
+      return this.OvhApiDomain.v6()
+        .query()
+        .$promise
+        .then(domains => _.sortBy(_.map(domains, domain => ({
+          name: domain,
+          displayName: this.punycode.toUnicode(domain),
+          type: 'DOMAIN',
+        })), 'displayName'))
+        .then(domains => this.prepareData(domains))
+        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_add_domain_error_message_text'), err, this.$scope.alerts.main))
+        .finally(() => { this.loading = false; });
     }
 
     prepareData(data) {
@@ -44,7 +58,6 @@ angular
           _.remove(domains, domain => _.indexOf(upnSuffixes, domain.name) >= 0);
         })
         .finally(() => {
-          this.loading = false;
           this.availableDomains = domains;
           this.availableDomainsBuffer = _.clone(this.availableDomains);
         });

@@ -26,8 +26,13 @@ angular
         search: false,
       };
 
+      this.sharepointService.getAssociatedExchangeService(this.exchangeId)
+        .catch(() => {
+          this.isStandAlone = true;
+        });
+
+
       this.getSharepoint();
-      this.getExchangeOrganization();
       this.getAccountIds();
 
       this.$scope.$on('$destroy', () => {
@@ -67,11 +72,6 @@ angular
           _.set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
         });
-    }
-
-    getExchangeOrganization() {
-      this.sharepointService.retrievingExchangeOrganization(this.$stateParams.exchangeId)
-        .then((organization) => { this.isStandAlone = _.isNull(organization); });
     }
 
     updateSharepoint(account, type, officeLicense) {

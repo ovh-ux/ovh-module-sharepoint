@@ -3,7 +3,7 @@ angular
   .controller('SharepointCtrl', class SharepointCtrl {
     constructor(
       $scope, $rootScope, $stateParams, $timeout, $translate,
-      Alerter, constants, MicrosoftSharepointLicenseService, Products,
+      Alerter, constants, MicrosoftSharepointLicenseService,
     ) {
       this.$scope = $scope;
       this.$rootScope = $rootScope;
@@ -13,7 +13,6 @@ angular
       this.alerter = Alerter;
       this.constants = constants;
       this.sharepointService = MicrosoftSharepointLicenseService;
-      this.productsService = Products;
     }
 
     $onInit() {
@@ -33,9 +32,12 @@ angular
         main: 'sharepoint.alerts.main',
       };
 
+      this.sharepointService.getAssociatedExchangeService(this.exchangeId)
+        .catch(() => {
+          this.isStandAlone = true;
+        });
+
       this.getSharepoint();
-      this.getProducts();
-      this.getExchangeOrganization();
 
       this.$scope.currentAction = null;
       this.$scope.currentActionData = null;
@@ -104,26 +106,6 @@ angular
         })
         .finally(() => {
           this.loaders.init = false;
-        });
-    }
-
-    getProducts() {
-      return this.productsService.getProducts()
-        .then((products) => {
-          const exchange = _.find(products, { name: this.exchangeId });
-
-          if (exchange) {
-            this.exchangeOrganization = exchange.organization;
-          }
-        });
-    }
-
-    getExchangeOrganization() {
-      return this.sharepointService.retrievingExchangeOrganization(this.exchangeId)
-        .then((organization) => {
-          if (!organization) {
-            this.isStandAlone = true;
-          }
         });
     }
   });
