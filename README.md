@@ -1,12 +1,8 @@
 # ovh-module-sharepoint
 
-![ovh-module-sharepoint](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
-
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-module-sharepoint.svg)](https://travis-ci.org/ovh-ux/ovh-module-sharepoint)
-
-[![NPM](https://nodei.co/npm/ovh-module-sharepoint.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-module-sharepoint/)
-
 > Sharepoint module.
+
+[![Downloads](https://badgen.net/npm/dt/ovh-module-sharepoint)](https://npmjs.com/package/ovh-module-sharepoint) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-module-sharepoint)](https://npmjs.com/package/ovh-module-sharepoint?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-module-sharepoint)](https://npmjs.com/package/ovh-module-sharepoint?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -26,10 +22,14 @@ angular.module('App', [
 
 ## Related
 
-* [Web Control Panel UI](https://github.com/ovh-ux/ovh-manager-web).
-* [Emailpro Module](https://github.com/ovh-ux/ovh-module-emailpro).
-* [Exchange Module](https://github.com/ovh-ux/ovh-module-exchange).
-* [Office Module](https://github.com/ovh-ux/ovh-module-office).
+* [ovh-manager-web](https://github.com/ovh-ux/ovh-manager-web) - OVH Control Panel Web UI
+* [ovh-module-emailpro](https://github.com/ovh-ux/ovh-module-emailpro) - Web Module Emailpro
+* [ovh-module-exchange](https://github.com/ovh-ux/ovh-module-exchange) - Web Module Exchange
+* [ovh-module-office](https://github.com/ovh-ux/ovh-module-office) - Web Module Office
+
+## Contributing
+
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ovh-module-sharepoint/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ovh-module-sharepoint/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 

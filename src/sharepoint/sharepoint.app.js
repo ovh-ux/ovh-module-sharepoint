@@ -5,6 +5,7 @@ angular.module('Module.sharepoint', [
   'ngSanitize',
   'Module.sharepoint.controllers',
   'Module.sharepoint.services',
+  'ovh-api-services',
 ]).config([
   '$stateProvider', function ($stateProvider) {
     $stateProvider.state('app.microsoft.sharepoint', {
