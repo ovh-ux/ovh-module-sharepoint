@@ -1,3 +1,7 @@
+## [7.0.4](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.3...v7.0.4) (2018-11-22)
+
+
+
 ## [7.0.3](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.2...v7.0.3) (2018-11-20)
 
 
