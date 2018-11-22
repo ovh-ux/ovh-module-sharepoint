@@ -7,7 +7,17 @@ angular.module('Module.sharepoint', [
   'Module.sharepoint.services',
   'ovh-api-services',
 ]).config([
-  '$stateProvider', function ($stateProvider) {
+  '$stateProvider', ($stateProvider) => {
+    const resolve = {
+      navigationInformations: ['Navigator', '$rootScope', (Navigator, $rootScope) => {
+        _.set($rootScope, 'currentSectionInformation', 'sharepoint');
+        return Navigator.setNavigationInformation({
+          leftMenuVisible: true,
+          configurationSelected: true,
+        });
+      }],
+    };
+
     $stateProvider.state('app.microsoft.sharepoint', {
       abstract: true,
       template: '<div ui-view></div>',
@@ -18,15 +28,7 @@ angular.module('Module.sharepoint', [
       url: '/configuration/microsoft/sharepoint/order',
       templateUrl: 'sharepoint/order/sharepoint-order.html',
       reloadOnSearch: false,
-      resolve: {
-        navigationInformations: ['Navigator', '$rootScope', function (Navigator, $rootScope) {
-          _.set($rootScope, 'currentSectionInformation', 'sharepoint');
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        }],
-      },
+      resolve,
     });
 
     $stateProvider.state('app.microsoft.sharepoint.config', {
@@ -35,15 +37,7 @@ angular.module('Module.sharepoint', [
       controller: 'SharepointOrderCtrl',
       controllerAs: 'SharepointOrderCtrl',
       reloadOnSearch: false,
-      resolve: {
-        navigationInformations: ['Navigator', '$rootScope', function (Navigator, $rootScope) {
-          _.set($rootScope, 'currentSectionInformation', 'sharepoint');
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        }],
-      },
+      resolve,
     });
 
     $stateProvider.state('app.microsoft.sharepoint.product', {
@@ -55,15 +49,7 @@ angular.module('Module.sharepoint', [
       params: {
         tab: null,
       },
-      resolve: {
-        navigationInformations: ['Navigator', '$rootScope', function (Navigator, $rootScope) {
-          _.set($rootScope, 'currentSectionInformation', 'sharepoint');
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        }],
-      },
+      resolve,
     });
 
     $stateProvider.state('app.microsoft.sharepoint.setUrl', {
@@ -72,15 +58,7 @@ angular.module('Module.sharepoint', [
       controller: 'SharepointUrlCtrl',
       controllerAs: 'SharepointUrlCtrl',
       reloadOnSearch: false,
-      resolve: {
-        navigationInformations: ['Navigator', '$rootScope', function (Navigator, $rootScope) {
-          _.set($rootScope, 'currentSectionInformation', 'sharepoint');
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        }],
-      },
+      resolve,
     });
   },
 ])

@@ -2,16 +2,19 @@ angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointOrderCtrl', class SharepointOrderCtrl {
     constructor(
-      $scope, $q, $stateParams,
-      constants, Exchange, MicrosoftSharepointLicenseService, User,
+      $q,
+      $stateParams,
+      Exchange,
+      MicrosoftSharepointLicenseService,
+      ouiDatagridService,
+      User,
     ) {
-      this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
-      this.constants = constants;
-      this.exchangeService = Exchange;
-      this.sharepointService = MicrosoftSharepointLicenseService;
-      this.userService = User;
+      this.Exchange = Exchange;
+      this.Sharepoint = MicrosoftSharepointLicenseService;
+      this.ouiDatagridService = ouiDatagridService;
+      this.User = User;
     }
 
     $onInit() {
@@ -22,33 +25,36 @@ angular
         main: 'sharepoint.alerts.main',
       };
 
+      this.canLinkToExchange = true;
+      this.associateExchange = false;
       this.associatedExchange = null;
+
       // Indicates that we are activating a SharePoint by coming from an exchange service.
-      this.isCommingFromAssociatedExchange = false;
+      this.isComingFromAssociatedExchange = false;
+
       this.loaders = {
         init: true,
+        accounts: true,
       };
-      this.worldPart = this.constants.target;
-      this.associateExchange = true;
+
       this.standAloneQuantity = 1;
       this.accountsToActivate = [];
 
       this.getExchanges()
         .finally(() => {
           this.loaders.init = false;
-          this.associatedExchange = _.first(this.exchanges);
+          this.associatedExchange = this.associatedExchange || _.first(this.exchanges);
           this.getAccounts();
         });
 
-      this.userService.getUser()
+      this.User.getUser()
         .then((user) => { this.userSubsidiary = user.ovhSubsidiary; });
     }
 
     getExchanges() {
-      return this.sharepointService.getExchangeServices()
+      return this.Sharepoint.getExchangeServices()
         .then(exchanges => _.map(exchanges, (exchange) => {
           const newExchange = angular.copy(exchange);
-
           newExchange.domain = newExchange.name;
           return newExchange;
         }))
@@ -76,7 +82,7 @@ angular
     }
 
     isSupportedExchangeAdditionalCondition(exchange) {
-      return this.exchangeService.getExchangeServer(exchange.organization, exchange.name)
+      return this.Exchange.getExchangeServer(exchange.organization, exchange.name)
         .then(server => server.individual2010 === false);
     }
 
@@ -92,7 +98,7 @@ angular
           && exchange.name === this.exchangeId,
       );
       if (this.associatedExchange) {
-        this.isCommingFromAssociatedExchange = true;
+        this.isComingFromAssociatedExchange = true;
       }
     }
 
@@ -103,42 +109,39 @@ angular
     }
 
     hasSharepoint(exchange) {
-      return this.exchangeService.getSharepointServiceForExchange(exchange)
+      return this.Exchange.getSharepointServiceForExchange(exchange)
         .then(() => true)
         .catch(() => false);
     }
 
     getAccounts() {
-      this.loaders.accounts = true;
-      this.accountsIds = null;
-
-      return this.exchangeService.getAccountIds({
+      return this.Exchange.getAccountIds({
         organizationName: this.associatedExchange.organization,
         exchangeService: this.associatedExchange.domain,
-      }).then((accounts) => {
-        this.accountsIds = accounts;
-      }).finally(() => {
-        if (_.isEmpty(this.accountsIds)) {
-          this.loaders.accounts = false;
-        }
-      });
+      }).then(accountEmails => ({
+        data: _.map(accountEmails, email => ({ email })),
+        meta: {
+          totalCount: accountEmails.length,
+        },
+      }));
     }
 
-    onTranformItem(account) {
-      return this.exchangeService
+    getAccount(row) {
+      return this.Exchange
         .getAccount({
           organizationName: this.associatedExchange.organization,
           exchangeService: this.associatedExchange.domain,
-          primaryEmailAddress: account,
+          primaryEmailAddress: row.email,
         })
-        .then((account) => { // eslint-disable-line
+        .then((account) => {
           _.set(account, 'activateSharepoint', _.some(this.accountsToActivate, account.primaryEmailAddress));
           return account;
         });
     }
 
-    onTranformItemDone() {
-      this.loaders.accounts = false;
+    refreshAccounts(exchange) {
+      this.associatedExchange = exchange;
+      this.ouiDatagridService.refresh('exchangeAccountsDatagrid');
     }
 
     checkSharepointActivation(account) {
@@ -159,29 +162,10 @@ angular
         && !_.isEmpty(activateSharepointForm.primaryEmailAddressField.$viewValue);
     }
 
-    changeStandAloneQuantity() {
-      if (parseInt(this.standAloneQuantity, 10) >= 1
-        && parseInt(this.standAloneQuantity, 10) <= 30) {
-        this.standAloneQuantity = parseInt(this.standAloneQuantity, 10);
-      }
-    }
-
-    decrement() {
-      if (this.standAloneQuantity > 1) {
-        this.standAloneQuantity -= 1;
-      }
-    }
-
-    increment() {
-      if (this.standAloneQuantity < 30) {
-        this.standAloneQuantity += 1;
-      }
-    }
-
     getSharepointOrderUrl() {
       if (this.associateExchange) {
         if (_.has(this.associatedExchange, 'name') && this.accountsToActivate.length >= 1) {
-          return this.sharepointService.getSharepointOrderUrl(
+          return this.Sharepoint.getSharepointOrderUrl(
             this.associatedExchange.name,
             this.accountsToActivate,
           );
@@ -191,10 +175,14 @@ angular
       if (!_.isNull(this.standAloneQuantity)
         && parseInt(this.standAloneQuantity, 10) >= 1
         && parseInt(this.standAloneQuantity, 10) <= 30) {
-        return this.sharepointService
+        return this.Sharepoint
           .getSharepointStandaloneOrderUrl(parseInt(this.standAloneQuantity, 10));
       }
 
       return '';
+    }
+
+    goToSharepointOrder() {
+
     }
   });
