@@ -56,6 +56,7 @@
                         <oui-datagrid id="exchangeAccountsDatagrid"
                                       data-rows-loader="$ctrl.getAccounts()"
                                       data-row-loader="$ctrl.getAccount($row)"
+                                      data-on-row-select="$ctrl.onAccountsSelected($rows)"
                                       data-selectable-rows>
                             <oui-column data-title="'sharepoint_accounts_userPrincipalName' | translate"
                                         data-property="primaryEmailAddress"
@@ -68,9 +69,7 @@
                         <oui-button
                            data-variant="primary"
                            data-on-click="$ctrl.goToSharepointOrder()"
-                           data-disabled="$ctrl.associateExchange ?
-                                            $ctrl.accountsToActivate.length <= 0 :
-                                            !$ctrl.standAloneQuantity">
+                           data-disabled="$ctrl.associateExchange ? !$ctrl.hasSelectedAccounts() : !$ctrl.standAloneQuantity">
                            <span data-translate="sharepoint_order_button_label"></span>
                            <span data-translate="core_new_window" class="sr-only"></span>
                         </oui-button>

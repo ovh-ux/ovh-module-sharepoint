@@ -4,6 +4,7 @@ angular
     constructor(
       $q,
       $stateParams,
+      $window,
       Exchange,
       MicrosoftSharepointLicenseService,
       ouiDatagridService,
@@ -11,6 +12,7 @@ angular
     ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
+      this.$window = $window;
       this.Exchange = Exchange;
       this.Sharepoint = MicrosoftSharepointLicenseService;
       this.ouiDatagridService = ouiDatagridService;
@@ -28,6 +30,7 @@ angular
       this.canLinkToExchange = true;
       this.associateExchange = false;
       this.associatedExchange = null;
+      this.accountsToActivate = [];
 
       // Indicates that we are activating a SharePoint by coming from an exchange service.
       this.isComingFromAssociatedExchange = false;
@@ -38,7 +41,6 @@ angular
       };
 
       this.standAloneQuantity = 1;
-      this.accountsToActivate = [];
 
       this.getExchanges()
         .finally(() => {
@@ -132,10 +134,6 @@ angular
           organizationName: this.associatedExchange.organization,
           exchangeService: this.associatedExchange.domain,
           primaryEmailAddress: row.email,
-        })
-        .then((account) => {
-          _.set(account, 'activateSharepoint', _.some(this.accountsToActivate, account.primaryEmailAddress));
-          return account;
         });
     }
 
@@ -144,22 +142,12 @@ angular
       this.ouiDatagridService.refresh('exchangeAccountsDatagrid');
     }
 
-    checkSharepointActivation(account) {
-      if (account.activateSharepoint) {
-        this.accountsToActivate.push(account.primaryEmailAddress);
-      } else {
-        this.accountsToActivate
-          .splice(this.accountsToActivate.indexOf(account.primaryEmailAddress), 1);
-      }
+    onAccountsSelected(accounts) {
+      this.accountsToActivate = accounts.map(account => account.primaryEmailAddress);
     }
 
-    getExchangeAccountsUrl() {
-      return `#/configuration/exchange_hosted/${this.associatedExchange.organization}/${this.associatedExchange.name}?tab=ACCOUNTS`;
-    }
-
-    static hasInexistantAccount(activateSharepointForm) {
-      return activateSharepointForm.primaryEmailAddressField.$invalid
-        && !_.isEmpty(activateSharepointForm.primaryEmailAddressField.$viewValue);
+    hasSelectedAccounts() {
+      return this.accountsToActivate.length > 0;
     }
 
     getSharepointOrderUrl() {
@@ -172,17 +160,16 @@ angular
         }
         return '';
       }
-      if (!_.isNull(this.standAloneQuantity)
-        && parseInt(this.standAloneQuantity, 10) >= 1
-        && parseInt(this.standAloneQuantity, 10) <= 30) {
-        return this.Sharepoint
-          .getSharepointStandaloneOrderUrl(parseInt(this.standAloneQuantity, 10));
+
+      const quantity = parseInt(this.standAloneQuantity, 10);
+      if (quantity && quantity >= 1 && quantity <= 30) {
+        return this.Sharepoint.getSharepointStandaloneOrderUrl(quantity);
       }
 
       return '';
     }
 
     goToSharepointOrder() {
-
+      this.$window.open(this.getSharepointOrderUrl(), '_blank', 'noopener');
     }
   });
