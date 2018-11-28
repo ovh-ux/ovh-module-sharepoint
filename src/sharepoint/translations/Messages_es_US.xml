@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="sharepoint_license_common_or" qtlid="366267">O</translation>
+   <translation id="sharepoint_common_open_new_tab">Ouvre une nouvelle fenêtre</translation>
    <translation id="sharepoint_license_foundation" qtlid="297059">Foundation</translation>
    <translation id="sharepoint_license_standard" qtlid="48998">Standard</translation>
    <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
@@ -10,7 +11,7 @@
 
    <translation id="sharepoint_dashboard_address" qtlid="258938">Dirección del servidor</translation>
    <translation id="sharepoint_dashboard_type" qtlid="297111">Tipo de servidor</translation>
-   <translation id="sharepoint_dashboard_organization" qtlid="32278">Organisation</translation>
+   <translation id="sharepoint_dashboard_organization" qtlid="32278">Organización</translation>
    <translation id="sharepoint_dashboard_state" qtlid="297124">Estado del servicio</translation>
    <translation id="sharepoint_dashboard_state_ok" qtlid="31522">OK</translation>
    <translation id="sharepoint_dashboard_state_suspended" qtlid="136100">Suspendido</translation>
@@ -39,7 +40,7 @@
    <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">En cours</translation>
    <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Programada</translation>
    <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Terminée</translation>
-   <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Erreur</translation>
+   <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Error</translation>
    <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Cancelada</translation>
    <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Fecha de inicio</translation>
    <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Fecha de finalización</translation>
@@ -74,7 +75,7 @@
    <translation id="sharepoint_accounts_user" qtlid="297267">Cuenta activada</translation>
    <translation id="sharepoint_accounts_administrator" qtlid="43948">Administrador</translation>
    <translation id="sharepoint_accounts_license_office" qtlid="297280">Licencia Office</translation>
-   <translation id="sharepoint_accounts_version" qtlid="34210">Version</translation>
+   <translation id="sharepoint_accounts_version" qtlid="34210">Versión</translation>
    <translation id="sharepoint_accounts_state" qtlid="33790">État</translation>
 
    <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Restaurar los derechos de administrador</translation>
@@ -173,7 +174,7 @@
 
    <translation id="sharepoint_ACTION_update_password_title" qtlid="347509">Cambiar la contraseña</translation>
    <translation id="sharepoint_ACTION_update_password_account_label" qtlid="33862">Compte</translation>
-   <translation id="sharepoint_ACTION_update_password_pass_label" qtlid="2270">Mot de passe</translation>
+   <translation id="sharepoint_ACTION_update_password_pass_label" qtlid="2270">Contraseña</translation>
    <translation id="sharepoint_ACTION_update_password_confirm_pass_label" qtlid="9983">Confirmation</translation>
    <translation id="sharepoint_ACTION_update_password_confirm_message_text" qtlid="325909">La modificación de la contraseña de la cuenta {0} se hará efectiva en unos minutos.</translation>
    <translation id="sharepoint_ACTION_update_password_error_message_text" qtlid="297800">La solicitud de cambio de contraseña no se ha enviado.</translation>
