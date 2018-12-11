@@ -1,3 +1,14 @@
+## [7.0.5](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.4...v7.0.5) (2018-12-11)
+
+
+### Bug Fixes
+
+* **deps:** upgrade npm-run-all to v4.1.5 ([414f029](https://github.com/ovh-ux/ovh-module-sharepoint/commit/414f029))
+* **i18n:** retrieve translations ([74db764](https://github.com/ovh-ux/ovh-module-sharepoint/commit/74db764))
+* **i18n:** submit translations ([4dbe514](https://github.com/ovh-ux/ovh-module-sharepoint/commit/4dbe514))
+
+
+
 ## [7.0.4](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.3...v7.0.4) (2018-11-22)
 
 
