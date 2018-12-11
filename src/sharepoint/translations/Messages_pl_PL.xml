@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="sharepoint_license_common_or" qtlid="366267">lub</translation>
+   <translation id="sharepoint_common_open_new_tab">Ouvre une nouvelle fenêtre</translation>
    <translation id="sharepoint_license_foundation" qtlid="297059">Foundation</translation>
    <translation id="sharepoint_license_standard" qtlid="48998">Standardowa</translation>
    <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
@@ -56,7 +57,7 @@
    <translation id="sharepoint_domains_cname_check_info2" qtlid="347366">Prosimy o utworzenie wpisu</translation>
    <translation id="sharepoint_domains_empty_list" qtlid="126344">Brak domen</translation>
    <translation id="sharepoint_domains_state_creating" qtlid="26791">Utworzenie</translation>
-   <translation id="sharepoint_domains_state_validation" qtlid="33802">Zatwierdź</translation>
+   <translation id="sharepoint_domains_state_validation" qtlid="33802">Zatwierdzenie</translation>
    <translation id="sharepoint_domains_state_deleting" qtlid="59699">Usuwanie</translation>
    <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Usuń domenę</translation>
    <translation id="sharepoint_domains_more_details" qtlid="91645">Sprawdź szczegóły</translation>
