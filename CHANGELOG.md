@@ -1,3 +1,12 @@
+## [7.0.6](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.5...v7.0.6) (2018-12-14)
+
+
+### Bug Fixes
+
+* **account:** helps discern accounts suspended ([e24e3c2](https://github.com/ovh-ux/ovh-module-sharepoint/commit/e24e3c2))
+
+
+
 ## [7.0.5](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.4...v7.0.5) (2018-12-11)
 
 
