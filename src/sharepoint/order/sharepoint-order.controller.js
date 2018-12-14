@@ -137,6 +137,13 @@ angular
         });
     }
 
+    onAssociateChange(associateExchange) {
+      if (!associateExchange) {
+        // we need to reset selected accounts if we leave the association interface
+        this.accountsToActivate = [];
+      }
+    }
+
     refreshAccounts(exchange) {
       this.associatedExchange = exchange;
       this.ouiDatagridService.refresh('exchangeAccountsDatagrid');

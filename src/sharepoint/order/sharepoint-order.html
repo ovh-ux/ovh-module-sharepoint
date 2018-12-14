@@ -15,6 +15,7 @@
                 <oui-checkbox class="my-5"  id="standAlone" name="standAlone"
                     data-ng-if="$ctrl.canLinkToExchange && $ctrl.exchanges.length > 0 && $ctrl.userSubsidiary === 'FR'"
                     data-model="$ctrl.associateExchange"
+                    data-on-change="$ctrl.onAssociateChange(modelValue)"
                     data-text="{{:: 'sharepoint_activate_intro_warning_associated_label' | translate }}">
                 </oui-checkbox>
 
