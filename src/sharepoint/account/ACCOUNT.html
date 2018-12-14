@@ -75,7 +75,12 @@
                         <span data-ng-if="$row.accessRights !== 'administrator'"> - </span>
                     </oui-column>
                     <oui-column data-title="'sharepoint_accounts_user' | translate" data-property="accessRights">
-                        <span class="oui-icon oui-icon-success text-success" aria-label="{{ 'common_yes' | translate }}"
+                        <span class="oui-icon"
+                              data-ng-class="{
+                                'oui-icon-success text-success': $row.state === 'ok',
+                                'oui-icon-error': $row.state === 'suspended'
+                              }"
+                              aria-label="{{ 'common_yes' | translate }}"
                               data-ng-if="$row.accessRights"></span>
                         <span data-ng-if="!$row.accessRights"> - </span>
                     </oui-column>
