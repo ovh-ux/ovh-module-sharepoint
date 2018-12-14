@@ -185,7 +185,7 @@ angular
 
       const quantity = parseInt(this.standAloneQuantity, 10);
       if (quantity && quantity >= 1 && quantity <= 30) {
-        return this.Sharepoint.getSharepointStandaloneOrderUrl(quantity);
+        return this.Sharepoint.getSharepointStandaloneOrderUrl(quantity, this.isReseller);
       }
 
       return '';

@@ -191,7 +191,7 @@
        *
        * @param {number} quantity
        */
-      getSharepointStandaloneOrderUrl(quantity) {
+      getSharepointStandaloneOrderUrl(quantity, isReseller) {
         if (_.isEmpty(this.orderBaseUrl)) {
           return null;
         }
@@ -201,7 +201,7 @@
           planCode: 'sharepoint_platform',
           configuration: [],
           option: [{
-            planCode: 'sharepoint_account',
+            planCode: isReseller ? 'sharepoint_account_provider_2016' : 'sharepoint_account',
             quantity: quantity || 1,
             configuration: [],
           }],
