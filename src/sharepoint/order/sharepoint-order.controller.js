@@ -8,6 +8,7 @@ angular
       Exchange,
       MicrosoftSharepointLicenseService,
       ouiDatagridService,
+      OvhApiMeVipStatus,
       User,
     ) {
       this.$q = $q;
@@ -16,6 +17,7 @@ angular
       this.Exchange = Exchange;
       this.Sharepoint = MicrosoftSharepointLicenseService;
       this.ouiDatagridService = ouiDatagridService;
+      this.OvhApiMeVipStatus = OvhApiMeVipStatus;
       this.User = User;
     }
 
@@ -27,10 +29,10 @@ angular
         main: 'sharepoint.alerts.main',
       };
 
-      this.canLinkToExchange = true;
+      this.canAssociateToExchange = false;
       this.associateExchange = false;
       this.associatedExchange = null;
-      this.accountsToActivate = [];
+      this.accountsToAssociate = [];
 
       // Indicates that we are activating a SharePoint by coming from an exchange service.
       this.isComingFromAssociatedExchange = false;
@@ -43,14 +45,27 @@ angular
       this.standAloneQuantity = 1;
 
       this.getExchanges()
+        .then(() => this.User.getUser())
+        .then((user) => { this.userSubsidiary = user.ovhSubsidiary; })
+        .then(() => this.checkReseller())
+        .then((isReseller) => {
+          this.isReseller = isReseller;
+          if (isReseller) {
+            this.canAssociateToExchange = false;
+          } else {
+            this.canAssociateToExchange = true;
+            this.associateExchange = true;
+          }
+        })
         .finally(() => {
           this.loaders.init = false;
           this.associatedExchange = this.associatedExchange || _.first(this.exchanges);
           this.getAccounts();
         });
+    }
 
-      this.User.getUser()
-        .then((user) => { this.userSubsidiary = user.ovhSubsidiary; });
+    checkReseller() {
+      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => !!_.get(status, 'web'));
     }
 
     getExchanges() {
@@ -140,7 +155,7 @@ angular
     onAssociateChange(associateExchange) {
       if (!associateExchange) {
         // we need to reset selected accounts if we leave the association interface
-        this.accountsToActivate = [];
+        this.accountsToAssociate = [];
       }
     }
 
@@ -150,19 +165,19 @@ angular
     }
 
     onAccountsSelected(accounts) {
-      this.accountsToActivate = accounts.map(account => account.primaryEmailAddress);
+      this.accountsToAssociate = accounts.map(account => account.primaryEmailAddress);
     }
 
     hasSelectedAccounts() {
-      return this.accountsToActivate.length > 0;
+      return this.accountsToAssociate.length > 0;
     }
 
     getSharepointOrderUrl() {
       if (this.associateExchange) {
-        if (_.has(this.associatedExchange, 'name') && this.accountsToActivate.length >= 1) {
+        if (_.has(this.associatedExchange, 'name') && this.accountsToAssociate.length >= 1) {
           return this.Sharepoint.getSharepointOrderUrl(
             this.associatedExchange.name,
-            this.accountsToActivate,
+            this.accountsToAssociate,
           );
         }
         return '';
