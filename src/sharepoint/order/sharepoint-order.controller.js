@@ -52,7 +52,7 @@ angular
           this.isReseller = isReseller;
 
           // default mode for normal users is to associate
-          if (!isReseller) {
+          if (!isReseller || this.isComingFromAssociatedExchange) {
             this.associateExchange = true;
           }
         })
