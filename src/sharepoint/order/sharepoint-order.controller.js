@@ -29,7 +29,7 @@ angular
         main: 'sharepoint.alerts.main',
       };
 
-      this.canAssociateToExchange = false;
+      this.isReseller = false;
       this.associateExchange = false;
       this.associatedExchange = null;
       this.accountsToAssociate = [];
@@ -50,10 +50,9 @@ angular
         .then(() => this.checkReseller())
         .then((isReseller) => {
           this.isReseller = isReseller;
-          if (isReseller) {
-            this.canAssociateToExchange = false;
-          } else {
-            this.canAssociateToExchange = true;
+
+          // default mode for normal users is to associate
+          if (!isReseller) {
             this.associateExchange = true;
           }
         })
@@ -185,7 +184,9 @@ angular
 
       const quantity = parseInt(this.standAloneQuantity, 10);
       if (quantity && quantity >= 1 && quantity <= 30) {
-        return this.Sharepoint.getSharepointStandaloneOrderUrl(quantity, this.isReseller);
+        return this.isReseller
+          ? this.Sharepoint.getSharepointProviderOrderUrl(quantity)
+          : this.Sharepoint.getSharepointStandaloneOrderUrl(quantity);
       }
 
       return '';

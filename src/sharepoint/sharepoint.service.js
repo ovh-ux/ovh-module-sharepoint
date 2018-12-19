@@ -191,7 +191,7 @@
        *
        * @param {number} quantity
        */
-      getSharepointStandaloneOrderUrl(quantity, isReseller) {
+      getSharepointStandaloneOrderUrl(quantity) {
         if (_.isEmpty(this.orderBaseUrl)) {
           return null;
         }
@@ -201,13 +201,46 @@
           planCode: 'sharepoint_platform',
           configuration: [],
           option: [{
-            planCode: isReseller ? 'sharepoint_account_provider_2016' : 'sharepoint_account',
+            planCode: 'sharepoint_account',
             quantity: quantity || 1,
             configuration: [],
           }],
         }];
 
         return `${this.orderBaseUrl}#/new/express/resume?productId=${productId}&products=${JSURL.stringify(products)}`;
+      }
+
+      /**
+       *
+       * @param {number} quantity
+       */
+      getSharepointProviderOrderUrl(quantity) {
+        if (_.isEmpty(this.orderBaseUrl)) {
+          return null;
+        }
+
+        const products = [{
+          productId: 'microsoft',
+          planCode: 'activedirectory-provider',
+          configuration: [],
+          option: [
+            {
+              planCode: 'sharepoint-provider',
+            },
+            {
+              planCode: 'activedirectory-account-provider',
+              quantity: quantity || 1,
+              option: [
+                {
+                  planCode: 'sharepoint-account-provider-2016',
+                  quantity: quantity || 1,
+                },
+              ],
+            },
+          ],
+        }];
+
+        return `${this.orderBaseUrl}#/express/review?products=${JSURL.stringify(products)}`;
       }
 
       /**
