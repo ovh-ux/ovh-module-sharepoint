@@ -1,3 +1,12 @@
+## [7.0.7](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.6...v7.0.7) (2018-12-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([dc17642](https://github.com/ovh-ux/ovh-module-sharepoint/commit/dc17642))
+
+
+
 ## [7.0.6](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.5...v7.0.6) (2018-12-14)
 
 
