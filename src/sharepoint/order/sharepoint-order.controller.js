@@ -32,6 +32,7 @@ angular
       this.isReseller = false;
       this.associateExchange = false;
       this.associatedExchange = null;
+      this.exchanges = null;
       this.accountsToAssociate = [];
 
       // Indicates that we are activating a SharePoint by coming from an exchange service.
@@ -52,7 +53,8 @@ angular
           this.isReseller = isReseller;
 
           // default mode for normal users is to associate
-          if (!isReseller || this.isComingFromAssociatedExchange) {
+          if ((!isReseller || this.isComingFromAssociatedExchange)
+              && this.exchanges && this.exchanges.length > 0) {
             this.associateExchange = true;
           }
         })

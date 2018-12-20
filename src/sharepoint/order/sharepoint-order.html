@@ -45,7 +45,7 @@
                     </div>
 
                     <!-- Order linked accounts -->
-                    <div data-ng-if="$ctrl.associateExchange">
+                    <div data-ng-if="$ctrl.associateExchange && $ctrl.exchanges && $ctrl.exchanges.length > 0">
                         <oui-message data-type="info"
                                      data-dismissable="false"
                                      data-ng-if="$ctrl.isReseller">
