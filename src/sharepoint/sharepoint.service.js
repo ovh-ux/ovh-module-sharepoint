@@ -214,7 +214,7 @@
        *
        * @param {number} quantity
        */
-      getSharepointProviderOrderUrl(quantity) {
+      getSharepointProviderOrderUrl(quantity = 1) {
         if (_.isEmpty(this.orderBaseUrl)) {
           return null;
         }
@@ -229,11 +229,11 @@
             },
             {
               planCode: 'activedirectory-account-provider',
-              quantity: quantity || 1,
+              quantity,
               option: [
                 {
                   planCode: 'sharepoint-account-provider-2016',
-                  quantity: quantity || 1,
+                  quantity,
                 },
               ],
             },

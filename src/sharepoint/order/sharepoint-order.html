@@ -8,28 +8,33 @@
 
         <oui-spinner data-size="l" data-ng-if="$ctrl.loaders.init"></oui-spinner>
 
-        <div class="row" data-ng-show="!$ctrl.loaders.init">
+        <div class="row" data-ng-if="!$ctrl.loaders.init">
             <div class="col-md-9 col-lg-6">
                 <p data-translate="sharepoint_activate_intro_text"></p>
 
-                <oui-checkbox class="my-5"  id="standAlone" name="standAlone"
-                    data-ng-if="$ctrl.exchanges.length > 0 && $ctrl.userSubsidiary === 'FR'"
-                    data-model="$ctrl.associateExchange"
-                    data-on-change="$ctrl.onAssociateChange(modelValue)"
-                    data-text="{{:: 'sharepoint_activate_intro_warning_associated_label' | translate }}">
-                </oui-checkbox>
+                <oui-radio-group class="my-5" id="standAlone" name="standAlone"
+                                 data-model="$ctrl.associateExchange"
+                                 data-ng-if="$ctrl.exchanges.length > 0 && $ctrl.userSubsidiary === 'FR'"
+                                 data-on-change="$ctrl.onAssociateChange(modelValue)">
+                    <oui-radio data-value="false">
+                        <span data-translate="{{ $ctrl.isReseller ? 'sharepoint_activate_mode_standalone_provider' : 'sharepoint_activate_mode_standalone' }}"></span>
+                    </oui-radio>
+                    <oui-radio data-value="true">
+                        <span data-translate="sharepoint_activate_mode_associate"></span>
+                    </oui-radio>
+                </oui-radio-group>
 
                 <form name="$ctrl.activateSharepointForm">
 
                     <!-- Order standalone accounts -->
-                    <div data-ng-show="!$ctrl.associateExchange">
+                    <div data-ng-if="!$ctrl.associateExchange">
                         <oui-message data-type="info"
                                      data-dismissable="false"
                                      data-ng-if="!$ctrl.isReseller">
                             <span data-translate="sharepoint_activate_intro_warning_associated"></span>
                         </oui-message>
 
-                        <oui-field data-label="{{ 'sharepoint_activate_standalone_accounts_number' | translate }}">
+                        <oui-field data-label="{{:: 'sharepoint_activate_standalone_accounts_number' | translate }}">
                             <oui-numeric data-id="standAloneNumber"
                                          data-name="standAloneNumber"
                                          data-model="$ctrl.standAloneQuantity"
@@ -40,8 +45,14 @@
                     </div>
 
                     <!-- Order linked accounts -->
-                    <div data-ng-if="!!$ctrl.associateExchange">
-                        <oui-field data-label="{{ 'sharepoint_activate_which_service_label' | translate }}">
+                    <div data-ng-if="$ctrl.associateExchange">
+                        <oui-message data-type="info"
+                                     data-dismissable="false"
+                                     data-ng-if="$ctrl.isReseller">
+                            <span data-translate="sharepoint_activate_intro_warning_reseller"></span>
+                        </oui-message>
+
+                        <oui-field data-label="{{:: 'sharepoint_activate_which_service_label' | translate }}">
                             <oui-select data-id="sharepointAssociatedExchange"
                                         data-name="sharepointAssociatedExchange"
                                         data-on-change="$ctrl.refreshAccounts(modelValue)"
@@ -50,7 +61,7 @@
                                         data-items="$ctrl.exchanges"
                                         data-match="displayName"
                                         data-required>
-                                <span ng-bind="$item.displayName"></span>
+                                <span data-ng-bind="$item.displayName"></span>
                             </oui-select>
                         </oui-field>
 
@@ -58,10 +69,10 @@
                                       data-rows-loader="$ctrl.getAccounts()"
                                       data-row-loader="$ctrl.getAccount($row)"
                                       data-on-row-select="$ctrl.onAccountsSelected($rows)"
-                                      data-selectable-rows>
-                            <oui-column data-title="'sharepoint_accounts_userPrincipalName' | translate"
-                                        data-property="primaryEmailAddress"
-                                        data-empty-placeholder="{{ 'sharepoint_accounts_empty' | translate }}">
+                                      data-selectable-rows
+                                      data-empty-placeholder="{{:: 'sharepoint_accounts_empty' | translate }}">
+                            <oui-column data-title=":: 'sharepoint_accounts_userPrincipalName' | translate"
+                                        data-property="primaryEmailAddress">
                             </oui-column>
                         </oui-datagrid>
                     </div>

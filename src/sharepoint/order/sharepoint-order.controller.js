@@ -46,7 +46,7 @@ angular
 
       this.getExchanges()
         .then(() => this.User.getUser())
-        .then((user) => { this.userSubsidiary = user.ovhSubsidiary; })
+        .then(({ ovhSubsidiary }) => { this.userSubsidiary = ovhSubsidiary; })
         .then(() => this.checkReseller())
         .then((isReseller) => {
           this.isReseller = isReseller;
@@ -58,13 +58,13 @@ angular
         })
         .finally(() => {
           this.loaders.init = false;
-          this.associatedExchange = this.associatedExchange || _.first(this.exchanges);
+          this.associatedExchange = this.associatedExchange || _.head(this.exchanges);
           this.getAccounts();
         });
     }
 
     checkReseller() {
-      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => !!_.get(status, 'web'));
+      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => _.get(status, 'web', false));
     }
 
     getExchanges() {
@@ -142,12 +142,12 @@ angular
       }));
     }
 
-    getAccount(row) {
+    getAccount({ email }) {
       return this.Exchange
         .getAccount({
           organizationName: this.associatedExchange.organization,
           exchangeService: this.associatedExchange.domain,
-          primaryEmailAddress: row.email,
+          primaryEmailAddress: email,
         });
     }
 
@@ -164,7 +164,7 @@ angular
     }
 
     onAccountsSelected(accounts) {
-      this.accountsToAssociate = accounts.map(account => account.primaryEmailAddress);
+      this.accountsToAssociate = accounts.map(({ primaryEmailAddress }) => primaryEmailAddress);
     }
 
     hasSelectedAccounts() {
@@ -183,7 +183,7 @@ angular
       }
 
       const quantity = parseInt(this.standAloneQuantity, 10);
-      if (quantity && quantity >= 1 && quantity <= 30) {
+      if (quantity >= 1 && quantity <= 30) {
         return this.isReseller
           ? this.Sharepoint.getSharepointProviderOrderUrl(quantity)
           : this.Sharepoint.getSharepointStandaloneOrderUrl(quantity);
