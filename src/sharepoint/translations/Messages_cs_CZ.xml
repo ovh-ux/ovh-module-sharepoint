@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="sharepoint_license_common_or" qtlid="366267">Nebo</translation>
-   <translation id="sharepoint_common_open_new_tab">Ouvre une nouvelle fenêtre</translation>
+   <translation id="sharepoint_common_open_new_tab" qtlid="509586">Ouvre une nouvelle fenêtre</translation>
    <translation id="sharepoint_license_foundation" qtlid="297059">Foundation</translation>
    <translation id="sharepoint_license_standard" qtlid="48998">Standard</translation>
    <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
