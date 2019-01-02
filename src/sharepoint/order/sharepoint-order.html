@@ -14,7 +14,7 @@
 
                 <oui-radio-group class="my-5" id="standAlone" name="standAlone"
                                  data-model="$ctrl.associateExchange"
-                                 data-ng-if="$ctrl.exchanges.length > 0 && $ctrl.userSubsidiary === 'FR'"
+                                 data-ng-if="$ctrl.canAssociateExchange()"
                                  data-on-change="$ctrl.onAssociateChange(modelValue)">
                     <oui-radio data-value="false">
                         <span data-translate="{{ $ctrl.isReseller ? 'sharepoint_activate_mode_standalone_provider' : 'sharepoint_activate_mode_standalone' }}"></span>
@@ -30,7 +30,7 @@
                     <div data-ng-if="!$ctrl.associateExchange">
                         <oui-message data-type="info"
                                      data-dismissable="false"
-                                     data-ng-if="!$ctrl.isReseller">
+                                     data-ng-if="!$ctrl.isReseller && $ctrl.canAssociateExchange()">
                             <span data-translate="sharepoint_activate_intro_warning_associated"></span>
                         </oui-message>
 
@@ -45,7 +45,7 @@
                     </div>
 
                     <!-- Order linked accounts -->
-                    <div data-ng-if="$ctrl.associateExchange && $ctrl.exchanges && $ctrl.exchanges.length > 0">
+                    <div data-ng-if="$ctrl.associateExchange && $ctrl.canAssociateExchange()">
                         <oui-message data-type="info"
                                      data-dismissable="false"
                                      data-ng-if="$ctrl.isReseller">

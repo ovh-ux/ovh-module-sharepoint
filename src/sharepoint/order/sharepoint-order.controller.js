@@ -65,6 +65,10 @@ angular
         });
     }
 
+    canAssociateExchange() {
+      return this.exchanges && this.exchanges.length > 0 && this.userSubsidiary === 'FR';
+    }
+
     checkReseller() {
       return this.OvhApiMeVipStatus.v6().get().$promise.then(status => _.get(status, 'web', false));
     }
