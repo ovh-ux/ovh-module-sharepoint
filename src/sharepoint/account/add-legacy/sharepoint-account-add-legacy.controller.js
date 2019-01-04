@@ -1,23 +1,19 @@
 angular
   .module('Module.sharepoint.controllers')
-  .controller('SharepointAccountAddCtrl', class SharepointAccountAddCtrl {
-    constructor(
-      $scope,
-      $stateParams,
-      $translate,
-      MicrosoftSharepointLicenseService,
-      MicrosoftSharepointOrderService,
-    ) {
+  .controller('SharepointAccountAddLegacyCtrl', class SharepointAccountAddLegacyCtrl {
+    constructor($scope, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
+      this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
-      this.sharepointOrder = MicrosoftSharepointOrderService;
     }
 
     $onInit() {
       this.loading = false;
       this.retrievingSharepointServiceOptions();
+
+      this.$scope.submit = () => this.submit();
     }
 
     retrievingSharepointServiceOptions() {
