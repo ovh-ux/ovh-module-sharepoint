@@ -5,42 +5,27 @@ angular
       $scope,
       $stateParams,
       $translate,
-      MicrosoftSharepointLicenseService,
       MicrosoftSharepointOrderService,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
-      this.sharepointService = MicrosoftSharepointLicenseService;
       this.sharepointOrder = MicrosoftSharepointOrderService;
     }
 
     $onInit() {
-      this.loading = false;
-      this.retrievingSharepointServiceOptions();
-    }
-
-    retrievingSharepointServiceOptions() {
       this.loading = true;
-      return this.sharepointService.retrievingSharepointServiceOptions(this.$stateParams.productId)
-        .then((options) => {
-          this.optionsList = options;
-        })
-        .catch((err) => {
-          this.$scope.resetAction();
-          this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_action_sharepoint_add_error_message'), err, this.$scope.alerts.main);
-        })
-        .finally(() => {
+      this.prices = null;
+      this.sharepointOrder.creatingCart()
+        .then(cartId => this.sharepointOrder.fetchingPrices(cartId))
+        .then((prices) => {
+          this.price = prices.get('P1M');
           this.loading = false;
         });
     }
 
-    static getPrice(option) {
-      return _.round(_.get(option, 'prices[0].price.value', 0) * _.get(option, 'prices[0].quantity', 0), 2);
-    }
-
-    static getCurrency(option) {
-      return _.get(option, 'prices[0].price.currencyCode') === 'EUR' ? '&#0128;' : _.get(option, 'prices[0].price.currencyCode');
+    getPriceText(quantity) {
+      return `${this.price.value * quantity} ${this.price.currencyCode === 'EUR' ? '&#0128;' : this.price.currencyCode}`;
     }
 
     submit() {
