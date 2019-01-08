@@ -192,6 +192,8 @@
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Aucune</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Attention! Ce choix implique que le service va expirer à terme et les données seront perdues. Il sera alors impossible de récupérer les données du compte.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Vous allez changer la période de renouvellement de vos comptes :</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure">Une erreur est survenue lors du chargement de la période de renouvellement automatique.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Mode de facturation</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Mot de passe trop simple.</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Exchange.</translation>
