@@ -37,11 +37,11 @@ angular
           )),
         )
           .then(() => {
-            this.alerter.success(this.$translate.instant('exchange_update_billing_periode_success'), this.$scope.alerts.main);
+            this.alerter.success(this.$translate.instant('sharepoint_exchange_update_billing_periode_success'), this.$scope.alerts.main);
           })
           .catch((err) => {
             _.set(err, 'type', err.type || 'ERROR');
-            this.alerter.alertFromSWS(this.$translate.instant('exchange_update_billing_periode_failure'), err, this.$scope.alerts.main);
+            this.alerter.alertFromSWS(this.$translate.instant('sharepoint_exchange_update_billing_periode_failure'), err, this.$scope.alerts.main);
           })
           .finally(() => {
             this.$scope.reset();
