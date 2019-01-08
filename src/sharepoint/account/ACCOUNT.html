@@ -126,12 +126,14 @@
                     data-translate="sharepoint_accounts_action_reset_admin"
                     data-ng-click="accountsCtrl.resetAdminRights()">
             </button>
-            <button class="btn btn-block btn-default text-wrap" title="{{ 'sharepoint_exchange_ACTION_order_accounts_button' | translate }}"
+            <button class="btn btn-block btn-default text-wrap" type="button"
+                    title="{{ 'sharepoint_exchange_ACTION_order_accounts_button' | translate }}"
                     data-translate="ORDER LEGACY"
                     data-ng-click="setAction('account/add-legacy/sharepoint-account-add-legacy', {})"
                     data-ng-if="accountsCtrl.isStandAlone">
             </button>
-            <button class="btn btn-block btn-default text-wrap" title="{{ 'sharepoint_exchange_ACTION_order_accounts_button' | translate }}"
+            <button class="btn btn-block btn-default text-wrap" type="button"
+                    title="{{ 'sharepoint_exchange_ACTION_order_accounts_button' | translate }}"
                     data-translate="sharepoint_exchange_ACTION_order_accounts_button"
                     data-ng-click="setAction('account/add/sharepoint-account-add', {})"
                     data-ng-if="accountsCtrl.isStandAlone">

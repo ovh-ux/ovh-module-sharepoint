@@ -96,17 +96,6 @@
       }
 
       /**
-       * Is a sharepoint migrated to the new billing platform?
-       * @param {string} serviceName
-       */
-      isSharepointMigrated(serviceName) {
-        return this.OvhHttp
-          .get(`/msServices/${serviceName}/sharepoint/billingMigrated`, {
-            rootPath: 'apiv6',
-          });
-      }
-
-      /**
        * Update sharepoint
        * @param {string} serviceName
        * @param {string|null} displayName

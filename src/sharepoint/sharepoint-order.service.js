@@ -26,11 +26,11 @@ angular
         .then(({ cartId }) => cartId);
     }
 
-    fetchingPrices(cartId, planCode) {
+    fetchingPrices(cartId, planCode, subPlanCode) {
       return this.OvhApiOrder.Cart().Microsoft().v6()
         .getOptions({ cartId, planCode }).$promise
         .then(offers => offers
-          .find({ planCode })
+          .find(offer => offer.planCode === subPlanCode)
           .prices
           // non-zero priceInUcents means the price is usable
           .filter(price => price.priceInUcents !== 0)

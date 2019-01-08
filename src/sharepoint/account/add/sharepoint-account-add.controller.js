@@ -15,17 +15,26 @@ angular
 
     $onInit() {
       this.loading = true;
-      this.prices = null;
+      this.price = null;
+      this.quantity = 1;
       this.sharepointOrder.creatingCart()
-        .then(cartId => this.sharepointOrder.fetchingPrices(cartId))
+        .then(cartId => this.sharepointOrder.fetchingPrices(
+          cartId,
+          'activedirectory-account-provider',
+          'sharepoint-account-provider-2016',
+        ))
         .then((prices) => {
-          this.price = prices.get('P1M');
+          this.price = _.get(prices, 'P1M');
           this.loading = false;
         });
     }
 
-    getPriceText(quantity) {
-      return `${this.price.value * quantity} ${this.price.currencyCode === 'EUR' ? '&#0128;' : this.price.currencyCode}`;
+    getTotalPrice() {
+      return _.round(_.get(this.price, 'value', 0) * this.quantity, 2);
+    }
+
+    getCurrency() {
+      return _.get(this.price, 'currencyCode') === 'EUR' ? '&#0128;' : _.get(this.price, 'currencyCode');
     }
 
     submit() {
