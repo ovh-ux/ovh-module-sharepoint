@@ -192,6 +192,8 @@
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Tuščia</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Dėmesio! Paslauga nustos galioti numatytą galiojimo pabaigos datą, po kurios visi duomenys bus pašalinti. Jūs nebegalėsite atkurti paskyros duomenų.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Jūs keisite savo paskyrų atnaujinimo laikotarpį:</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure">Une erreur est survenue lors du chargement de la période de renouvellement automatique.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Apmokėjimo būdas</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Per daug paprastas slaptažodis</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Slaptažodžio pavadinime negali būti viso ar dalies skelbiamo pavadinimo ar Exchange prisijungimo vardo.</translation>
