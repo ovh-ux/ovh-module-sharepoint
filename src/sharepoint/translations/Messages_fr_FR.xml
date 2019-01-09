@@ -8,6 +8,7 @@
    <translation id="sharepoint_dashboard_offer_type_standalone" qtlid="347340">Standalone</translation>
    <translation id="sharepoint_dashboard_guides_help_label" qtlid="297085">Besoin d'aide pour configurer votre SharePoint ?</translation>
    <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Le service Exchange associé</translation>
+   <translation id="sharepoint_dashboard_offer_account">Compte SharePoint</translation>
 
    <translation id="sharepoint_dashboard_address" qtlid="258938">Adresse du serveur</translation>
    <translation id="sharepoint_dashboard_type" qtlid="297111">Type du serveur</translation>

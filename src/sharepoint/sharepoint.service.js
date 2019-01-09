@@ -172,7 +172,7 @@
        * @param {string} serviceName
        * @param {number} number
        */
-      getSharepointStandaloneNewAccountOrderUrl(serviceName, number) {
+      getSharepointStandaloneNewAccountOrderLegacyUrl(serviceName, number) {
         if (_.isEmpty(this.orderBaseUrl)) {
           return null;
         }
@@ -185,6 +185,58 @@
         }];
 
         return `${this.orderBaseUrl}#/new/express/resume?products=${JSURL.stringify(products)}`;
+      }
+
+      /**
+       *
+       * @param {string} serviceName
+       * @param {number} quantity
+       */
+      getSharepointStandaloneNewAccountOrderUrl(serviceName, quantity) {
+        if (_.isEmpty(this.orderBaseUrl)) {
+          return null;
+        }
+
+        const products = [{
+          productId: 'microsoft',
+          planCode: 'activedirectory-account-hosted',
+          serviceName,
+          configuration: [],
+          option: [
+            {
+              planCode: 'sharepoint-account-hosted-2016',
+              quantity,
+            },
+          ],
+        }];
+
+        return `${this.orderBaseUrl}#/express/review?products=${JSURL.stringify(products)}`;
+      }
+
+      /**
+       *
+       * @param {string} serviceName
+       * @param {number} quantity
+       */
+      getSharepointProviderNewAccountOrderUrl(serviceName, quantity) {
+        if (_.isEmpty(this.orderBaseUrl)) {
+          return null;
+        }
+
+        const products = [{
+          productId: 'microsoft',
+          planCode: 'activedirectory-account-provider',
+          serviceName,
+          configuration: [],
+          option: [
+            {
+              planCode: 'sharepoint-account-provider-2016',
+              quantity,
+            },
+          ],
+        }];
+
+        return `${this.orderBaseUrl}#/express/review?products=${JSURL.stringify(products)}`;
       }
 
       /**
