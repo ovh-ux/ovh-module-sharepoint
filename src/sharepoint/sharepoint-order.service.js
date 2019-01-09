@@ -13,8 +13,7 @@ angular
 
     fetchingDoesServiceUseAgora(serviceName) {
       return this.OvhApiMsServices.Sharepoint().v6()
-        .doesServiceUseAgora({ serviceName }).$promise
-        .then(({ serviceUsesAgora }) => serviceUsesAgora);
+        .doesServiceUseAgora({ serviceName }).$promise;
     }
 
     creatingCart() {

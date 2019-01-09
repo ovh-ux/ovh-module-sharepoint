@@ -3,7 +3,7 @@ angular
   .controller('SharepointAccountsCtrl', class SharepointAccountsCtrl {
     constructor(
       $scope, $location, $stateParams, $timeout, $translate,
-      Alerter, MicrosoftSharepointLicenseService, Poller,
+      Alerter, MicrosoftSharepointLicenseService, MicrosoftSharepointOrderService, Poller,
     ) {
       this.$scope = $scope;
       this.$location = $location;
@@ -12,6 +12,7 @@ angular
       this.$translate = $translate;
       this.alerter = Alerter;
       this.sharepointService = MicrosoftSharepointLicenseService;
+      this.sharepointOrder = MicrosoftSharepointOrderService;
       this.pollerService = Poller;
     }
 
@@ -21,6 +22,7 @@ angular
       this.accounts = [];
       this.exchangeId = this.$stateParams.exchangeId;
       this.hasResult = false;
+      this.usesAgora = null;
       this.loaders = {
         init: true,
         search: false,
@@ -31,8 +33,12 @@ angular
           this.isStandAlone = true;
         });
 
+      this.getSharepoint()
+        .then(() => this.sharepointOrder.fetchingDoesServiceUseAgora(this.exchangeId))
+        .then(({ billingMigrated }) => {
+          this.usesAgora = billingMigrated;
+        });
 
-      this.getSharepoint();
       this.getAccountIds();
 
       this.$scope.$on('$destroy', () => {
