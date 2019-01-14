@@ -99,6 +99,7 @@
    <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Ajouter un compte SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Ajouter des comptes SharePoint supplémentaires à votre plateforme :</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">Un bon de commande va être généré. Les services seront activés suite au paiement.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_prorata">Le tarif affiché ci-dessus représente le montant mensuel fixe pour un compte SharePoint. Il peut varier, au prorata de la date de votre commande.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/mois</translation>
    <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Votre demande a été prise en compte. Vous allez être redirigé vers l'interface de paiement OVH.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Une erreur est survenue lors de la récupération des informations nécessaires à la commande.</translation>
