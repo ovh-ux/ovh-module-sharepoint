@@ -129,12 +129,12 @@
             <button class="btn btn-block btn-default text-wrap" type="button"
                     data-translate="sharepoint_exchange_ACTION_order_accounts_button"
                     data-ng-click="setAction('account/add-legacy/sharepoint-account-add-legacy', {})"
-                    data-ng-if="$ctrl.isStandAlone && $ctrl.usesAgora !== null && !$ctrl.usesAgora">
+                    data-ng-if="$ctrl.isStandAlone && !$ctrl.loaders.usesAgora && !$ctrl.usesAgora">
             </button>
             <button class="btn btn-block btn-default text-wrap" type="button"
                     data-translate="sharepoint_exchange_ACTION_order_accounts_button"
                     data-ng-click="setAction('account/add/sharepoint-account-add', {})"
-                    data-ng-if="$ctrl.isStandAlone && $ctrl.usesAgora">
+                    data-ng-if="$ctrl.isStandAlone && !$ctrl.loaders.usesAgora && $ctrl.usesAgora">
             </button>
         </div>
     </div>

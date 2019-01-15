@@ -26,6 +26,7 @@ angular
       this.loaders = {
         init: true,
         search: false,
+        usesAgora: true,
       };
 
       this.sharepointService.getAssociatedExchangeService(this.exchangeId)
@@ -37,6 +38,9 @@ angular
         .then(() => this.sharepointOrder.fetchingDoesServiceUseAgora(this.exchangeId))
         .then(({ billingMigrated }) => {
           this.usesAgora = billingMigrated;
+        })
+        .finally(() => {
+          this.loaders.usesAgora = false;
         });
 
       this.getAccountIds();
