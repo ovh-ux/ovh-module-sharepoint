@@ -160,12 +160,17 @@ angular
     onAssociateChange(associateExchange) {
       if (!associateExchange) {
         // we need to reset selected accounts if we leave the association interface
-        this.accountsToAssociate = [];
+        this.resetAccountsToAssociate();
       }
+    }
+
+    resetAccountsToAssociate() {
+      this.accountsToAssociate = [];
     }
 
     refreshAccounts(exchange) {
       this.associatedExchange = exchange;
+      this.resetAccountsToAssociate();
       this.ouiDatagridService.refresh('exchangeAccountsDatagrid');
     }
 
