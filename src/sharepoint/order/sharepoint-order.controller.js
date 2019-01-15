@@ -199,6 +199,8 @@ angular
     }
 
     goToSharepointOrder() {
-      this.$window.open(this.getSharepointOrderUrl(), '_blank', 'noopener');
+      const win = this.$window.open('', '_blank');
+      win.opener = null;
+      win.location = this.getSharepointOrderUrl();
     }
   });

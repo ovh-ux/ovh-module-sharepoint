@@ -42,9 +42,12 @@ angular
     submit() {
       this.alerter.success(this.$translate.instant('sharepoint_account_action_sharepoint_add_success_message'), this.$scope.alerts.main);
       this.$scope.resetAction();
-      window.open(this.sharepointService.getSharepointStandaloneNewAccountOrderLegacyUrl(
+
+      const win = window.open('', '_blank');
+      win.opener = null;
+      win.location = this.sharepointService.getSharepointStandaloneNewAccountOrderLegacyUrl(
         this.$stateParams.productId,
         this.optionsList[0].prices[0].quantity,
-      ));
+      );
     }
   });

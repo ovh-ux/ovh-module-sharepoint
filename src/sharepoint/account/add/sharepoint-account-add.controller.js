@@ -61,9 +61,8 @@ angular
 
       this.alerter.success(this.$translate.instant('sharepoint_account_action_sharepoint_add_success_message'), this.$scope.alerts.main);
       this.$scope.resetAction();
-      window.open(getOrderUrl(
-        this.$stateParams.exchangeId,
-        this.quantity,
-      ), '_blank', 'noopener');
+      const win = window.open('', '_blank');
+      win.opener = null;
+      win.location = getOrderUrl(this.$stateParams.exchangeId, this.quantity);
     }
   });
