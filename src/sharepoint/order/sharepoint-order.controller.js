@@ -171,7 +171,7 @@ angular
     refreshAccounts(exchange) {
       this.associatedExchange = exchange;
       this.resetAccountsToAssociate();
-      this.ouiDatagridService.refresh('exchangeAccountsDatagrid');
+      this.ouiDatagridService.refresh('exchangeAccountsDatagrid', true);
     }
 
     onAccountsSelected(accounts) {
