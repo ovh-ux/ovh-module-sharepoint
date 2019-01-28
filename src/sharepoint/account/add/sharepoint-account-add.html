@@ -20,7 +20,7 @@
                         'has-success': addAccountCtrl.addAccountForm.$valid && addAccountCtrl.addAccountForm.$dirty}">
                     <div class="clearfix">
                         <label class="control-label col-md-4" for="optionPricesQuantity-{{$index}}"
-                               data-ng-bind="option.productName"></label>
+                               data-translate="{{ 'sharepoint_accounts_action_sharepoint_add_product_' + option.planCode }}"></label>
                         <div class="col-md-3">
                             <div data-wuc-increment-number
                                  data-ng-model="option.prices[0].quantity"

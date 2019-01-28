@@ -102,6 +102,7 @@
    <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Votre demande a été prise en compte. Vous allez être redirigé vers l'interface de paiement OVH.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Une erreur est survenue lors de la récupération des informations nécessaires à la commande.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">Le nombre de comptes ajoutés doit être compris entre {0} et {1}</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_product_sharepoint_account">Compte Sharepoint</translation>
 
    <translation id="sharepoint_action_reset_search" qtlid="279158">Supprimer la recherche</translation>
 
