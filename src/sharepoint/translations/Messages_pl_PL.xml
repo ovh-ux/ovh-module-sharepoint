@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="sharepoint_license_common_or" qtlid="366267">lub</translation>
-   <translation id="sharepoint_common_open_new_tab">Ouvre une nouvelle fenêtre</translation>
+   <translation id="sharepoint_common_open_new_tab" qtlid="509586">Otwórz nowe okno</translation>
    <translation id="sharepoint_license_foundation" qtlid="297059">Foundation</translation>
    <translation id="sharepoint_license_standard" qtlid="48998">Standardowa</translation>
    <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
@@ -192,6 +192,8 @@
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Brak</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Uwaga! Ten wybór sprawi, że usługa wygaśnie a dane zostaną usunięte. Nie będziesz mógł odzyskać danych z konta.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Zmienisz okres odnowienia dla kont:</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure">Une erreur est survenue lors du chargement de la période de renouvellement automatique.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Sposób płatności</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Zbyt proste hasło</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Hasło nie może zawierać części lub całej nazwy do wyświetlenia lub loginu Exchange.</translation>

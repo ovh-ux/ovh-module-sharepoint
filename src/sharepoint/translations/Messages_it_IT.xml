@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="sharepoint_license_common_or" qtlid="366267">o</translation>
-   <translation id="sharepoint_common_open_new_tab">Ouvre une nouvelle fenêtre</translation>
+   <translation id="sharepoint_common_open_new_tab" qtlid="509586">Apri una nuova finestra</translation>
    <translation id="sharepoint_license_foundation" qtlid="297059">Foundation</translation>
    <translation id="sharepoint_license_standard" qtlid="48998">Standard</translation>
    <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
@@ -192,6 +192,8 @@
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Nessuno</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Attenzione! Questa opzione comporta la scadenza del servizio al termine e la perdita dei dati. Sarà impossibile recuperare i dati dell'account.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Stai per modificare il periodo di rinnovo automatico dei tuoi account:</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure">Une erreur est survenue lors du chargement de la période de renouvellement automatique.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Modalità di fatturazione.</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Password troppo semplice</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">La password non può contenere il nome da visualizzare o il login Exchange, né parte di essi.</translation>
