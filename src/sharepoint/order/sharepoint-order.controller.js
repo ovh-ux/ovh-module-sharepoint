@@ -1,6 +1,7 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointOrderCtrl', class SharepointOrderCtrl {
+    /* @ngInject */
     constructor(
       $q,
       $stateParams,

@@ -9,7 +9,7 @@ angular.module('Module.sharepoint', [
 ]).config([
   '$stateProvider', ($stateProvider) => {
     const resolve = {
-      navigationInformations: ['Navigator', '$rootScope', (Navigator, $rootScope) => {
+      navigationInformations: /* @ngInject */['Navigator', '$rootScope', (Navigator, $rootScope) => {
         _.set($rootScope, 'currentSectionInformation', 'sharepoint');
         return Navigator.setNavigationInformation({
           leftMenuVisible: true,

@@ -1,6 +1,7 @@
 angular
   .module('Module.sharepoint.services')
   .service('MicrosoftSharepointOrderService', class MicrosoftSharepointOrderService {
+    /* @ngInject */
     constructor(
       OvhApiMsServices,
       OvhApiOrder,
