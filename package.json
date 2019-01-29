@@ -1,6 +1,6 @@
 {
   "name": "ovh-module-sharepoint",
-  "version": "7.0.8",
+  "version": "7.1.0",
   "description": "Sharepoint module.",
   "keywords": [
     "angular",
