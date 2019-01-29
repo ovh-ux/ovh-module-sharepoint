@@ -1,17 +1,25 @@
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointOrderCtrl', class SharepointOrderCtrl {
+    /* @ngInject */
     constructor(
-      $scope, $q, $stateParams,
-      constants, Exchange, MicrosoftSharepointLicenseService, User,
+      $q,
+      $stateParams,
+      $window,
+      Exchange,
+      MicrosoftSharepointLicenseService,
+      ouiDatagridService,
+      OvhApiMeVipStatus,
+      User,
     ) {
-      this.$scope = $scope;
       this.$q = $q;
       this.$stateParams = $stateParams;
-      this.constants = constants;
-      this.exchangeService = Exchange;
-      this.sharepointService = MicrosoftSharepointLicenseService;
-      this.userService = User;
+      this.$window = $window;
+      this.Exchange = Exchange;
+      this.Sharepoint = MicrosoftSharepointLicenseService;
+      this.ouiDatagridService = ouiDatagridService;
+      this.OvhApiMeVipStatus = OvhApiMeVipStatus;
+      this.User = User;
     }
 
     $onInit() {
@@ -22,33 +30,54 @@ angular
         main: 'sharepoint.alerts.main',
       };
 
+      this.isReseller = false;
+      this.associateExchange = false;
       this.associatedExchange = null;
+      this.exchanges = null;
+      this.accountsToAssociate = [];
+
       // Indicates that we are activating a SharePoint by coming from an exchange service.
-      this.isCommingFromAssociatedExchange = false;
+      this.isComingFromAssociatedExchange = false;
+
       this.loaders = {
         init: true,
+        accounts: true,
       };
-      this.worldPart = this.constants.target;
-      this.associateExchange = true;
+
       this.standAloneQuantity = 1;
-      this.accountsToActivate = [];
 
       this.getExchanges()
+        .then(() => this.User.getUser())
+        .then(({ ovhSubsidiary }) => { this.userSubsidiary = ovhSubsidiary; })
+        .then(() => this.checkReseller())
+        .then((isReseller) => {
+          this.isReseller = isReseller;
+
+          // default mode for normal users is to associate
+          if ((!isReseller || this.isComingFromAssociatedExchange)
+              && this.exchanges && this.exchanges.length > 0) {
+            this.associateExchange = true;
+          }
+        })
         .finally(() => {
           this.loaders.init = false;
-          this.associatedExchange = _.first(this.exchanges);
+          this.associatedExchange = this.associatedExchange || _.head(this.exchanges);
           this.getAccounts();
         });
+    }
 
-      this.userService.getUser()
-        .then((user) => { this.userSubsidiary = user.ovhSubsidiary; });
+    canAssociateExchange() {
+      return this.exchanges && this.exchanges.length > 0 && this.userSubsidiary === 'FR';
+    }
+
+    checkReseller() {
+      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => _.get(status, 'web', false));
     }
 
     getExchanges() {
-      return this.sharepointService.getExchangeServices()
+      return this.Sharepoint.getExchangeServices()
         .then(exchanges => _.map(exchanges, (exchange) => {
           const newExchange = angular.copy(exchange);
-
           newExchange.domain = newExchange.name;
           return newExchange;
         }))
@@ -76,7 +105,7 @@ angular
     }
 
     isSupportedExchangeAdditionalCondition(exchange) {
-      return this.exchangeService.getExchangeServer(exchange.organization, exchange.name)
+      return this.Exchange.getExchangeServer(exchange.organization, exchange.name)
         .then(server => server.individual2010 === false);
     }
 
@@ -92,7 +121,7 @@ angular
           && exchange.name === this.exchangeId,
       );
       if (this.associatedExchange) {
-        this.isCommingFromAssociatedExchange = true;
+        this.isComingFromAssociatedExchange = true;
       }
     }
 
@@ -103,98 +132,81 @@ angular
     }
 
     hasSharepoint(exchange) {
-      return this.exchangeService.getSharepointServiceForExchange(exchange)
+      return this.Exchange.getSharepointServiceForExchange(exchange)
         .then(() => true)
         .catch(() => false);
     }
 
     getAccounts() {
-      this.loaders.accounts = true;
-      this.accountsIds = null;
-
-      return this.exchangeService.getAccountIds({
+      return this.Exchange.getAccountIds({
         organizationName: this.associatedExchange.organization,
         exchangeService: this.associatedExchange.domain,
-      }).then((accounts) => {
-        this.accountsIds = accounts;
-      }).finally(() => {
-        if (_.isEmpty(this.accountsIds)) {
-          this.loaders.accounts = false;
-        }
-      });
+      }).then(accountEmails => ({
+        data: _.map(accountEmails, email => ({ email })),
+        meta: {
+          totalCount: accountEmails.length,
+        },
+      }));
     }
 
-    onTranformItem(account) {
-      return this.exchangeService
+    getAccount({ email }) {
+      return this.Exchange
         .getAccount({
           organizationName: this.associatedExchange.organization,
           exchangeService: this.associatedExchange.domain,
-          primaryEmailAddress: account,
-        })
-        .then((account) => { // eslint-disable-line
-          _.set(account, 'activateSharepoint', _.some(this.accountsToActivate, account.primaryEmailAddress));
-          return account;
+          primaryEmailAddress: email,
         });
     }
 
-    onTranformItemDone() {
-      this.loaders.accounts = false;
-    }
-
-    checkSharepointActivation(account) {
-      if (account.activateSharepoint) {
-        this.accountsToActivate.push(account.primaryEmailAddress);
-      } else {
-        this.accountsToActivate
-          .splice(this.accountsToActivate.indexOf(account.primaryEmailAddress), 1);
+    onAssociateChange(associateExchange) {
+      if (!associateExchange) {
+        // we need to reset selected accounts if we leave the association interface
+        this.resetAccountsToAssociate();
       }
     }
 
-    getExchangeAccountsUrl() {
-      return `#/configuration/exchange_hosted/${this.associatedExchange.organization}/${this.associatedExchange.name}?tab=ACCOUNTS`;
+    resetAccountsToAssociate() {
+      this.accountsToAssociate = [];
     }
 
-    static hasInexistantAccount(activateSharepointForm) {
-      return activateSharepointForm.primaryEmailAddressField.$invalid
-        && !_.isEmpty(activateSharepointForm.primaryEmailAddressField.$viewValue);
+    refreshAccounts(exchange) {
+      this.associatedExchange = exchange;
+      this.resetAccountsToAssociate();
+      this.ouiDatagridService.refresh('exchangeAccountsDatagrid', true);
     }
 
-    changeStandAloneQuantity() {
-      if (parseInt(this.standAloneQuantity, 10) >= 1
-        && parseInt(this.standAloneQuantity, 10) <= 30) {
-        this.standAloneQuantity = parseInt(this.standAloneQuantity, 10);
-      }
+    onAccountsSelected(accounts) {
+      this.accountsToAssociate = accounts.map(({ primaryEmailAddress }) => primaryEmailAddress);
     }
 
-    decrement() {
-      if (this.standAloneQuantity > 1) {
-        this.standAloneQuantity -= 1;
-      }
-    }
-
-    increment() {
-      if (this.standAloneQuantity < 30) {
-        this.standAloneQuantity += 1;
-      }
+    hasSelectedAccounts() {
+      return this.accountsToAssociate.length > 0;
     }
 
     getSharepointOrderUrl() {
       if (this.associateExchange) {
-        if (_.has(this.associatedExchange, 'name') && this.accountsToActivate.length >= 1) {
-          return this.sharepointService.getSharepointOrderUrl(
+        if (_.has(this.associatedExchange, 'name') && this.accountsToAssociate.length >= 1) {
+          return this.Sharepoint.getSharepointOrderUrl(
             this.associatedExchange.name,
-            this.accountsToActivate,
+            this.accountsToAssociate,
           );
         }
         return '';
       }
-      if (!_.isNull(this.standAloneQuantity)
-        && parseInt(this.standAloneQuantity, 10) >= 1
-        && parseInt(this.standAloneQuantity, 10) <= 30) {
-        return this.sharepointService
-          .getSharepointStandaloneOrderUrl(parseInt(this.standAloneQuantity, 10));
+
+      const quantity = parseInt(this.standAloneQuantity, 10);
+      if (quantity >= 1 && quantity <= 30) {
+        return this.isReseller
+          ? this.Sharepoint.getSharepointProviderOrderUrl(quantity)
+          : this.Sharepoint.getSharepointStandaloneOrderUrl(quantity);
       }
 
       return '';
+    }
+
+    goToSharepointOrder() {
+      const win = this.$window.open('', '_blank');
+      win.opener = null;
+      win.location = this.getSharepointOrderUrl();
     }
   });

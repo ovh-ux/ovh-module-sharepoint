@@ -50,6 +50,9 @@
     "yarn": ">= 1.0.0"
   },
   "peerDependencies": {
-    "ovh-api-services": "^3.22.0"
+    "ovh-api-services": "^3.31.0",
+    "ovh-ui-kit": "^2.24.1",
+    "ovh-ui-angular": "^2.24.1",
+    "@ovh-ux/web-universe-components": "^1.2.2"
   }
 }

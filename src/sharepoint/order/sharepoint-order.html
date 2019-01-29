@@ -1,125 +1,90 @@
-<div data-ng-controller="SharepointOrderCtrl as orderCtrl">
+<div data-ng-controller="SharepointOrderCtrl as $ctrl">
     <div class="page-header mb-5">
         <h1 data-translate="sharepoint_order_title_label"></h1>
     </div>
 
     <div class="container-fluid px-5">
-        <div data-ovh-alert="{{orderCtrl.alerts.main}}"></div>
+        <div data-ovh-alert="{{$ctrl.alerts.main}}"></div>
 
-        <oui-spinner data-size="l" data-ng-if="orderCtrl.loaders.init"></oui-spinner>
+        <oui-spinner data-size="l" data-ng-if="$ctrl.loaders.init"></oui-spinner>
 
-        <div class="row" data-ng-show="!orderCtrl.loaders.init">
+        <div class="row" data-ng-if="!$ctrl.loaders.init">
             <div class="col-md-9 col-lg-6">
                 <p data-translate="sharepoint_activate_intro_text"></p>
 
-                <oui-checkbox class="my-5"  id="standAlone" name="standAlone"
-                    data-ng-if="orderCtrl.exchanges.length > 0 && orderCtrl.userSubsidiary === 'FR'"
-                    data-model="orderCtrl.associateExchange"
-                    data-text="{{:: 'sharepoint_activate_intro_warning_associated_label' | translate }}">
-                </oui-checkbox>
+                <oui-radio-group class="my-5" id="standAlone" name="standAlone"
+                                 data-model="$ctrl.associateExchange"
+                                 data-ng-if="$ctrl.canAssociateExchange()"
+                                 data-on-change="$ctrl.onAssociateChange(modelValue)">
+                    <oui-radio data-value="false">
+                        <span data-translate="{{ $ctrl.isReseller ? 'sharepoint_activate_mode_standalone_provider' : 'sharepoint_activate_mode_standalone' }}"></span>
+                    </oui-radio>
+                    <oui-radio data-value="true">
+                        <span data-translate="sharepoint_activate_mode_associate"></span>
+                    </oui-radio>
+                </oui-radio-group>
 
-                <form name="orderCtrl.activateSharepointForm">
-                    <div data-ng-show="!orderCtrl.associateExchange">
-                        <div class="alert alert-info" role="alert"
-                             data-translate="sharepoint_activate_intro_warning_associated">
-                        </div>
+                <form name="$ctrl.activateSharepointForm">
 
-                        <div class="form-group"
-                             data-ng-class="{'has-error': orderCtrl.activateSharepointForm.standAloneNumber.$dirty && orderCtrl.activateSharepointForm.standAloneNumber.$invalid}">
-                            <label class="control-label required" for="standAloneNumber"
-                                   data-translate="sharepoint_activate_standalone_accounts_number"></label>
-                            <input type="number" class="form-control w-25" name="standAloneNumber" id="standAloneNumber"
-                                   data-ng-change="orderCtrl.changeStandAloneQuantity()"
-                                   data-ng-min="1" min="1"
-                                   data-ng-max="30" max="30"
-                                   data-ng-model="orderCtrl.standAloneQuantity"
-                                   data-ng-required="!orderCtrl.associateExchange">
-                        </div>
+                    <!-- Order standalone accounts -->
+                    <div data-ng-if="!$ctrl.associateExchange">
+                        <oui-message data-type="info"
+                                     data-dismissable="false"
+                                     data-ng-if="!$ctrl.isReseller && $ctrl.canAssociateExchange()">
+                            <span data-translate="sharepoint_activate_intro_warning_associated"></span>
+                        </oui-message>
+
+                        <oui-field data-label="{{:: 'sharepoint_activate_standalone_accounts_number' | translate }}">
+                            <oui-numeric data-id="standAloneNumber"
+                                         data-name="standAloneNumber"
+                                         data-model="$ctrl.standAloneQuantity"
+                                         data-min="1"
+                                         data-max="30">
+                            </oui-numeric>
+                        </oui-field>
                     </div>
 
-                    <div data-ng-if="!!orderCtrl.associateExchange">
-                        <div class="form-group">
-                            <label class="control-label required" for="sharepointAssociatedExchange"
-                                   data-translate="sharepoint_activate_which_service_label"></label>
-                            <div class="oui-select">
-                                <select class="oui-select__input" id="sharepointAssociatedExchange" name="sharepointAssociatedExchange" required
-                                        data-ng-change="orderCtrl.getAccounts()"
-                                        data-ng-disabled="orderCtrl.isCommingFromAssociatedExchange"
-                                        data-ng-model="orderCtrl.associatedExchange"
-                                        data-ng-options="exchange.displayName for exchange in orderCtrl.exchanges | orderBy:'displayName' track by exchange.organization + exchange.name">
-                                </select>
-                                <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
-                            </div>
-                        </div>
+                    <!-- Order linked accounts -->
+                    <div data-ng-if="$ctrl.associateExchange && $ctrl.canAssociateExchange()">
+                        <oui-message data-type="info"
+                                     data-dismissable="false"
+                                     data-ng-if="$ctrl.isReseller">
+                            <span data-translate="sharepoint_activate_intro_warning_reseller"></span>
+                        </oui-message>
 
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="min-width"></th>
-                                    <th data-translate="sharepoint_accounts_userPrincipalName"></th>
-                                </tr>
-                            </thead>
+                        <oui-field data-label="{{:: 'sharepoint_activate_which_service_label' | translate }}">
+                            <oui-select data-id="sharepointAssociatedExchange"
+                                        data-name="sharepointAssociatedExchange"
+                                        data-on-change="$ctrl.refreshAccounts(modelValue)"
+                                        data-disabled="$ctrl.isComingFromAssociatedExchange"
+                                        data-model="$ctrl.associatedExchange"
+                                        data-items="$ctrl.exchanges"
+                                        data-match="displayName"
+                                        data-required>
+                                <span data-ng-bind="$item.displayName"></span>
+                            </oui-select>
+                        </oui-field>
 
-                            <tbody data-ng-if="orderCtrl.loaders.accounts">
-                                <tr>
-                                    <td class="text-center" colspan="2">
-                                        <oui-spinner></oui-spinner>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                            <tbody data-ng-if="!orderCtrl.loaders.accounts && !orderCtrl.accountsList.length">
-                                <tr>
-                                    <td class="text-center" colspan="2"
-                                        data-translate="sharepoint_accounts_empty"></td>
-                                </tr>
-                            </tbody>
-
-                            <tbody data-ng-if="!orderCtrl.loaders.accounts && orderCtrl.accountsList.length > 0">
-                                <tr data-ng-class="{'info': account.activateSharepoint}"
-                                    data-ng-repeat="account in orderCtrl.accountsList track by $index">
-                                    <td>
-                                        <input type="checkbox" id="account.primaryEmailAddress.{{$index}}" name="account.primaryEmailAddress"
-                                               data-ng-model="account.activateSharepoint"
-                                               data-ng-change="orderCtrl.checkSharepointActivation(account)">
-                                    </td>
-                                    <td class="p-0">
-                                        <label class="d-block font-weight-normal m-0 p-3" for="account.primaryEmailAddress.{{$index}}"
-                                               data-ng-bind="account.primaryEmailAddress"></label>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="clearfix"
-                             data-ng-if="orderCtrl.accountsIds">
-                            <div data-pagination-front
-                                 data-items="orderCtrl.accountsIds"
-                                 data-paginated-items="orderCtrl.accountsList"
-                                 data-current-page="currentPage"
-                                 data-items-per-page="itemsPerPage"
-                                 data-nb-pages="nbPages"
-                                 data-transform-item="orderCtrl.onTranformItem(item)"
-                                 data-on-transform-item-done="orderCtrl.onTranformItemDone()"
-                                 data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages } }}"
-                                 data-item-per-page-placeholder="{{ 'pagination_display' | translate }}">
-                            </div>
-                        </div>
+                        <oui-datagrid id="exchangeAccountsDatagrid"
+                                      data-rows-loader="$ctrl.getAccounts()"
+                                      data-row-loader="$ctrl.getAccount($row)"
+                                      data-on-row-select="$ctrl.onAccountsSelected($rows)"
+                                      data-selectable-rows
+                                      data-empty-placeholder="{{:: 'sharepoint_accounts_empty' | translate }}">
+                            <oui-column data-title=":: 'sharepoint_accounts_userPrincipalName' | translate"
+                                        data-property="primaryEmailAddress">
+                            </oui-column>
+                        </oui-datagrid>
                     </div>
 
                     <div class="my-5">
-                        <a class="oui-button oui-button_primary oui-button_large-height" target="_blank" title="{{ 'sharepoint_order_button_label' | translate }} ({{ 'core_new_window' | translate }})"
-                           data-translate="sharepoint_order_button_label"
-                           data-ng-href="{{orderCtrl.getSharepointOrderUrl()}}"
-                           data-ng-if="!orderCtrl.associateExchange"
-                           data-ng-show="orderCtrl.activateSharepointForm.$valid && orderCtrl.standAloneQuantity">
-                        </a>
-                        <a class="oui-button oui-button_primary oui-button_large-height" target="_blank" title="{{ 'sharepoint_order_button_label' | translate }} ({{ 'core_new_window' | translate }})"
-                           data-translate="sharepoint_order_button_label"
-                           data-ng-href="{{orderCtrl.getSharepointOrderUrl()}}"
-                           data-ng-if="orderCtrl.associateExchange"
-                           data-ng-show="orderCtrl.accountsToActivate.length > 0">
-                        </a>
+                        <oui-button
+                           data-variant="primary"
+                           data-on-click="$ctrl.goToSharepointOrder()"
+                           data-disabled="$ctrl.associateExchange ? !$ctrl.hasSelectedAccounts() : !$ctrl.standAloneQuantity">
+                           <span data-translate="sharepoint_order_button_label"></span>
+                           <span data-translate="core_new_window" class="sr-only"></span>
+                        </oui-button>
                     </div>
                 </form>
             </div>

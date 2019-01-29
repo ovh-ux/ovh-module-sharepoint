@@ -1,26 +1,41 @@
 angular
   .module('Module.sharepoint.controllers')
-  .controller('SharepointAddAccountCtrl', class SharepointAddAccountCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, MicrosoftSharepointLicenseService) {
+  .controller('SharepointAccountAddCtrl', class SharepointAccountAddCtrl {
+    constructor(
+      $scope,
+      $stateParams,
+      $translate,
+      Alerter,
+      MicrosoftSharepointLicenseService,
+      MicrosoftSharepointOrderService,
+    ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.alerter = Alerter;
-      this.sharepointService = MicrosoftSharepointLicenseService;
+      this.sharepointLicense = MicrosoftSharepointLicenseService;
+      this.sharepointOrder = MicrosoftSharepointOrderService;
     }
 
     $onInit() {
-      this.loading = false;
-      this.retrievingSharepointServiceOptions();
-
-      this.$scope.submit = () => this.submit();
-    }
-
-    retrievingSharepointServiceOptions() {
       this.loading = true;
-      return this.sharepointService.retrievingSharepointServiceOptions(this.$stateParams.productId)
-        .then((options) => {
-          this.optionsList = options;
+      this.price = null;
+      this.quantity = 1;
+      this.isProvider = false;
+
+      this.sharepointLicense
+        .getSharepoint(this.$stateParams.exchangeId)
+        .then(({ offer }) => {
+          this.isProvider = offer === 'provider';
+        })
+        .then(() => this.sharepointOrder.creatingCart())
+        .then(cartId => this.sharepointOrder.fetchingPrices(
+          cartId,
+          `activedirectory-account-${this.isProvider ? 'provider' : 'hosted'}`,
+          `sharepoint-account-${this.isProvider ? 'provider' : 'hosted'}-2016`,
+        ))
+        .then((prices) => {
+          this.price = _.get(prices, 'P1M');
         })
         .catch((err) => {
           this.$scope.resetAction();
@@ -31,20 +46,25 @@ angular
         });
     }
 
-    static getPrice(option) {
-      return _.round(_.get(option, 'prices[0].price.value', 0) * _.get(option, 'prices[0].quantity', 0), 2);
+    getTotalPrice() {
+      return _.round(_.get(this.price, 'value', 0) * this.quantity, 2);
     }
 
-    static getCurrency(option) {
-      return _.get(option, 'prices[0].price.currencyCode') === 'EUR' ? '&#0128;' : _.get(option, 'prices[0].price.currencyCode');
+    getCurrency() {
+      return _.get(this.price, 'currencyCode') === 'EUR' ? '&#0128;' : _.get(this.price, 'currencyCode');
     }
 
     submit() {
+      const getOrderUrl = this.isProvider
+        ? this.sharepointLicense.getSharepointProviderNewAccountOrderUrl
+          .bind(this.sharepointLicense)
+        : this.sharepointLicense.getSharepointStandaloneNewAccountOrderUrl
+          .bind(this.sharepointLicense);
+
       this.alerter.success(this.$translate.instant('sharepoint_account_action_sharepoint_add_success_message'), this.$scope.alerts.main);
       this.$scope.resetAction();
-      window.open(this.sharepointService.getSharepointStandaloneNewAccountOrderUrl(
-        this.$stateParams.productId,
-        this.optionsList[0].prices[0].quantity,
-      ));
+      const win = window.open('', '_blank');
+      win.opener = null;
+      win.location = getOrderUrl(this.$stateParams.exchangeId, this.quantity);
     }
   });
