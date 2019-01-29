@@ -1,3 +1,19 @@
+# [7.1.0](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.8...v7.1.0) (2019-01-29)
+
+
+### Bug Fixes
+
+* **account.add:** add translation for Sharepoint label ([#101](https://github.com/ovh-ux/ovh-module-sharepoint/issues/101)) ([83f7310](https://github.com/ovh-ux/ovh-module-sharepoint/commit/83f7310))
+* **i18n:** retrieve translations ([0f0da68](https://github.com/ovh-ux/ovh-module-sharepoint/commit/0f0da68))
+* **i18n:** submit translations ([6b585f0](https://github.com/ovh-ux/ovh-module-sharepoint/commit/6b585f0))
+
+
+### Features
+
+* bring sharepoint provider ([#91](https://github.com/ovh-ux/ovh-module-sharepoint/issues/91)) ([f701c6e](https://github.com/ovh-ux/ovh-module-sharepoint/commit/f701c6e))
+
+
+
 ## [7.0.8](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.0.7...v7.0.8) (2019-01-08)
 
 
