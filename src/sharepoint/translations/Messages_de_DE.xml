@@ -8,6 +8,7 @@
    <translation id="sharepoint_dashboard_offer_type_standalone" qtlid="347340">Standalone </translation>
    <translation id="sharepoint_dashboard_guides_help_label" qtlid="297085">Sie brauchen Hilfe bei der Konfiguration Ihrer SharePoint Dienstleistung?</translation>
    <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Die dazugehörige Exchange Dienstleistung</translation>
+   <translation id="sharepoint_dashboard_offer_account">Compte SharePoint</translation>
 
    <translation id="sharepoint_dashboard_address" qtlid="258938">Server-Adresse</translation>
    <translation id="sharepoint_dashboard_type" qtlid="297111">Servertyp</translation>
@@ -19,7 +20,7 @@
    <translation id="sharepoint_dashboard_quota" qtlid="297150">Geteilter Speicherplatz</translation>
    <translation id="sharepoint_dashboard_access" qtlid="82449">Zugriff</translation>
    <translation id="sharepoint_dashboard_url_label" qtlid="297163">URL:</translation>
-   <translation id="sharepoint_dashboard_guides_url" qtlid="416566">Aktivierung und Verwaltung Ihres Sharepoint</translation>
+   <translation id="sharepoint_dashboard_guides_url">Activation et gestion de votre SharePoint</translation>
    <translation id="sharepoint_dashboard_creating_url_label" qtlid="154949">Aktivierung wird ausgeführt</translation>
    <translation id="sharepoint_dashboard_linked_exchange_label" qtlid="297189">Dazugehöriger Exchange Server:</translation>
    <translation id="sharepoint_dashboard_quota" qtlid="297202">Quotas</translation>
@@ -80,8 +81,8 @@
 
    <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Administrator-Rechte wiederherstellen</translation>
    <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Administrator-Rechte</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_question" qtlid="297319">Möchten Sie die Administrator-Rechte Ihrer Sharepoint Dienstleistung wirklich wiederherstellen?</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_tooltip" qtlid="297332">Administrator-Rechte zurücksetzen. Diese Funktion ist nützlich bei versehentlicher Einräumung von Rechten über das Sharepoint Interface.</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_question">Voulez-vous réellement rétablir les droits administrateur de votre service SharePoint ?</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_tooltip">Rétablir les droits administrateur à leurs valeurs par défaut. Utile en cas de modifications accidentelles des droits via l'interface SharePoint</translation>
    <translation id="sharepoint_accounts_action_reset_admin_error" qtlid="297345">Die SharePoint Administrator-Rechte konnten nicht zurückgesetzt werden.</translation>
    <translation id="sharepoint_accounts_action_reset_admin_success" qtlid="297358">Die SharePoint Administrator-Rechte wurden erfolgreich zurückgesetzt.</translation>
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Administrator-Rechte aktivieren</translation>
@@ -91,17 +92,19 @@
    <translation id="sharepoint_accounts_action_error" qtlid="447599">Bei der Änderung der Konfiguration des SharePoint Accounts {0} ist ein Fehler aufgetreten.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">SharePoint aktivieren</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Konto löschen </translation>
-   <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Möchten Sie wirklich folgenden Account von Ihrem Sharepoint Service löschen? </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove_intro">Voulez-vous réellement supprimer le compte suivant de votre service SharePoint ?</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_warning" qtlid="349036">Bitte beachten Sie: Wenn Sie fortfahren, werden der Service und alle zugehörigen Daten zum Ende des laufenden Monats gelöscht. Die Daten des Accounts können danach nicht mehr abgerufen werden. </translation>
    <translation id="sharepoint_account_action_sharepoint_remove_success_message" qtlid="349049">Der Account {0} wird zum Monatsende gelöscht. </translation>
    <translation id="sharepoint_account_action_sharepoint_remove_error_message" qtlid="349062">Anfrage zur Löschung des Accounts fehlgeschlagen. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Einen SharePoint Account hinzufügen </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Zusätzliche SharePoint Accounts zur Plattform hinzufügen: </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">Es wird nun ein Bestellschein erstellt. Die Services werden nach Zahlungseingang freigeschaltet. </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_prorata">Le tarif affiché ci-dessus représente le montant mensuel fixe pour un compte SharePoint. Il peut varier, au prorata de la date de votre commande.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/ Monat</translation>
    <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Ihre Anfrage wurde erfasst. Sie werden jetzt zum OVH Zahlungsinterface weitergeleitet. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Beim Abruf der für die Bestellung notwendigen Informationen ist ein Fehler aufgetreten. </translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">Die Anzahl der zusätzlichen Accounts muss zwischen {0} und {1} sein.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_product_sharepoint_account">Compte Sharepoint</translation>
 
    <translation id="sharepoint_action_reset_search" qtlid="279158">Suche löschen</translation>
 
@@ -135,9 +138,11 @@
    <translation id="sharepoint_order_title_label" qtlid="297553">Eine SharePoint Plattform bestellen</translation>
    <translation id="sharepoint_activate_intro_text" qtlid="297566">Mit SharePoint können Sie Webseiten erstellen, um Informationen innerhalb Ihres Unternehmens zu speichern, zu organisieren und zu teilen.</translation>
    <translation id="sharepoint_activate_intro_warning_associated" qtlid="349075">Bitte beachten Sie: Ihr SharePoint Standalone kann mit einem existierenden Hosted Service verbunden werden. Wenn die Bestellung ausgeführt wurde, ist eine entsprechende Änderung nicht mehr möglich. </translation>
-   <translation id="sharepoint_activate_intro_warning_associated_label" qtlid="349088">Mit einem Exchange Service verbinden </translation>
-
-   <translation id="sharepoint_activate_standalone_accounts_number" qtlid="369386">Anzahl der Standalone SharePoint Lizenzen</translation>
+   <translation id="sharepoint_activate_intro_warning_reseller">En tant que revendeur, vous profitez d'une réduction sur l’achat de comptes SharePoint Standalone Provider uniquement. Vous pouvez tout de même choisir d'associer un SharePoint à un service existant, mais vous ne bénéficierez pas de ce tarif préférentiel.</translation>
+   <translation id="sharepoint_activate_mode_associate">Associer à un service Exchange existant</translation>
+   <translation id="sharepoint_activate_mode_standalone">Commander un compte SharePoint Standalone</translation>
+   <translation id="sharepoint_activate_mode_standalone_provider">Commander un compte SharePoint Standalone Provider</translation>
+   <translation id="sharepoint_activate_standalone_accounts_number">Nombre de licences SharePoint Standalone</translation>
 
    <translation id="sharepoint_activate_fields_manadatory_label" qtlid="297579">Alle Felder sind obligatorisch</translation>
    <translation id="sharepoint_activate_which_service_label" qtlid="297592">Exchange Server</translation>
@@ -156,16 +161,16 @@
    <translation id="sharepoint_activate_message_failure" qtlid="297670">SharePoint Aktivierungsanfrage fehlgeschlagen.</translation>
 
    <translation id="sharepoint_action_activate_office_licence_title" qtlid="364498">Office Lizenz aktivieren </translation>
-   <translation id="sharepoint_action_activate_office_licence_intro" qtlid="364511">Um die bei SharePoint inbegriffenen Office WebApps zu nutzen, benötigen Sie eine Office 2013 oder 2016 Lizenz (Office 365) </translation>
+   <translation id="sharepoint_action_activate_office_licence_intro">Pour utiliser les webapp Office incluses dans SharePoint, vous devez disposez d’une licence Office 2013 ou 2016 (Office 365)</translation>
    <translation id="sharepoint_action_activate_office_licence_option_no" qtlid="364524">Sie haben noch keine Office Lizenz? </translation>
    <translation id="sharepoint_action_activate_office_licence_option_link" qtlid="364537">Jetzt bei OVH zum Bestpreis kaufen </translation>
-   <translation id="sharepoint_action_activate_office_licence_option_yes" qtlid="364550">Ich erklären an Eides statt, dass ich die zur Verwendung der SharePoint WebApps erforderlichen Office Lizenzen besitze. </translation>
+   <translation id="sharepoint_action_activate_office_licence_option_yes">Je déclare sur l’honneur posséder les licences Office nécessaires à l’utilisation des webapp de SharePoint</translation>
    <translation id="sharepoint_action_activate_office_licence_success_message" qtlid="364563">Aktivierung der Office Lizenz wurde erfasst. </translation>
    <translation id="sharepoint__action_activate_office_licence_error_message" qtlid="364576">Anfrage zur Aktivierung der Office Lizenz fehlgeschlagen. </translation>
 
    <translation id="sharepoint_set_url_intro_title" qtlid="297683">Fast geschafft!</translation>
-   <translation id="sharepoint_set_url_intro_label" qtlid="297696">Geben Sie einfach eine URL für Ihren neuen SharePoint an, um sofort mit der Arbeit zu beginnen.</translation>
-   <translation id="sharepoint_set_url_textfield_label" qtlid="297709">SharePoint URL</translation>
+   <translation id="sharepoint_set_url_intro_label">Il vous suffit de spécifier une adresse URL pour ce nouveau SharePoint pour pouvoir commencer à l'utiliser.</translation>
+   <translation id="sharepoint_set_url_textfield_label">URL du SharePoint</translation>
    <translation id="sharepoint_set_url_textfield_warn" qtlid="297722">Hinweis: Diese URL kann nach Bestätigung nicht mehr geändert werden.</translation>
    <translation id="sharepoint_set_url_button_label" qtlid="297735">URL bestätigen</translation>
    <translation id="sharepoint_set_url_success_message_title" qtlid="297748">SharePoint Konfiguration</translation>
@@ -188,12 +193,14 @@
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Das Passwort der dazugehörigen Exchange Dienstleistung wird ebenfalls geändert.</translation>
    <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Verlängerungs-Zeitraum</translation>
    <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Wählen Sie den gewünschten Zeitraum für die automatische Verlängerung jedes Accounts aus. <br />Die Änderung wird bei der nächsten Verlängerung aktiv.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success">La période de renouvellement a été mise à jour avec succès.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure">La mise à jour de la période de renouvellement a échoué.</translation>
    <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Monatlich</translation>
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Keiner</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Wichtig: Dies führt dazu, dass die Dienstleistung abläuft und die dazugehörigen Daten gelöscht werden. Es ist danach nicht mehr möglich, die Daten des Accounts wiederherzustellen!</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Sie sind im Begriff, den Verlängerungszeitraum Ihrer Accounts zu ändern:</translation>
-   <translation id="sharepoint_exchange_update_billing_periode_success">Période de facturation mise à jour avec succès</translation>
-   <translation id="sharepoint_exchange_update_billing_periode_failure">Une erreur est survenue lors du chargement de la période de renouvellement automatique.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="516900">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="191044">Beim Laden des Zeitraums der automatischen Verlängerung ist ein Fehler aufgetreten.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Abrechnungsmodus</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Passwort ist zu einfach</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Das Passwort darf nicht den gesamten oder einen Teil des Anzeigenamens oder des Exchange Logins enthalten.</translation>
