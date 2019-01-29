@@ -8,6 +8,7 @@
    <translation id="sharepoint_dashboard_offer_type_standalone" qtlid="347340">Standalone</translation>
    <translation id="sharepoint_dashboard_guides_help_label" qtlid="297085">Reikia pagalbos konfigūruojant SharePoint?</translation>
    <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Susieta Exchange paslauga</translation>
+   <translation id="sharepoint_dashboard_offer_account">Compte SharePoint</translation>
 
    <translation id="sharepoint_dashboard_address" qtlid="258938">Serverio adresas</translation>
    <translation id="sharepoint_dashboard_type" qtlid="297111">Serverio tipas</translation>
@@ -19,7 +20,7 @@
    <translation id="sharepoint_dashboard_quota" qtlid="297150">Bendrai naudojama vieta</translation>
    <translation id="sharepoint_dashboard_access" qtlid="82449">Prieiga</translation>
    <translation id="sharepoint_dashboard_url_label" qtlid="297163">URL patvirtinimui:</translation>
-   <translation id="sharepoint_dashboard_guides_url" qtlid="416566">Sharepoint aktyvavimas ir valdymas</translation>
+   <translation id="sharepoint_dashboard_guides_url">Activation et gestion de votre SharePoint</translation>
    <translation id="sharepoint_dashboard_creating_url_label" qtlid="154949">Įjungiama</translation>
    <translation id="sharepoint_dashboard_linked_exchange_label" qtlid="297189">Susietas Exchange serveris:</translation>
    <translation id="sharepoint_dashboard_quota" qtlid="297202">Kvotos</translation>
@@ -80,8 +81,8 @@
 
    <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Atkurti administratoriaus teises</translation>
    <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Administratoriaus teisės</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_question" qtlid="297319">Ar tikrai norite atkurti savo Sharepoint paslaugos administratoriaus teises?</translation>
-   <translation id="sharepoint_accounts_action_reset_admin_tooltip" qtlid="297332">Atkurti administratoriaus teises į būseną pagal nutylėjimą. Naudinga, jei buvo atliktas atsitiktinis keitimas per Sharepoint sąsają</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_question">Voulez-vous réellement rétablir les droits administrateur de votre service SharePoint ?</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_tooltip">Rétablir les droits administrateur à leurs valeurs par défaut. Utile en cas de modifications accidentelles des droits via l'interface SharePoint</translation>
    <translation id="sharepoint_accounts_action_reset_admin_error" qtlid="297345">Nepavyko atkurti SharePoint administratoriaus teisių.</translation>
    <translation id="sharepoint_accounts_action_reset_admin_success" qtlid="297358">SharePoint administratoriaus teisių atkūrimo užklausa sėkmingai paleista.  </translation>
    <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Aktyvuoti administratoriaus teises</translation>
@@ -91,17 +92,19 @@
    <translation id="sharepoint_accounts_action_error" qtlid="447599">Klaida išsaugant SharePoint paskyros {0} konfigūraciją.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Įjungti SharePoint</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Pašalinti paskyrą</translation>
-   <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="349023">Ar tikrai norite pašalinti šią paskyrą iš savo Sharepoint paslaugos?</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove_intro">Voulez-vous réellement supprimer le compte suivant de votre service SharePoint ?</translation>
    <translation id="sharepoint_accounts_action_sharepoint_remove_warning" qtlid="349036">Dėmesio! Jums patvirtinus šį pasirinkimą, jūsų paslauga bus ištrinta einamojo mėnesio pabaigoje ir visi joje talpinami duomenys bus pašalinti, todėl nebegalėsite atkurti paskyros duomenų.</translation>
    <translation id="sharepoint_account_action_sharepoint_remove_success_message" qtlid="349049">Paskyra {0} bus galutinai ištrina einamojo mėnesio pabaigoje.</translation>
    <translation id="sharepoint_account_action_sharepoint_remove_error_message" qtlid="349062">Nepavyko įvykdyti paskyros trynimo užklausos.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Pridėti SharePoint paskyrą</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Papildomų SharePoint paskyrų pridėjimas į platformą:</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">Užsakymas sugeneruotas. Jį apmokėjus bus aktyvuotos paslaugos.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_prorata">Le tarif affiché ci-dessus représente le montant mensuel fixe pour un compte SharePoint. Il peut varier, au prorata de la date de votre commande.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/mėn.</translation>
    <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Jūsų užklausa užregistruota. Jūs būsite nukreipti į OVH apmokėjimo puslapį.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Gaunant užsakymui būtinus duomenis įvyko klaida.</translation>
    <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">Turi būti pridėta nuo {0} iki {1} paskyrų</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_product_sharepoint_account">Compte Sharepoint</translation>
 
    <translation id="sharepoint_action_reset_search" qtlid="279158">Ištrinti paiešką</translation>
 
@@ -135,9 +138,11 @@
    <translation id="sharepoint_order_title_label" qtlid="297553">Užsakyti SharePoint</translation>
    <translation id="sharepoint_activate_intro_text" qtlid="297566">SharePoint leidžia kurti interneto svetaines jūsų įmonės duomenų saugojimui, organizavimui ir bendrinimui.</translation>
    <translation id="sharepoint_activate_intro_warning_associated" qtlid="349075">Dėmesio: jūs galite susieti savo SharePoint Standalone su naudojama Hosted paslauga, tačiau šis veiksmas bus negalimas po užsakymo atlikimo.</translation>
-   <translation id="sharepoint_activate_intro_warning_associated_label" qtlid="349088">Susieti su Exchange paslauga</translation>
-
-   <translation id="sharepoint_activate_standalone_accounts_number" qtlid="369386">Sharepoint Standalone licencijų kiekis</translation>
+   <translation id="sharepoint_activate_intro_warning_reseller">En tant que revendeur, vous profitez d'une réduction sur l’achat de comptes SharePoint Standalone Provider uniquement. Vous pouvez tout de même choisir d'associer un SharePoint à un service existant, mais vous ne bénéficierez pas de ce tarif préférentiel.</translation>
+   <translation id="sharepoint_activate_mode_associate">Associer à un service Exchange existant</translation>
+   <translation id="sharepoint_activate_mode_standalone">Commander un compte SharePoint Standalone</translation>
+   <translation id="sharepoint_activate_mode_standalone_provider">Commander un compte SharePoint Standalone Provider</translation>
+   <translation id="sharepoint_activate_standalone_accounts_number">Nombre de licences SharePoint Standalone</translation>
 
    <translation id="sharepoint_activate_fields_manadatory_label" qtlid="297579">Visi laukai privalomi</translation>
    <translation id="sharepoint_activate_which_service_label" qtlid="297592">Susietinas Exchange serveris</translation>
@@ -156,16 +161,16 @@
    <translation id="sharepoint_activate_message_failure" qtlid="297670">SharePoint įjungimo užklausa nepriimta.</translation>
 
    <translation id="sharepoint_action_activate_office_licence_title" qtlid="364498">Aktyvuoti Office licenciją</translation>
-   <translation id="sharepoint_action_activate_office_licence_intro" qtlid="364511">Norint naudoti į Sharepoint įtrauktą webapp Office, būtina turėti Office 2013 ar 2016 (Office 365) licenciją</translation>
+   <translation id="sharepoint_action_activate_office_licence_intro">Pour utiliser les webapp Office incluses dans SharePoint, vous devez disposez d’une licence Office 2013 ou 2016 (Office 365)</translation>
    <translation id="sharepoint_action_activate_office_licence_option_no" qtlid="364524">Neturite Office licencijos?</translation>
    <translation id="sharepoint_action_activate_office_licence_option_link" qtlid="364537">Užsakykite ją OVH už palankiausią kainą</translation>
-   <translation id="sharepoint_action_activate_office_licence_option_yes" qtlid="364550">Patvirtinu, kad turiu Office licencijas, būtinas naudoti SharePoint Web Apps.</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_yes">Je déclare sur l’honneur posséder les licences Office nécessaires à l’utilisation des webapp de SharePoint</translation>
    <translation id="sharepoint_action_activate_office_licence_success_message" qtlid="364563">Office licencijos aktyvavimas užregistruotas.</translation>
    <translation id="sharepoint__action_activate_office_licence_error_message" qtlid="364576">Nepavyko aktyvuoti Office licencijos.</translation>
 
    <translation id="sharepoint_set_url_intro_title" qtlid="297683">Jūs jau arti!</translation>
-   <translation id="sharepoint_set_url_intro_label" qtlid="297696">Pakanka patikslinti naujos Sharepoint paslaugos URL adresą ir galėsite pradėti ja naudotis.</translation>
-   <translation id="sharepoint_set_url_textfield_label" qtlid="297709">Sharepoint URL</translation>
+   <translation id="sharepoint_set_url_intro_label">Il vous suffit de spécifier une adresse URL pour ce nouveau SharePoint pour pouvoir commencer à l'utiliser.</translation>
+   <translation id="sharepoint_set_url_textfield_label">URL du SharePoint</translation>
    <translation id="sharepoint_set_url_textfield_warn" qtlid="297722">Svarbu: šio URL adreso nebus galima keisti po patvirtinimo.</translation>
    <translation id="sharepoint_set_url_button_label" qtlid="297735">Patvirtinti URL</translation>
    <translation id="sharepoint_set_url_success_message_title" qtlid="297748">SharePoint konfigūravimas</translation>
@@ -188,12 +193,14 @@
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Slaptažodis bus taip pat pakeistas susietai Exchange paslaugai.</translation>
    <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Atnaujinimo periodas</translation>
    <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Pasirinkite pageidaujamą periodiškumą automatiniam kiekvienos paskyros atnaujinimui. <br />Šis laikotarpis įsigalios nuo kito atnaujinimo datos.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success">La période de renouvellement a été mise à jour avec succès.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure">La mise à jour de la période de renouvellement a échoué.</translation>
    <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Mėnesio</translation>
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Tuščia</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Dėmesio! Paslauga nustos galioti numatytą galiojimo pabaigos datą, po kurios visi duomenys bus pašalinti. Jūs nebegalėsite atkurti paskyros duomenų.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Jūs keisite savo paskyrų atnaujinimo laikotarpį:</translation>
-   <translation id="sharepoint_exchange_update_billing_periode_success">Période de facturation mise à jour avec succès</translation>
-   <translation id="sharepoint_exchange_update_billing_periode_failure">Une erreur est survenue lors du chargement de la période de renouvellement automatique.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="516900">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="191044">Įvyko klaida įkeliant automatinio atnaujinimo laikotarpį.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Apmokėjimo būdas</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Per daug paprastas slaptažodis</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Slaptažodžio pavadinime negali būti viso ar dalies skelbiamo pavadinimo ar Exchange prisijungimo vardo.</translation>
