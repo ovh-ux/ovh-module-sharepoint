@@ -17,7 +17,7 @@
                                  data-ng-if="$ctrl.canAssociateExchange()"
                                  data-on-change="$ctrl.onAssociateChange(modelValue)">
                     <oui-radio data-value="false">
-                        <span data-translate="{{ $ctrl.isReseller ? 'sharepoint_activate_mode_standalone_provider' : 'sharepoint_activate_mode_standalone' }}"></span>
+                        <span data-translate="{{ $ctrl.canOrderProvider() ? 'sharepoint_activate_mode_standalone_provider' : 'sharepoint_activate_mode_standalone' }}"></span>
                     </oui-radio>
                     <oui-radio data-value="true">
                         <span data-translate="sharepoint_activate_mode_associate"></span>
@@ -48,7 +48,7 @@
                     <div data-ng-if="$ctrl.associateExchange && $ctrl.canAssociateExchange()">
                         <oui-message data-type="info"
                                      data-dismissable="false"
-                                     data-ng-if="$ctrl.isReseller">
+                                     data-ng-if="$ctrl.canOrderProvider()">
                             <span data-translate="sharepoint_activate_intro_warning_reseller"></span>
                         </oui-message>
 
