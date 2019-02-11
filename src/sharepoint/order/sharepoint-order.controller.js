@@ -67,7 +67,11 @@ angular
     }
 
     canAssociateExchange() {
-      return this.exchanges && this.exchanges.length > 0 && this.userSubsidiary === 'FR';
+      return this.exchanges && this.exchanges.length > 0;
+    }
+
+    canOrderProvider() {
+      return this.isReseller && this.userSubsidiary === 'FR';
     }
 
     checkReseller() {
@@ -196,7 +200,7 @@ angular
 
       const quantity = parseInt(this.standAloneQuantity, 10);
       if (quantity >= 1 && quantity <= 30) {
-        return this.isReseller
+        return this.canOrderProvider()
           ? this.Sharepoint.getSharepointProviderOrderUrl(quantity)
           : this.Sharepoint.getSharepointStandaloneOrderUrl(quantity);
       }
