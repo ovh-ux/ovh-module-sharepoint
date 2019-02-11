@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.1.1...v7.1.2) (2019-02-11)
+
+
+### Bug Fixes
+
+* **order:** allow subs to order classic sharepoint accounts ([#110](https://github.com/ovh-ux/ovh-module-sharepoint/issues/110)) ([eaaf900](https://github.com/ovh-ux/ovh-module-sharepoint/commit/eaaf900))
+
+
+
 ## [7.1.1](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.1.0...v7.1.1) (2019-02-11)
 
 
