@@ -199,7 +199,7 @@
    <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Nessuno</translation>
    <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Attenzione! Questa opzione comporta la scadenza del servizio al termine e la perdita dei dati. Sarà impossibile recuperare i dati dell'account.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Stai per modificare il periodo di rinnovo automatico dei tuoi account:</translation>
-   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="516900">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="516900">Periodo di fatturazione aggiornato correttamente</translation>
    <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="191044">Si è verificato un errore nel caricamento del periodo di rinnovo automatico.</translation>
    <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Modalità di fatturazione.</translation>
    <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Password troppo semplice</translation>
