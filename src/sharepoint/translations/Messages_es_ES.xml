@@ -118,7 +118,7 @@
    <translation id="sharepoint_account_update_configuration_title" qtlid="347444">Modificar la cuenta SharePoint</translation>
    <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Nombre mostrado</translation>
    <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">Nombre</translation>
-   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Nombre</translation>
+   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Apellidos</translation>
    <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Iniciales</translation>
    <translation id="sharepoint_account_update_configuration_user_principal_name" qtlid="347457">user_principal_name</translation>
    <translation id="sharepoint_account_update_configuration_confirm_message_text" qtlid="347470">El cambio de configuración de la cuenta {0} será efectivo en los próximos minutos.</translation>
