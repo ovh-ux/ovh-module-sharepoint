@@ -11,13 +11,13 @@
             <span data-ng-bind="::$row.finishDate | date:'medium'"></span>
         </oui-column>
         <oui-column data-title="'sharepoint_tabs_tasks_status' | translate" data-property="status">
-            <span class="label"
+            <span class="oui-status"
                   data-ng-bind="'sharepoint_tabs_tasks_status_' + $row.status | translate"
                   data-ng-class="{
-                    'label-success' : $row.status === 'done',
-                    'label-info': $row.status === 'doing' || $row.status === 'todo',
-                    'label-danger': $row.status === 'error',
-                    'table-warning': $row.status === 'cancelled'
+                    'oui-status_success' : $row.status === 'done',
+                    'oui-status_info': $row.status === 'doing' || $row.status === 'todo',
+                    'oui-status_error': $row.status === 'error',
+                    'oui-status_warning': $row.status === 'cancelled'
                   }"
                   data-ng-if="$row.status"></span>
         </oui-column>
