@@ -1,3 +1,12 @@
+## [7.1.5](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.1.4...v7.1.5) (2019-04-03)
+
+
+### Bug Fixes
+
+* **sharepoint.task:** use oui status ([#121](https://github.com/ovh-ux/ovh-module-sharepoint/issues/121)) ([ea932f9](https://github.com/ovh-ux/ovh-module-sharepoint/commit/ea932f9))
+
+
+
 ## [7.1.4](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.1.3...v7.1.4) (2019-03-05)
 
 
