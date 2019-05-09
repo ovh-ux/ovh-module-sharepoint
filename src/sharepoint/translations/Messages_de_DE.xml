@@ -191,7 +191,7 @@
    <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">mindestens eine Ziffer</translation>
    <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">das erste Zeichen muss alphanumerisch sein</translation>
    <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Das Passwort der dazugehörigen Exchange Dienstleistung wird ebenfalls geändert.</translation>
-   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Verlängerungs-Zeitraum</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Verlängerungszeitraum</translation>
    <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Wählen Sie den gewünschten Zeitraum für die automatische Verlängerung jedes Accounts aus. <br />Die Änderung wird bei der nächsten Verlängerung aktiv.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_success">La période de renouvellement a été mise à jour avec succès.</translation>
    <translation id="sharepoint_exchange_update_billing_periode_failure">La mise à jour de la période de renouvellement a échoué.</translation>
