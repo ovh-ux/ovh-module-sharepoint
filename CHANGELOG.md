@@ -1,3 +1,12 @@
+## [7.1.7](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.1.6...v7.1.7) (2019-05-31)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve translations ([#130](https://github.com/ovh-ux/ovh-module-sharepoint/issues/130)) ([3e5a8c9](https://github.com/ovh-ux/ovh-module-sharepoint/commit/3e5a8c9))
+
+
+
 ## [7.1.6](https://github.com/ovh-ux/ovh-module-sharepoint/compare/v7.1.5...v7.1.6) (2019-05-09)
 
 
