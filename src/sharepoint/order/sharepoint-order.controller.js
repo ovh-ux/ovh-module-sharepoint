@@ -75,17 +75,17 @@ angular
     }
 
     checkReseller() {
-      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => _.get(status, 'web', false));
+      return this.OvhApiMeVipStatus.v6().get().$promise.then((status) => _.get(status, 'web', false));
     }
 
     getExchanges() {
       return this.Sharepoint.getExchangeServices()
-        .then(exchanges => _.map(exchanges, (exchange) => {
+        .then((exchanges) => _.map(exchanges, (exchange) => {
           const newExchange = angular.copy(exchange);
           newExchange.domain = newExchange.name;
           return newExchange;
         }))
-        .then(exchanges => this.filterSupportedExchanges(exchanges))
+        .then((exchanges) => this.filterSupportedExchanges(exchanges))
         .then((exchanges) => {
           this.exchanges = exchanges;
           if (exchanges.length === 0) {
@@ -93,13 +93,13 @@ angular
           }
           return exchanges;
         })
-        .then(exchanges => this.selectAssociatedExchangeFromRouteParams(exchanges));
+        .then((exchanges) => this.selectAssociatedExchangeFromRouteParams(exchanges));
     }
 
     filterSupportedExchanges(exchanges) {
       return _(exchanges)
-        .filter(exchange => this.constructor.isSupportedExchangeType(exchange))
-        .filter(exchange => this.isSupportedExchangeAdditionalCondition(exchange))
+        .filter((exchange) => this.constructor.isSupportedExchangeType(exchange))
+        .filter((exchange) => this.isSupportedExchangeAdditionalCondition(exchange))
         .thru(exchanges => this.filterExchangesThatAlreadyHaveSharepoint(exchanges)) // eslint-disable-line
         .value();
     }
@@ -110,18 +110,18 @@ angular
 
     isSupportedExchangeAdditionalCondition(exchange) {
       return this.Exchange.getExchangeServer(exchange.organization, exchange.name)
-        .then(server => server.individual2010 === false);
+        .then((server) => server.individual2010 === false);
     }
 
     filterExchangesThatAlreadyHaveSharepoint(exchanges) {
       return this.buildSharepointChecklist(exchanges)
-        .then(checklist => _.filter(exchanges, (exchange, index) => !checklist[index]));
+        .then((checklist) => _.filter(exchanges, (exchange, index) => !checklist[index]));
     }
 
     selectAssociatedExchangeFromRouteParams(exchanges) {
       this.associatedExchange = _.find(
         exchanges,
-        exchange => exchange.organization === this.organizationId
+        (exchange) => exchange.organization === this.organizationId
           && exchange.name === this.exchangeId,
       );
       if (this.associatedExchange) {
@@ -131,7 +131,7 @@ angular
 
     buildSharepointChecklist(exchanges) {
       return this.$q.all(
-        _.map(exchanges, exchange => this.hasSharepoint(exchange)),
+        _.map(exchanges, (exchange) => this.hasSharepoint(exchange)),
       );
     }
 
@@ -145,8 +145,8 @@ angular
       return this.Exchange.getAccountIds({
         organizationName: this.associatedExchange.organization,
         exchangeService: this.associatedExchange.domain,
-      }).then(accountEmails => ({
-        data: _.map(accountEmails, email => ({ email })),
+      }).then((accountEmails) => ({
+        data: _.map(accountEmails, (email) => ({ email })),
         meta: {
           totalCount: accountEmails.length,
         },

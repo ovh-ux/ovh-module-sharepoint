@@ -17,7 +17,7 @@ angular
       this.tasksIds = null;
 
       return this.sharepointService.getTasks(this.$stateParams.exchangeId)
-        .then((ids) => { this.tasksIds = ids.map(id => ({ id })); })
+        .then((ids) => { this.tasksIds = ids.map((id) => ({ id })); })
         .catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_tabs_tasks_error'), err, this.$scope.alerts.main);

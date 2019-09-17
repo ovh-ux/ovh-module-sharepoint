@@ -28,7 +28,7 @@ angular
 
       this.$scope.submit = () => {
         this.$q.all(
-          _.map(this.buffer.changes, sharepoint => this.sharepointService.updateSharepointAccount(
+          _.map(this.buffer.changes, (sharepoint) => this.sharepointService.updateSharepointAccount(
             this.$stateParams.exchangeId,
             sharepoint.userPrincipalName,
             {
