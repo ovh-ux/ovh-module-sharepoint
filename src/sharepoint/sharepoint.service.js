@@ -121,7 +121,7 @@
           return null;
         }
 
-        const configuration = emails.map(email => ({
+        const configuration = emails.map((email) => ({
           planCode: 'sharepoint_account',
           configuration: [{
             label: 'EXCHANGE_ACCOUNT_ID',
@@ -482,15 +482,15 @@
             cache: this.cache.sharepoints,
           })
           .then((msServices) => {
-            const queue = msServices.map(serviceId => this.OvhHttp
+            const queue = msServices.map((serviceId) => this.OvhHttp
               .get(`/msServices/${serviceId}/upnSuffix`, {
                 rootPath: 'apiv6',
                 cache: this.cache.sharepoints,
               })
-              .then(suffixes => suffixes)
+              .then((suffixes) => suffixes)
               .catch(() => null));
 
-            return this.$q.all(queue).then(data => _.flatten(_.compact(data)));
+            return this.$q.all(queue).then((data) => _.flatten(_.compact(data)));
           })
           .catch(() => []);
       }
@@ -572,8 +572,8 @@
           .aggregate('displayName')
           .execute({ organizationName: '*' })
           .$promise
-          .then(services => _.filter(services, service => _.has(service, 'value.displayName') && _.has(service, 'value.offer')))
-          .then(services => _.map(services, service => ({
+          .then((services) => _.filter(services, (service) => _.has(service, 'value.displayName') && _.has(service, 'value.offer')))
+          .then((services) => _.map(services, (service) => ({
             name: service.key,
             displayName: service.value.displayName,
             organization: _.get(service.path.split('/'), '[3]'),
@@ -583,7 +583,7 @@
 
       getAssociatedExchangeService(exchangeId) {
         return this.getExchangeServices()
-          .then(services => _.find(services, {
+          .then((services) => _.find(services, {
             name: exchangeId,
           }))
           .then((exchangeService) => {

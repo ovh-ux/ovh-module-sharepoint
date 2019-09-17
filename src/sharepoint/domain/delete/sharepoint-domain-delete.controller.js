@@ -22,7 +22,7 @@ angular
 
           // TODO refresh domain's table
         })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_delete_domain_error_message_text'), err, this.$scope.alerts.main))
+        .catch((err) => this.alerter.alertFromSWS(this.$translate.instant('sharepoint_delete_domain_error_message_text'), err, this.$scope.alerts.main))
         .finally(() => {
           this.$scope.resetAction();
         });

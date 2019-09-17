@@ -30,7 +30,7 @@ angular
           if (!_.isNull(this.$stateParams.tab)
             && _.some(
               this.$scope.tabs,
-              item => item === angular.uppercase(this.$stateParams.tab),
+              (item) => item === angular.uppercase(this.$stateParams.tab),
             )) {
             this.$scope.setSelectedTab(angular.uppercase(this.$stateParams.tab));
           } else {

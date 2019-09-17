@@ -119,7 +119,7 @@ angular
     startPoller(userPrincipalName) {
       return this.pollerService.poll(`apiv6/msServices/${this.exchangeId}/account/${userPrincipalName}/sharepoint`, null, {
         interval: 15000,
-        successRule: { state: account => account.taskPendingId === 0 },
+        successRule: { state: (account) => account.taskPendingId === 0 },
         namespace: 'sharepoint.accounts.poll',
       }).then((account) => {
         const index = _.findIndex(this.accounts, { userPrincipalName });
@@ -202,7 +202,7 @@ angular
 
       return this.sharepointService.getAccounts(this.exchangeId, this.search.value)
         .then((ids) => {
-          this.accountIds = ids.map(accountId => ({ accountId }));
+          this.accountIds = ids.map((accountId) => ({ accountId }));
         }).catch((err) => {
           _.set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);

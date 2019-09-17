@@ -36,16 +36,16 @@ angular
 
     getAccountDetails() {
       this.sharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
-        .then(accountDetails => _.assign(this.account, accountDetails));
+        .then((accountDetails) => _.assign(this.account, accountDetails));
     }
 
     getSharepointUpnSuffixes() {
       this.sharepointService
         .getSharepointUpnSuffixes(this.exchangeId)
-        .then(upnSuffixes => this.$q.all(
-          _.filter(upnSuffixes, suffix => this.sharepointService
+        .then((upnSuffixes) => this.$q.all(
+          _.filter(upnSuffixes, (suffix) => this.sharepointService
             .getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
-            .then(suffixDetails => suffixDetails.ownershipValidated)),
+            .then((suffixDetails) => suffixDetails.ownershipValidated)),
         ))
         .then((availableDomains) => {
           this.availableDomains = _.union([this.account.domain], availableDomains);
