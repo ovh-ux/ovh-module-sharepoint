@@ -19,7 +19,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "angular": "~1.6.10",
+    "angular": "~1.7.9",
     "filesize": "^3.5.10",
     "jsurl": "^0.1.4",
     "lodash": "~2.4.1"
